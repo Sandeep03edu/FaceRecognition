@@ -1,6 +1,7 @@
 package com.sanedu.fcrecognition.Utils;
 
 import android.content.Context;
+import android.content.ContextWrapper;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
@@ -19,7 +20,9 @@ import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.imgproc.Imgproc;
 
+import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -155,5 +158,28 @@ public class Utils {
                 bm, 0, 0, width, height, matrix, false);
         bm.recycle();
         return resizedBitmap;
+    }
+
+    public static Uri Bitmap2Uri(Context context , Bitmap bitmap){
+        bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
+        ContextWrapper cw = new ContextWrapper(context);
+        File directory = cw.getDir("image", Context.MODE_PRIVATE);
+        if (!directory.exists()) {
+            directory.mkdir();
+        }
+        String fileName = System.currentTimeMillis() + ".png";
+        File mypath = new File(directory, fileName);
+
+        FileOutputStream fos = null;
+        try {
+            fos = new FileOutputStream(mypath);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
+            fos.close();
+
+            return Uri.parse(mypath.toString());
+        } catch (Exception e) {
+            Log.e("SAVE_IMAGE", e.getMessage(), e);
+        }
+        return null;
     }
 }

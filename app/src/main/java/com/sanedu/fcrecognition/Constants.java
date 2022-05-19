@@ -6,6 +6,10 @@ public class Constants {
     public static final String PHONE_NUMBER = "phoneNumber";
     public static final String AVATAR = "Default";
 
+    // Intents Constants
+    public static final String IMAGE_URI = "ImageUri";
+    public static final String IMAGE_BITMAP_BYTES = "ImageBitmapBytes";
+
     // Start Screen Constants
     public static final int START_LOGIN = 0;
     public static final int START_REGISTRATION = 1;

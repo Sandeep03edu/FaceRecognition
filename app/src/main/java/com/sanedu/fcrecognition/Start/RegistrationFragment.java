@@ -18,6 +18,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Firebase.FirebaseAuthentication;
 import com.sanedu.fcrecognition.Firebase.FirestoreData;
+import com.sanedu.fcrecognition.Home.HomeActivity;
 import com.sanedu.fcrecognition.MainActivity;
 import com.sanedu.fcrecognition.Model.User;
 import com.sanedu.fcrecognition.R;
@@ -152,7 +153,7 @@ public class RegistrationFragment extends Fragment {
                         LayoutUtils.enableViews(new View[]{usernameEt, phoneNumberEt, registrationBtn, otpEt});
                         SharedPrefData.addUser(Objects.requireNonNull(getContext()), user);
 
-                        Intent mainActIntent = new Intent(getContext(), MainActivity.class);
+                        Intent mainActIntent = new Intent(getContext(), HomeActivity.class);
                         mainActIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
                         startActivity(mainActIntent);
                         Objects.requireNonNull(getActivity()).finish();

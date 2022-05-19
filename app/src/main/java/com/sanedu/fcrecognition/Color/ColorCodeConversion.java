@@ -1,4 +1,4 @@
-package com.sanedu.fcrecognition;
+package com.sanedu.fcrecognition.Color;
 
 import android.util.Log;
 

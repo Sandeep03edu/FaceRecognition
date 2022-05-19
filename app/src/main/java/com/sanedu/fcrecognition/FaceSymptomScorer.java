@@ -4,6 +4,7 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.sanedu.fcrecognition.Color.CheckColor;
 import com.sanedu.fcrecognition.Utils.Utils;
 
 import org.opencv.core.Core;

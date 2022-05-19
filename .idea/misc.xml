@@ -5,6 +5,8 @@
       <map>
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/edittext_background.xml" value="0.1" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_authentication.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_home.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_image_display.xml" value="0.2" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_registration.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/fragment_login.xml" value="0.25" />
