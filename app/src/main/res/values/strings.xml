@@ -4,4 +4,12 @@
     <string name="description_info">Select an image or open camera</string>
     <string name="request_permission">This sample needs camera permission.</string>
     <string name="camera_error">This device doesn\'t support Camera2 API.</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="login">Login</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="enter_otp">Enter Otp</string>
+    <string name="registration">Registration</string>
+    <string name="username">Username</string>
+    <string name="send_otp">Send Otp</string>
 </resources>

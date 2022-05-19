@@ -33,6 +33,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.Constants;
 import com.tzutalin.dlib.FaceDet;
 import com.tzutalin.dlib.PedestrianDet;
@@ -88,15 +89,6 @@ public class MainActivity extends AppCompatActivity {
         mFabActionBt = findViewById(R.id.fab);
         imageView = findViewById(R.id.main_image);
 
-
-        // Testing
-        /*
-        if(true){
-            startActivity(new Intent(getApplicationContext(), FreeCropTest.class));
-            finish();
-            return;
-        }
-        */
 
         isExternalStorageWritable();
         isExternalStorageReadable();

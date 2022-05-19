@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.util.Log;
 
+import com.sanedu.fcrecognition.Utils.Utils;
+
 import org.opencv.core.Core;
 import org.opencv.core.Mat;
 import org.opencv.core.Scalar;
