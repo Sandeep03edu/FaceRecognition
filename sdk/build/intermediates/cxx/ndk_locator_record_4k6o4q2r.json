@@ -1,0 +1,11 @@
+{
+  "ndk": "S:\\android-ndk-r23b-windows\\android-ndk-r23b",
+  "revision": {
+    "mMajor": 23,
+    "mMinor": 1,
+    "mMicro": 7779620,
+    "mPreview": 0,
+    "mPrecision": "MICRO",
+    "mPreviewSeparator": " "
+  }
+}

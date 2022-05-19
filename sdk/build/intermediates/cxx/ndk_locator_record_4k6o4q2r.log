@@ -1,0 +1,212 @@
+[
+  {
+    "level_": 0,
+    "message_": "android.ndkVersion from module build.gradle is [not set]",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1410422992
+  },
+  {
+    "level_": 0,
+    "message_": "android.ndkPath from module build.gradle is not set",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -618234889
+  },
+  {
+    "level_": 0,
+    "message_": "ndk.dir in local.properties is S:\\android-ndk-r23b-windows\\android-ndk-r23b",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1682857318
+  },
+  {
+    "level_": 0,
+    "message_": "Not considering ANDROID_NDK_HOME because support was removed after deprecation period.",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1949040374
+  },
+  {
+    "level_": 0,
+    "message_": "sdkFolder is C:\\Users\\Sandeep\\AppData\\Local\\Android\\Sdk",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 208307614
+  },
+  {
+    "level_": 0,
+    "message_": "Because no explicit NDK was requested, the default version [21.4.7075529] for this Android Gradle Plugin will be used",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1392331011
+  },
+  {
+    "level_": 0,
+    "message_": "Checking whether deleting ndk.dir and setting android.ndkVersion to [23.1.7779620] would result in the same NDK",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 2137891358
+  },
+  {
+    "level_": 0,
+    "message_": "android.ndkVersion from module build.gradle is [23.1.7779620]",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1491715688
+  },
+  {
+    "level_": 0,
+    "message_": "android.ndkPath from module build.gradle is not set",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -994508366
+  },
+  {
+    "level_": 0,
+    "message_": "ndk.dir in local.properties is not set",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -290047173
+  },
+  {
+    "level_": 0,
+    "message_": "Not considering ANDROID_NDK_HOME because support was removed after deprecation period.",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": 1572766897
+  },
+  {
+    "level_": 0,
+    "message_": "sdkFolder is C:\\Users\\Sandeep\\AppData\\Local\\Android\\Sdk",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -167965863
+  },
+  {
+    "level_": 0,
+    "message_": "Folder C:\\Users\\Sandeep\\AppData\\Local\\Android\\Sdk\\ndk\\23.1.7779620 does not exist. Ignoring.",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -1411678226
+  },
+  {
+    "level_": 0,
+    "message_": "Deleting ndk.dir and setting android.ndkVersion to [23.1.7779620] would *not* result in the same NDK.",
+    "file_": "",
+    "tag_": "ndk.dir delete check",
+    "diagnosticCode_": 0,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -684113895
+  },
+  {
+    "level_": 2,
+    "message_": "NDK was located by using ndk.dir property. This method is deprecated and will be removed in a future release. Please use android.ndkVersion or android.ndkPath in build.gradle to specify the NDK to use. https://developer.android.com/r/studio-ui/ndk-dir",
+    "file_": "",
+    "tag_": "",
+    "diagnosticCode_": 5106,
+    "memoizedIsInitialized": 1,
+    "unknownFields": {
+      "fields": {},
+      "fieldsDescending": {}
+    },
+    "memoizedSize": -1,
+    "memoizedHashCode": -51072473
+  }
+]
