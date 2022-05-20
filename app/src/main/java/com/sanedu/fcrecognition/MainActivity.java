@@ -2,6 +2,7 @@
  *  Copyright (C) 2015-present TzuTaLin
  */
 
+
 package com.sanedu.fcrecognition;
 
 import android.Manifest;
@@ -33,6 +34,7 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.sanedu.fcrecognition.Face.FaceParts;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.Constants;
 import com.tzutalin.dlib.FaceDet;

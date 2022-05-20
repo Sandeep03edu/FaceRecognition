@@ -30,7 +30,7 @@ import java.util.List;
 public class Utils {
 
     private static final String TAG = "UtilsTag";
-    private static double gap = 10;
+    private static double gap = 20;
     private static double MAXI = 100000000;
     private static double MINI = -1;
 
@@ -103,7 +103,7 @@ public class Utils {
         return croppedBitmap;
     }
 
-    //    public static Bitmap getEdgedBitmap(Bitmap imageBitmap, Edges corners) {
+//    public static Bitmap getEdgedBitmap(Bitmap imageBitmap, Edges corners) {
 //        return Bitmap.createBitmap(imageBitmap, corners.getLeftCoord(), corners.getBottomCoord(), corners.getWidth(), corners.getHeight());
 //    }
 //
@@ -141,7 +141,6 @@ public class Utils {
     private static int getGapedCoord(int coord, int avg) {
         return (int) (coord < avg ? coord - gap : coord + gap);
     }
-
 
     public static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         int width = bm.getWidth();

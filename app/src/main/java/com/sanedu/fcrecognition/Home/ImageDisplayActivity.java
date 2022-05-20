@@ -2,14 +2,17 @@ package com.sanedu.fcrecognition.Home;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sanedu.fcrecognition.Constants;
+import com.sanedu.fcrecognition.AnalysisResult.ResultPageActivity;
 import com.sanedu.fcrecognition.R;
 
 public class ImageDisplayActivity extends AppCompatActivity {
@@ -17,6 +20,7 @@ public class ImageDisplayActivity extends AppCompatActivity {
     ImageView imageView;
     TextView proceed;
     Bitmap imageBitmap = null;
+    byte[] bytes = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,11 +33,28 @@ public class ImageDisplayActivity extends AppCompatActivity {
         SetImage();
 
         // Set Proceed Button Action
+        proceed.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                MoveToResultPage();
+            }
+        });
+    }
+
+    private void MoveToResultPage() {
+        if(bytes!=null){
+            Intent resultIntent = new Intent(this, ResultPageActivity.class);
+            resultIntent.putExtra(Constants.IMAGE_BITMAP_BYTES, bytes);
+            startActivity(resultIntent);
+        }
+        else{
+            Toast.makeText(this, Constants.AN_ERROR, Toast.LENGTH_SHORT).show();
+        }
     }
 
     private void SetImage() {
         if (getIntent()!=null){
-            byte[] bytes = getIntent().getByteArrayExtra(Constants.IMAGE_BITMAP_BYTES);
+            bytes = getIntent().getByteArrayExtra(Constants.IMAGE_BITMAP_BYTES);
             imageBitmap = BitmapFactory.decodeByteArray(bytes, 0,bytes.length);
             imageView.setImageBitmap(imageBitmap);
         }

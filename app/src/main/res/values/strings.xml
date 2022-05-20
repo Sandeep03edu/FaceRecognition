@@ -12,4 +12,13 @@
     <string name="registration">Registration</string>
     <string name="username">Username</string>
     <string name="send_otp">Send Otp</string>
+    <string name="left_eyebrow">Left Eyebrow</string>
+    <string name="gender">Gender</string>
+    <string name="age">Age</string>
+    <string name="right_eyebrow">Right Eyebrow</string>
+    <string name="left_eye">Left Eye</string>
+    <string name="right_eye">Right Eye</string>
+    <string name="nose">Nose</string>
+    <string name="upper_lip">Upper lip</string>
+    <string name="lower_lip">Lower lip</string>
 </resources>
