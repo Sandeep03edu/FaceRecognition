@@ -15,7 +15,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AgeGenderResCard"
+            android:name=".AnalysisResult.AgeGenderResCard"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert"
+            android:excludeFromRecents="true"
             android:exported="false" />
         <activity
             android:name=".AnalysisResult.ResultPageActivity"

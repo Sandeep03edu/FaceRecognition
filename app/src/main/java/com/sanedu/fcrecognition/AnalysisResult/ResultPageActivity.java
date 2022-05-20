@@ -4,28 +4,29 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.gson.Gson;
 import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Face.AgeGenderDetection;
 import com.sanedu.fcrecognition.Face.FaceDetection;
 import com.sanedu.fcrecognition.Face.FaceParts;
+import com.sanedu.fcrecognition.Model.AgeGender;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
 import com.sanedu.fcrecognition.Utils.ImageResizer;
 import com.sanedu.fcrecognition.Utils.LayoutUtils;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.VisionDetRet;
-
-import org.w3c.dom.Text;
 
 public class ResultPageActivity extends AppCompatActivity {
 
@@ -58,6 +59,39 @@ public class ResultPageActivity extends AppCompatActivity {
 
         // Check Num of faces
         CheckFacesCount();
+
+        // Setting Click actions
+        SetClickActions();
+    }
+
+    private void SetClickActions() {
+        AgeGenderClickAction();
+    }
+
+    private void AgeGenderClickAction() {
+        Intent ageGenderResIntent= new Intent(this, AgeGenderResCard.class);
+
+        ageCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AgeGender age = ageGenderDetection.getAgeGroup();
+                String gson = new Gson().toJson(age);
+                ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
+                ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.AGE);
+                startActivity(ageGenderResIntent);
+            }
+        });
+
+        genderCard.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AgeGender gender = ageGenderDetection.getGender();
+                String gson = new Gson().toJson(gender);
+                ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
+                ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.GENDER);
+                startActivity(ageGenderResIntent);
+            }
+        });
     }
 
     private void _init() {
@@ -180,9 +214,9 @@ public class ResultPageActivity extends AppCompatActivity {
                     dismissDialog();
                 }
 
-                if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase("male")) {
+                if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase(Constants.MALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_male_128);
-                } else if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase("female")) {
+                } else if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase(Constants.FEMALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_female_128);
                 }
 
@@ -190,9 +224,6 @@ public class ResultPageActivity extends AppCompatActivity {
 
                 ageTv.setText(ageGenderDetection.getAgeGroup().getAgeGender());
                 genderTv.setText(ageGenderDetection.getGender().getAgeGender());
-
-                Log.d(TAG, "onPostExecute: Age: " + ageGenderDetection.getAgeGroup());
-                Log.d(TAG, "onPostExecute: Gender: " + ageGenderDetection.getGender());
             }
         }.execute();
     }

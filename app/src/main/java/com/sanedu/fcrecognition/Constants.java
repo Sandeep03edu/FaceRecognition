@@ -6,6 +6,15 @@ public class Constants {
     public static final String PHONE_NUMBER = "phoneNumber";
     public static final String AVATAR = "Default";
 
+    // Age Gender Constants
+    public static final String AG_TYPE = "AgeGenderType";
+    public static final String AGE = "Age";
+    public static final String GENDER = "Gender";
+    public static final String MALE = "Male";
+    public static final String FEMALE = "Female";
+    public static final String AG_MODEL = "AgeGenderModel";
+
+
     // Intents Constants
     public static final String IMAGE_URI = "ImageUri";
     public static final String IMAGE_BITMAP_BYTES = "ImageBitmapBytes";
