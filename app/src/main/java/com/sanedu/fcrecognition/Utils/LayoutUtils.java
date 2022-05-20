@@ -32,14 +32,23 @@ public class LayoutUtils {
         }
     }
 
-    public static void fixRatioImageView(Context context, int n, ImageView[] imageViews) {
+    public static void fixRatioImageView(Context context, int n, View[] imageViews) {
         int displayWidth = context.getResources().getDisplayMetrics().widthPixels;
         int width = displayWidth / n;
         int height = displayWidth / n;
 
-        for (ImageView imageView : imageViews) {
+        for (View imageView : imageViews) {
             imageView.getLayoutParams().width = width;
             imageView.getLayoutParams().height = height;
         }
+    }
+
+    public static boolean checkNonNull(Object[] objects){
+        for(Object object : objects){
+            if(object==null){
+                return false;
+            }
+        }
+        return true;
     }
 }

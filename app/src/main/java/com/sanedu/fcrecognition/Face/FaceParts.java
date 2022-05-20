@@ -27,6 +27,27 @@ public class FaceParts {
         return faceLandmarks;
     }
 
+    public Bitmap getDisplayLeftEye() {
+        return getRectBitmap(Face68Coordinates.LEFT_EYE);
+    }
+    public Bitmap getDisplayRightEye(){
+        return getRectBitmap(Face68Coordinates.RIGHT_EYE);
+    }
+    public Bitmap getDisplayLeftEyebrow(){
+        return getRectBitmap(Face68Coordinates.LEFT_EYEBROW);
+    }
+    public Bitmap getDisplayRightEyebrow(){
+        return getRectBitmap(Face68Coordinates.RIGHT_EYEBROW);
+    }
+    public Bitmap getDisplayUpperLip(){
+        return getRectBitmap(Face68Coordinates.UPPER_LIP);
+    }
+    public Bitmap getDisplayLowerLip(){
+        return getRectBitmap(Face68Coordinates.LOWER_LIP);
+    }
+    public Bitmap getDisplayNose(){return getRectBitmap(Face68Coordinates.NOSE);}
+
+
     public Bitmap getLeftEye() {
         return getListBitmap(Face68Coordinates.LEFT_EYE);
     }
@@ -51,10 +72,8 @@ public class FaceParts {
         return getListBitmap(Face68Coordinates.LOWER_LIP);
     }
 
-    public Bitmap getNose(){
-//        return getRectBitmap(Face68Coordinates.NOSE);
-        return getListBitmap(Face68Coordinates.NOSE);
-    }
+    public Bitmap getNose(){return getListBitmap(Face68Coordinates.NOSE);}
+
 
     private Bitmap getRectBitmap(List<Integer> list){
         Edges corners = Utils.getEdge(list, faceLandmarks);

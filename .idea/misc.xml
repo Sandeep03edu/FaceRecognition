@@ -4,9 +4,17 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/edittext_background.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_arrow_back_36.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_arrow_forward_36.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_check_36.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_image_search_24.xml" value="0.1" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_male_128.xml" value="0.1" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/drawable/ic_baseline_video_library_24.xml" value="0.1" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_age_gender_res_card.xml" value="0.2" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_authentication.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_crop_images.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_dual_image_result.xml" value="0.18" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_dual_rescan_data.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_home.xml" value="0.1" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_image_display.xml" value="0.2" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_login.xml" value="0.22447916666666667" />
@@ -14,6 +22,7 @@
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/activity_result_page.xml" value="0.22447916666666667" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/fragment_login.xml" value="0.25" />
         <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/fragment_registration.xml" value="0.22447916666666667" />
+        <entry key="..\:/Users/Sandeep/AndroidStudioProjects/fast-face-android/app/src/main/res/layout/image_selector.xml" value="0.16" />
       </map>
     </option>
   </component>

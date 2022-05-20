@@ -21,6 +21,7 @@ import com.sanedu.fcrecognition.Face.AgeGenderDetection;
 import com.sanedu.fcrecognition.Face.FaceDetection;
 import com.sanedu.fcrecognition.Face.FaceParts;
 import com.sanedu.fcrecognition.Model.AgeGender;
+import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
 import com.sanedu.fcrecognition.Utils.ImageResizer;
@@ -46,6 +47,11 @@ public class ResultPageActivity extends AppCompatActivity {
     ImageView ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg;
     TextView ageTv, genderTv;
 
+    // Face parts bitmaps
+    Bitmap leftEyeBrow, rightEyeBrow, leftEye, rightEye, upperLip, lowerLip, nose;
+    Bitmap displayLeftEyeBrow, displayRightEyeBrow, displayLeftEye, displayRightEye, displayUpperLip, displayLowerLip, displayNose;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,10 +72,58 @@ public class ResultPageActivity extends AppCompatActivity {
 
     private void SetClickActions() {
         AgeGenderClickAction();
+
+        DualImageResultProvider();
+    }
+
+    private void DualImageResultProvider() {
+        Intent dualImgResIntent = new Intent(this, DualImageResult.class);
+
+        eyebrowLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri displayLeftUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayLeftEyeBrow);
+                Uri displayRightUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayRightEyeBrow);
+                Uri leftUri = Utils.Bitmap2Uri(ResultPageActivity.this, leftEyeBrow);
+                Uri rightUri = Utils.Bitmap2Uri(ResultPageActivity.this, rightEyeBrow);
+                DualImageModel model = new DualImageModel(Constants.EYE_BROW_TEST, String.valueOf(displayLeftUri), String.valueOf(displayRightUri), String.valueOf(leftUri), String.valueOf(rightUri), "Left Eyebrow", "Right Eyebrow");
+                String gson = new Gson().toJson(model);
+                dualImgResIntent.putExtra(Constants.DUAL_IMAGE_TEST, gson);
+                startActivity(dualImgResIntent);
+            }
+        });
+
+        eyeLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri displayLeftUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayLeftEye);
+                Uri displayRightUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayRightEye);
+                Uri leftUri = Utils.Bitmap2Uri(ResultPageActivity.this, leftEye);
+                Uri rightUri = Utils.Bitmap2Uri(ResultPageActivity.this, rightEye);
+                DualImageModel model = new DualImageModel(Constants.EYE_RED_TEST, String.valueOf(displayLeftUri), String.valueOf(displayRightUri), String.valueOf(leftUri), String.valueOf(rightUri), "Left Eye", "Right Eye");
+                String gson = new Gson().toJson(model);
+                dualImgResIntent.putExtra(Constants.DUAL_IMAGE_TEST, gson);
+                startActivity(dualImgResIntent);
+            }
+        });
+
+        lipsLl.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Uri displayLeftUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayUpperLip);
+                Uri displayRightUri = Utils.Bitmap2Uri(ResultPageActivity.this, displayLowerLip);
+                Uri leftUri = Utils.Bitmap2Uri(ResultPageActivity.this, upperLip);
+                Uri rightUri = Utils.Bitmap2Uri(ResultPageActivity.this, lowerLip);
+                DualImageModel model = new DualImageModel(Constants.LIPS_TEST, String.valueOf(displayLeftUri), String.valueOf(displayRightUri), String.valueOf(leftUri), String.valueOf(rightUri), "Upper Lip", "Lower Lip");
+                String gson = new Gson().toJson(model);
+                dualImgResIntent.putExtra(Constants.DUAL_IMAGE_TEST, gson);
+                startActivity(dualImgResIntent);
+            }
+        });
     }
 
     private void AgeGenderClickAction() {
-        Intent ageGenderResIntent= new Intent(this, AgeGenderResCard.class);
+        Intent ageGenderResIntent = new Intent(this, AgeGenderResCard.class);
 
         ageCard.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,27 +228,29 @@ public class ResultPageActivity extends AppCompatActivity {
     }
 
     private void SetFacePartsImage() {
-        Bitmap leftEyeBrow = faceParts.getLeftEyebrow();
-        Bitmap rightEyeBrow = faceParts.getRightEyebrow();
+        leftEyeBrow = faceParts.getLeftEyebrow();
+        rightEyeBrow = faceParts.getRightEyebrow();
+        leftEye = faceParts.getLeftEye();
+        rightEye = faceParts.getRightEye();
+        upperLip = faceParts.getUpperLip();
+        lowerLip = faceParts.getLowerLip();
+        nose = faceParts.getNose();
 
-        Bitmap leftEye = faceParts.getLeftEye();
-        Bitmap rightEye = faceParts.getRightEye();
+        displayLeftEyeBrow = faceParts.getDisplayLeftEyebrow();
+        displayRightEyeBrow = faceParts.getDisplayRightEyebrow();
+        displayLeftEye = faceParts.getDisplayLeftEye();
+        displayRightEye = faceParts.getDisplayRightEye();
+        displayUpperLip = faceParts.getDisplayUpperLip();
+        displayLowerLip = faceParts.getDisplayLowerLip();
+        displayNose = faceParts.getDisplayNose();
 
-        Bitmap upperLip = faceParts.getUpperLip();
-        Bitmap lowerLip = faceParts.getLowerLip();
-
-        Bitmap nose = faceParts.getNose();
-
-        leftEyebrowImg.setImageBitmap(leftEyeBrow);
-        rightEyebrowImg.setImageBitmap(rightEyeBrow);
-
-        leftEyeImg.setImageBitmap(leftEye);
-        rightEyeImg.setImageBitmap(rightEye);
-
-        upperLipImg.setImageBitmap(upperLip);
-        lowerLipImg.setImageBitmap(lowerLip);
-
-        noseImg.setImageBitmap(nose);
+        leftEyebrowImg.setImageBitmap(displayLeftEyeBrow);
+        rightEyebrowImg.setImageBitmap(displayRightEyeBrow);
+        leftEyeImg.setImageBitmap(displayLeftEye);
+        rightEyeImg.setImageBitmap(displayRightEye);
+        upperLipImg.setImageBitmap(displayUpperLip);
+        lowerLipImg.setImageBitmap(displayLowerLip);
+        noseImg.setImageBitmap(displayNose);
     }
 
     private void DetectAgeGender() {

@@ -119,6 +119,7 @@ public class Utils {
             }
         }
 
+        int gap=10;
         left -= gap;
         bottom -= gap;
         top += gap;

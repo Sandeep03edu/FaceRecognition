@@ -21,4 +21,10 @@
     <string name="nose">Nose</string>
     <string name="upper_lip">Upper lip</string>
     <string name="lower_lip">Lower lip</string>
+    <string name="complete_scan">Complete Scan?\nRescan with clear image</string>
+    <string name="rescan_data">Rescan Data</string>
+    <string name="select_image_file">Select Image File</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="re_scan">Re-Scan</string>
 </resources>

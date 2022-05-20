@@ -15,10 +15,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".AnalysisResult.AgeGenderResCard"
-            android:theme="@style/Theme.AppCompat.Dialog.Alert"
-            android:excludeFromRecents="true"
+            android:name=".Utils.CropImagesActivity"
             android:exported="false" />
+        <activity
+            android:name=".AnalysisResult.DualRescanData"
+            android:exported="false" />
+        <activity
+            android:name=".AnalysisResult.DualImageResult"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+        <activity
+            android:name=".AnalysisResult.AgeGenderResCard"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
         <activity
             android:name=".AnalysisResult.ResultPageActivity"
             android:exported="false" />
