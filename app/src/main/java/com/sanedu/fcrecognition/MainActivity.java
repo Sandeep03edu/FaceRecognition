@@ -258,7 +258,7 @@ public class MainActivity extends AppCompatActivity {
     private void CheckEyeRedness(FaceParts faceParts) {
         FaceSymptomScorer eyeRednessScorer = new FaceSymptomScorer();
         eyeRednessScorer.setBitmap(faceParts.getLeftEye());
-        int redScore = eyeRednessScorer.detectRedness();
+        double redScore = eyeRednessScorer.detectRedness();
         eyeRednessScorer.setBitmap(faceParts.getRightEye());
         redScore+= eyeRednessScorer.detectRedness();
         redScore/=2;

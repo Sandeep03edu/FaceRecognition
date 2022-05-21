@@ -116,18 +116,17 @@ public class FaceSymptomScorer {
         return ct;
     }
 
-    public int detectRedness() {
-        int redColors = 0;
+    public double detectRedness() {
+        double redColors = 0;
         int pixelCount = 0;
         for (int y = 0; y < bitmap.getHeight(); y++) {
             for (int x = 0; x < bitmap.getWidth(); x++) {
-                if (CheckColor.isRed(bitmap.getPixel(x, y))) {
+                int c = bitmap.getPixel(x, y);
+                if (CheckColor.isRed(c, 20)) {
                     redColors++;
                 }
                 pixelCount++;
-                int c = bitmap.getPixel(x, y);
                 Log.d(TAG, "detectRedness: Red: " + redColors + " Pixel: " + pixelCount);
-//                Log.d(TAG, "detectRedness: R: " + Color.red(c) + " G: " + Color.green(c) + " B: " + Color.blue(c));
             }
         }
 
@@ -135,6 +134,42 @@ public class FaceSymptomScorer {
 
         redColors *= 100;
         return redColors / pixelCount;
+    }
 
+    public double detectLossBlackness() {
+        double whitePix = 0, blackPix = 0;
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
+                int c = bitmap.getPixel(x, y);
+                if (CheckColor.isBlack(c, 50)) {
+                    blackPix++;
+                }
+                else if (CheckColor.isWhite(c, 20)) {
+                    whitePix++;
+                }
+            }
+        }
+
+        double total = 100 * whitePix;
+        return total / (whitePix + blackPix);
+    }
+
+
+    public double detectDryLips() {
+        double whitePix = 0, pinkPix = 0;
+        for (int y = 0; y < bitmap.getHeight(); y++) {
+            for (int x = 0; x < bitmap.getWidth(); x++) {
+                int c = bitmap.getPixel(x, y);
+                if (CheckColor.isPink(c, 50)) {
+                    pinkPix++;
+                }
+                else if (CheckColor.isWhite(c, 20)) {
+                    whitePix++;
+                }
+            }
+        }
+
+        double total = 100 * whitePix;
+        return total / (whitePix + pinkPix);
     }
 }

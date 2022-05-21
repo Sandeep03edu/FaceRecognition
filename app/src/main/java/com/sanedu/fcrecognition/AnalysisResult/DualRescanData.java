@@ -70,6 +70,20 @@ public class DualRescanData extends AppCompatActivity {
             rType.setText(model.getRightImgType());
 
             setTitle(model.getType());
+
+            // Adding Temp Images
+            if(model.getType().equalsIgnoreCase(Constants.EYE_BROW_TEST)){
+                lImg.setImageResource(R.drawable.left_eyebrow);
+                rImg.setImageResource(R.drawable.right_eyebrow);
+            }
+            else if(model.getType().equalsIgnoreCase(Constants.EYE_RED_TEST)){
+                lImg.setImageResource(R.drawable.left_eye);
+                rImg.setImageResource(R.drawable.right_eye);
+            }
+            else if(model.getType().equalsIgnoreCase(Constants.LIPS_TEST)){
+                lImg.setImageResource(R.drawable.upper_lip);
+                rImg.setImageResource(R.drawable.lower_lip);
+            }
         }
     }
 
@@ -88,6 +102,9 @@ public class DualRescanData extends AppCompatActivity {
                     resultIntent.putExtra(Constants.DUAL_IMAGE_TEST, new Gson().toJson(model));
                     setResult(RESULT_OK, resultIntent);
                     finish();
+                }
+                else{
+                    Toast.makeText(DualRescanData.this, "Please select both images", Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -168,6 +185,7 @@ public class DualRescanData extends AppCompatActivity {
                 Bundle imagesBundle = new Bundle();
                 imagesBundle.putSerializable(Constants.IMAGES, uriArrayList);
                 cropImagesIntent.putExtra(Constants.IMAGES_BUNDLE, imagesBundle);
+                cropImagesIntent.putExtra(Constants.DISABLE_ASPECT_CROP, true);
                 startActivityForResult(cropImagesIntent, Constants.CROP_IMAGE_REQUEST_CODE);
 
             }
@@ -184,6 +202,7 @@ public class DualRescanData extends AppCompatActivity {
                 imagesBundle.putSerializable(Constants.IMAGES, uriArrayList);
                 cropImagesIntent.putExtra(Constants.IMAGES_BUNDLE, imagesBundle);
                 cropImagesIntent.putExtra(Constants.CROP_CAMERA, true);
+                cropImagesIntent.putExtra(Constants.DISABLE_ASPECT_CROP, true);
                 startActivityForResult(cropImagesIntent, Constants.CROP_IMAGE_REQUEST_CODE);
             } else if (requestCode == Constants.CROP_IMAGE_REQUEST_CODE) {
                 // Receiving intent with cropped images list

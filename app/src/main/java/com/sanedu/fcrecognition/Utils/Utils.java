@@ -176,7 +176,7 @@ public class Utils {
             bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.close();
 
-            return Uri.parse(mypath.toString());
+            return Uri.fromFile(mypath);
         } catch (Exception e) {
             Log.e("SAVE_IMAGE", e.getMessage(), e);
         }

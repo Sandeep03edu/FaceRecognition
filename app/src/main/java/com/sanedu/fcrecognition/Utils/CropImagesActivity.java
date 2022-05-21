@@ -74,10 +74,6 @@ public class CropImagesActivity extends AppCompatActivity {
         Uri firstImage = uriArrayList.get(0);
         Log.d(TAG, "onCreate: FirstUri: " + firstImage);
 
-        if(getIntent().hasExtra(Constants.CROP_CAMERA)) {
-            firstImage = Uri.fromFile(new File(firstImage.toString()));
-        }
-
         Log.d(TAG, "onCreate: FirstUri: " + firstImage);
         cropImageView.setImageUriAsync(firstImage);
 

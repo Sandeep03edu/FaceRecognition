@@ -1,10 +1,13 @@
 package com.sanedu.fcrecognition;
 
+import java.text.DecimalFormat;
+
 public class Constants {
 
     public static final String FIREBASE_USER_TABLE = "UserList";
     public static final String PHONE_NUMBER = "phoneNumber";
     public static final String AVATAR = "Default";
+    public static final DecimalFormat decimalFormat2 = new DecimalFormat("0.00");
 
     // Crop ImageView Constants
     public static final String DISABLE_ASPECT_CROP = "Disable";

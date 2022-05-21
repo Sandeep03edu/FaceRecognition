@@ -76,4 +76,17 @@ public class DualImageModel {
     public void setRightImgType(String rightImgType) {
         this.rightImgType = rightImgType;
     }
+
+    @Override
+    public String toString() {
+        return "DualImageModel{" +
+                "type='" + type + '\'' +
+                ", leftDisplayImgUri='" + leftDisplayImgUri + '\'' +
+                ", rightDisplayImgUri='" + rightDisplayImgUri + '\'' +
+                ", leftImgUri='" + leftImgUri + '\'' +
+                ", rightImgUri='" + rightImgUri + '\'' +
+                ", leftImgType='" + leftImgType + '\'' +
+                ", rightImgType='" + rightImgType + '\'' +
+                '}';
+    }
 }

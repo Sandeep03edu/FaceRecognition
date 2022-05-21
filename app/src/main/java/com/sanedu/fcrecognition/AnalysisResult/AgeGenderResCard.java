@@ -2,7 +2,6 @@ package com.sanedu.fcrecognition.AnalysisResult;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -12,13 +11,11 @@ import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Model.AgeGender;
 import com.sanedu.fcrecognition.R;
 
-import java.text.DecimalFormat;
-
 public class AgeGenderResCard extends AppCompatActivity {
 
     public final String AGE_RESULT = "Age Group";
     public final String GENDER_RESULT = "Gender";
-    private static final DecimalFormat df = new DecimalFormat("0.00");
+
 
     ImageView imageView;
     TextView result, confidence;
@@ -62,14 +59,14 @@ public class AgeGenderResCard extends AppCompatActivity {
             imageView.setImageResource(R.drawable.ic_baseline_female_128);
         }
         result.setText(ageGender.getAgeGender());
-        confidence.setText(df.format(ageGender.getConfidence()) + "% confidence");
+        confidence.setText(Constants.decimalFormat2.format(ageGender.getConfidence()) + "% confidence");
     }
 
     private void SetAgeData() {
         setTitle("Age Group");
         imageView.setImageResource(R.drawable.age_vector);
         result.setText(ageGender.getAgeGender());
-        confidence.setText(df.format(ageGender.getConfidence()) + "% confidence");
+        confidence.setText(Constants.decimalFormat2.format(ageGender.getConfidence()) + "% confidence");
     }
 
     private void GetIntentData() {

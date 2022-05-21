@@ -244,6 +244,8 @@ public class ResultPageActivity extends AppCompatActivity {
         displayLowerLip = faceParts.getDisplayLowerLip();
         displayNose = faceParts.getDisplayNose();
 
+//        leftEyebrowImg.setImageBitmap(leftEyeBrow);
+//        rightEyebrowImg.setImageBitmap(rightEyeBrow);
         leftEyebrowImg.setImageBitmap(displayLeftEyeBrow);
         rightEyebrowImg.setImageBitmap(displayRightEyeBrow);
         leftEyeImg.setImageBitmap(displayLeftEye);
