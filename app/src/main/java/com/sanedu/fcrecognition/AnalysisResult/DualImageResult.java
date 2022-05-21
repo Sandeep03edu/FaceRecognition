@@ -14,8 +14,10 @@ import android.widget.TextView;
 
 import com.google.gson.Gson;
 import com.sanedu.fcrecognition.Constants;
+import com.sanedu.fcrecognition.Face.DetectEyeDisease;
 import com.sanedu.fcrecognition.FaceSymptomScorer;
 import com.sanedu.fcrecognition.Model.DualImageModel;
+import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
 import com.sanedu.fcrecognition.Utils.LayoutUtils;
@@ -57,7 +59,7 @@ public class DualImageResult extends AppCompatActivity {
             if (type.equalsIgnoreCase(Constants.EYE_BROW_TEST)) {
                 SetEyebrowResult();
             } else if (type.equalsIgnoreCase(Constants.EYE_RED_TEST)) {
-                SetEyeRednessResult();
+                SetEyeResult();
             } else if (type.equalsIgnoreCase(Constants.LIPS_TEST)) {
                 SetLipDryResult();
             }
@@ -90,15 +92,24 @@ public class DualImageResult extends AppCompatActivity {
         }.execute();
     }
 
-    private void SetEyeRednessResult() {
-        FaceSymptomScorer symptomScorer = new FaceSymptomScorer();
+    private void SetEyeResult() {
+        final int[] count = {0};
+
+        final String[] leftResult = {""};
+        final String[] rightResult = {""};
+
         final double[] lRed = {0};
         final double[] rRed = {0};
+
+        final ResultConfidence[] lResultConfidence = new ResultConfidence[1];
+        final ResultConfidence[] rResultConfidence = new ResultConfidence[1];
+
         Log.d(TAG, "SetEyeRednessResult: Model: " + model);
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
                 super.doInBackground();
+                FaceSymptomScorer symptomScorer = new FaceSymptomScorer();
                 symptomScorer.setBitmap(Utils.Uri2Bitmap(DualImageResult.this, Uri.parse(model.getLeftImgUri())));
                 lRed[0] = symptomScorer.detectRedness();
 
@@ -110,16 +121,93 @@ public class DualImageResult extends AppCompatActivity {
             public void onPostExecute() {
                 super.onPostExecute();
                 dismissDialog();
-                lResult.setText(Constants.decimalFormat2.format(lRed[0]) + "% redness detected");
-                rResult.setText(Constants.decimalFormat2.format(rRed[0]) + "% redness detected");
+                leftResult[0] = Constants.decimalFormat2.format(lRed[0]) + "% redness detected\n";
+                rightResult[0] = Constants.decimalFormat2.format(rRed[0]) + "% redness detected\n";
+                lResult.append(leftResult[0]);
+                rResult.append(rightResult[0]);
+                count[0] += 2;
+                if (count[0] >= 4) {
+                    dismissDialog();
+                }
+//                lResult.setText(Constants.decimalFormat2.format(lRed[0]) + "% redness detected\n" + lResultConfidence[0].getConfidence() + "% chances of " + lResultConfidence[0].getResult());
+//                rResult.setText(Constants.decimalFormat2.format(rRed[0]) + "% redness detected\n" + rResultConfidence[0].getConfidence() + "% chances of " + rResultConfidence[0].getResult());
             }
         }.execute();
+
+        DetectEyeDisease detectEyeDisease = new DetectEyeDisease();
+        detectEyeDisease.setBitmap(DualImageResult.this, Utils.Uri2Bitmap(DualImageResult.this, Uri.parse(model.getLeftImgUri())));
+        detectEyeDisease.getResult(new DetectEyeDisease.ExecutorListener() {
+            @Override
+            public void onExecutionComplete(ResultConfidence resultConfidence) {
+                lResultConfidence[0] = resultConfidence;
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        lResult.append(lResultConfidence[0].getConfidence() + "% chances of " + lResultConfidence[0].getResult() + "\n");
+                        count[0]++;
+                        if (count[0] >= 4) {
+                            dismissDialog();
+                        }
+                    }
+                });
+            }
+
+            @Override
+            public void onExecutionFailed(Exception e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        count[0]++;
+                        if (count[0] >= 4) {
+                            dismissDialog();
+                        }
+                    }
+                });
+                Log.e(TAG, "onExecutionFailed: Left Err ", e);
+            }
+        });
+        detectEyeDisease.setBitmap(DualImageResult.this, Utils.Uri2Bitmap(DualImageResult.this, Uri.parse(model.getRightImgUri())));
+        detectEyeDisease.getResult(new DetectEyeDisease.ExecutorListener() {
+            @Override
+            public void onExecutionComplete(ResultConfidence resultConfidence) {
+                rResultConfidence[0] = resultConfidence;
+
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        count[0]++;
+                        if (count[0] >= 4) {
+                            dismissDialog();
+                        }
+                        rResult.append(rResultConfidence[0].getConfidence() + "% chances of " + rResultConfidence[0].getResult() + "\n");
+                    }
+                });
+            }
+
+            @Override
+            public void onExecutionFailed(Exception e) {
+                runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        count[0]++;
+                        if (count[0] >= 4) {
+                            dismissDialog();
+                        }
+                    }
+                });
+                Log.e(TAG, "onExecutionFailed: Right Err ", e);
+            }
+        });
+
     }
 
     private void SetEyebrowResult() {
         FaceSymptomScorer symptomScorer = new FaceSymptomScorer();
         final double[] lWhite = {0};
         final double[] rWhite = {0};
+
+        lResult.setText("");
+        rResult.setText("");
 
         new BackgroundWork(this) {
             @Override

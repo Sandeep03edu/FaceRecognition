@@ -5,8 +5,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.util.Log;
 
-import com.sanedu.fcrecognition.MainActivity;
-import com.sanedu.fcrecognition.Model.AgeGender;
+import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.R;
 
 import org.opencv.android.BaseLoaderCallback;
@@ -44,7 +43,7 @@ public class AgeGenderDetection {
     private static String[] genderList = {"Male", "Female"};
     BaseLoaderCallback baseLoaderCallback;
 
-    AgeGender ageGroup = new AgeGender(), gender = new AgeGender();
+    ResultConfidence ageGroup = new ResultConfidence(), gender = new ResultConfidence();
 
     public AgeGenderDetection(Activity activity, Bitmap bitmap) {
         Log.d(TAG, "AgeGenderDetection: Const");
@@ -141,7 +140,7 @@ public class AgeGenderDetection {
 
     }
 
-    public static AgeGender ageGrp(Mat faceMat, Context context) {
+    public static ResultConfidence ageGrp(Mat faceMat, Context context) {
         String ageGroup = "";
         double confidence = 0;
         if (faceMat != null) {
@@ -180,10 +179,10 @@ public class AgeGenderDetection {
                 }
             }
         }
-        return new AgeGender(ageGroup, confidence);
+        return new ResultConfidence(ageGroup, confidence);
     }
 
-    public static AgeGender genderGrp(Mat faceMat, Context context) {
+    public static ResultConfidence genderGrp(Mat faceMat, Context context) {
         String genderGrp = "";
         double confidence = 0;
 
@@ -223,7 +222,7 @@ public class AgeGenderDetection {
                 }
             }
         }
-        return new AgeGender(genderGrp, confidence);
+        return new ResultConfidence(genderGrp, confidence);
     }
 
     private static String getPath(int rawFile, Context context) {
@@ -250,11 +249,11 @@ public class AgeGenderDetection {
         return path;
     }
 
-    public AgeGender getAgeGroup() {
+    public ResultConfidence getAgeGroup() {
         return ageGroup;
     }
 
-    public AgeGender getGender() {
+    public ResultConfidence getGender() {
         return gender;
     }
 

@@ -20,7 +20,7 @@ import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Face.AgeGenderDetection;
 import com.sanedu.fcrecognition.Face.FaceDetection;
 import com.sanedu.fcrecognition.Face.FaceParts;
-import com.sanedu.fcrecognition.Model.AgeGender;
+import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
@@ -128,7 +128,7 @@ public class ResultPageActivity extends AppCompatActivity {
         ageCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AgeGender age = ageGenderDetection.getAgeGroup();
+                ResultConfidence age = ageGenderDetection.getAgeGroup();
                 String gson = new Gson().toJson(age);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.AGE);
@@ -139,7 +139,7 @@ public class ResultPageActivity extends AppCompatActivity {
         genderCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AgeGender gender = ageGenderDetection.getGender();
+                ResultConfidence gender = ageGenderDetection.getGender();
                 String gson = new Gson().toJson(gender);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.GENDER);
@@ -272,16 +272,16 @@ public class ResultPageActivity extends AppCompatActivity {
                     dismissDialog();
                 }
 
-                if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase(Constants.MALE)) {
+                if (ageGenderDetection.getGender().getResult().equalsIgnoreCase(Constants.MALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_male_128);
-                } else if (ageGenderDetection.getGender().getAgeGender().equalsIgnoreCase(Constants.FEMALE)) {
+                } else if (ageGenderDetection.getGender().getResult().equalsIgnoreCase(Constants.FEMALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_female_128);
                 }
 
                 ageImg.setImageResource(R.drawable.age_vector);
 
-                ageTv.setText(ageGenderDetection.getAgeGroup().getAgeGender());
-                genderTv.setText(ageGenderDetection.getGender().getAgeGender());
+                ageTv.setText(ageGenderDetection.getAgeGroup().getResult());
+                genderTv.setText(ageGenderDetection.getGender().getResult());
             }
         }.execute();
     }
