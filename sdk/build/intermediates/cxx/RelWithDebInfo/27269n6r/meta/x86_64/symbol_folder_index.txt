@@ -1,0 +1,1 @@
+C:\Users\Sandeep\AndroidStudioProjects\fast-face-android\sdk\build\intermediates\cxx\RelWithDebInfo\27269n6r\obj\x86_64

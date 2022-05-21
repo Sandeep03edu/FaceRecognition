@@ -1,0 +1,516 @@
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"supportedProtocolVersions\":[{\"isExperimental\":true,\"major\":1,\"minor\":1}],\"type\":\"hello\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\n  \"type\": \"handshake\",\n  \"cookie\": \"gradle-cmake-cookie\",\n  \"protocolVersion\": {\n    \"isExperimental\": true,\n    \"major\": 1,\n    \"minor\": 1\n  },\n  \"sourceDirectory\": \"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/libcxx_helper\",\n  \"buildDirectory\": \"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64\",\n  \"generator\": \"Ninja\"\n}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"gradle-cmake-cookie\",\"inReplyTo\":\"handshake\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\n  \"type\": \"configure\",\n  \"cacheArguments\": [\n    \"\",\n    \"-DCMAKE_SYSTEM_NAME\\u003dAndroid\",\n    \"-DCMAKE_EXPORT_COMPILE_COMMANDS\\u003dON\",\n    \"-DCMAKE_SYSTEM_VERSION\\u003d21\",\n    \"-DANDROID_PLATFORM\\u003dandroid-21\",\n    \"-DANDROID_ABI\\u003dx86_64\",\n    \"-DCMAKE_ANDROID_ARCH_ABI\\u003dx86_64\",\n    \"-DANDROID_NDK\\u003dS:\\\\android-ndk-r23b-windows\\\\android-ndk-r23b\",\n    \"-DCMAKE_ANDROID_NDK\\u003dS:\\\\android-ndk-r23b-windows\\\\android-ndk-r23b\",\n    \"-DCMAKE_TOOLCHAIN_FILE\\u003dS:\\\\android-ndk-r23b-windows\\\\android-ndk-r23b\\\\build\\\\cmake\\\\android.toolchain.cmake\",\n    \"-DCMAKE_MAKE_PROGRAM\\u003dC:\\\\Users\\\\Sandeep\\\\AppData\\\\Local\\\\Android\\\\Sdk\\\\cmake\\\\3.10.2.4988404\\\\bin\\\\ninja.exe\",\n    \"-DCMAKE_LIBRARY_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Sandeep\\\\AndroidStudioProjects\\\\fast-face-android\\\\sdk\\\\build\\\\intermediates\\\\cxx\\\\RelWithDebInfo\\\\27269n6r\\\\obj\\\\x86_64\",\n    \"-DCMAKE_RUNTIME_OUTPUT_DIRECTORY\\u003dC:\\\\Users\\\\Sandeep\\\\AndroidStudioProjects\\\\fast-face-android\\\\sdk\\\\build\\\\intermediates\\\\cxx\\\\RelWithDebInfo\\\\27269n6r\\\\obj\\\\x86_64\",\n    \"-DCMAKE_BUILD_TYPE\\u003dRelWithDebInfo\",\n    \"-DANDROID_STL\\u003dc++_shared\"\n  ]\n}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\\n  CMakeLists.txt\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake:94 (include)\r\n  CMakeLists.txt\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+
+CMAKE SERVER: message: "Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":33,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works"
+
+CMAKE SERVER: message: "Check for working C compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang.exe -- works"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":65,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compiler ABI info - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info - done"
+
+CMAKE SERVER: message: "Detecting C compiler ABI info - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compile features"
+
+CMAKE SERVER: message: "Detecting C compile features"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":96,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":126,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":155,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting C compile features - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting C compile features - done"
+
+CMAKE SERVER: message: "Detecting C compile features - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+
+CMAKE SERVER: message: "Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":184,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works"
+
+CMAKE SERVER: message: "Check for working CXX compiler: S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/bin/clang++.exe -- works"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":211,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compiler ABI info - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info - done"
+
+CMAKE SERVER: message: "Detecting CXX compiler ABI info - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compile features"
+
+CMAKE SERVER: message: "Detecting CXX compile features"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":237,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":262,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":287,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\\n  An old version of CMake is being used that cannot automatically detect\\n  compiler attributes.  Compiler identification is being bypassed.  Some\\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\\n  CMake\'s built-in compiler identification.\\nCall Stack (most recent call first):\\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\\n\\n\",\"title\":\"Warning\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: level: WARN
+message: "CMake Warning at S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake:416 (message):\r\n  An old version of CMake is being used that cannot automatically detect\r\n  compiler attributes.  Compiler identification is being bypassed.  Some\r\n  values may be wrong or missing.  Update to CMake 3.19 or newer to use\r\n  CMake\'s built-in compiler identification.\r\nCall Stack (most recent call first):\r\n  S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake:55 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake:6 (include)\r\n  C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/CMakeTmp/CMakeLists.txt:2 (project)\r\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":311,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Detecting CXX compile features - done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Detecting CXX compile features - done"
+
+CMAKE SERVER: message: "Detecting CXX compile features - done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Configuring\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"message\":\"Configuring done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Configuring done"
+
+CMAKE SERVER: message: "Configuring done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"configure\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"compute\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"progressCurrent\":1000,\"progressMaximum\":1000,\"progressMessage\":\"Generating\",\"progressMinimum\":0,\"type\":\"progress\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"message\":\"Generating done\",\"type\":\"message\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "Generating done"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"cookie\":\"\",\"inReplyTo\":\"compute\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"cmakeInputs\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"buildFiles\":[{\"isCMake\":true,\"isTemporary\":false,\"sources\":[\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineSystem.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystem.cmake.in\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInitialize.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Initialize.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-C.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCXXCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Determine-CXX.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android/Determine-Compiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeFindBinUtils.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-FindBinUtils.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeSystemSpecificInformation.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeGenericSystem.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Linux.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/UnixPaths.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCInformation.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/GNU.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/CMakeCommonCompilerMacros.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-C.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompilerABI.c\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-C-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCCompiler.cmake.in\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXInformation.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeLanguageInformation.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang-CXX.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Platform/Android-Clang.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCommonLanguageInclude.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCXXCompiler.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeTestCompilerCommon.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompilerABI.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeParseImplicitLinkInfo.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompilerABI.cpp\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeDetermineCompileFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Internal/FeatureTesting.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-FeatureTests.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/Compiler/Clang-CXX-TestableFeatures.cmake\",\"../../../../AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10/Modules/CMakeCXXCompiler.cmake.in\"]},{\"isCMake\":false,\"isTemporary\":false,\"sources\":[\"CMakeLists.txt\",\"S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake\",\"S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android-legacy.toolchain.cmake\",\"S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/platforms.cmake\",\"S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/compiler_id.cmake\",\"S:/android-ndk-r23b-windows/android-ndk-r23b/build/cmake/android.toolchain.cmake\"]},{\"isCMake\":false,\"isTemporary\":true,\"sources\":[\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeSystem.cmake\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.c\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.c\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.c\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeCCompiler.cmake\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.cxx\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.cxx\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.cxx\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/feature_tests.cxx\",\"../.cxx/RelWithDebInfo/27269n6r/x86_64/CMakeFiles/3.10.2/CMakeCXXCompiler.cmake\"]}],\"cmakeRootDirectory\":\"C:/Users/Sandeep/AppData/Local/Android/Sdk/cmake/3.10.2.4988404/share/cmake-3.10\",\"cookie\":\"\",\"inReplyTo\":\"cmakeInputs\",\"sourceDirectory\":\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/libcxx_helper\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"type\":\"codemodel\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
+CMAKE SERVER: message: "\n"
+
+CMAKE SERVER: message: "[== \"CMake Server\" ==[\n"
+
+CMAKE SERVER: message: "{\"configurations\":[{\"name\":\"RelWithDebInfo\",\"projects\":[{\"buildDirectory\":\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64\",\"name\":\"Project\",\"sourceDirectory\":\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/libcxx_helper\",\"targets\":[{\"artifacts\":[\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64/libopencv_jni_shared.a\"],\"buildDirectory\":\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/.cxx/RelWithDebInfo/27269n6r/x86_64\",\"fileGroups\":[{\"compileFlags\":\"-g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -Wformat -Werror=format-security   -O2 -g -DNDEBUG -fPIC  \",\"isGenerated\":false,\"language\":\"CXX\",\"sources\":[\"dummy.cpp\"]}],\"fullName\":\"libopencv_jni_shared.a\",\"linkerLanguage\":\"CXX\",\"name\":\"opencv_jni_shared\",\"sourceDirectory\":\"C:/Users/Sandeep/AndroidStudioProjects/fast-face-android/sdk/libcxx_helper\",\"sysroot\":\"S:/android-ndk-r23b-windows/android-ndk-r23b/toolchains/llvm/prebuilt/windows-x86_64/sysroot\",\"type\":\"STATIC_LIBRARY\"}]}]}],\"cookie\":\"\",\"inReplyTo\":\"codemodel\",\"type\":\"reply\"}\n"
+
+CMAKE SERVER: message: "]== \"CMake Server\" ==]\n"
+
