@@ -10,8 +10,15 @@ import com.tzutalin.dlib.VisionDetRet;
 import java.util.ArrayList;
 
 public class FaceLandmarks {
+    private static final String TAG = "LandmarksTag";
+    private static Bitmap bitmap;
 
     public static ArrayList<Point> getLandmarks(String path, VisionDetRet face) {
+        Log.d(TAG, "getLandmarks: Path: " + path );
+        if(face==null){
+            Log.e(TAG, "getLandmarks: Null face");
+        }
+
         BitmapFactory.Options options = new BitmapFactory.Options();
         options.inSampleSize = 1;
         Bitmap bm = BitmapFactory.decodeFile(path, options);
@@ -38,16 +45,19 @@ public class FaceLandmarks {
             resizeRatio = (float)
                     bm.getWidth() / (float) width;
         }
-
+        bitmap= bm;
         // Loop result list
         // Get landmark
         ArrayList<Point> landmarks = face.getFaceLandmarks();
-        String TAG = "LandmarksTag";
         Log.d(TAG, "drawRect: Size: " + landmarks.size());
 
         return landmarks;
     }
 
+    public static Bitmap getFaceBitmap(String path, VisionDetRet face){
+        getLandmarks(path, face);
+        return bitmap;
+    }
 
     private static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, newWidth, newHeight, true);

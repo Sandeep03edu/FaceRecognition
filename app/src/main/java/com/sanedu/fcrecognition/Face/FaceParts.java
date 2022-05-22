@@ -47,11 +47,9 @@ public class FaceParts {
     }
     public Bitmap getDisplayNose(){return getRectBitmap(Face68Coordinates.NOSE);}
 
-
     public Bitmap getLeftEye() {
         return getListBitmap(Face68Coordinates.LEFT_EYE);
     }
-
     public Bitmap getRightEye(){
         return getListBitmap(Face68Coordinates.RIGHT_EYE);
     }
@@ -59,7 +57,6 @@ public class FaceParts {
     public Bitmap getLeftEyebrow(){
         return getListBitmap(Face68Coordinates.LEFT_EYEBROW);
     }
-
     public Bitmap getRightEyebrow(){
         return getListBitmap(Face68Coordinates.RIGHT_EYEBROW);
     }
@@ -67,7 +64,6 @@ public class FaceParts {
     public Bitmap getUpperLip(){
         return getListBitmap(Face68Coordinates.UPPER_LIP);
     }
-
     public Bitmap getLowerLip(){
         return getListBitmap(Face68Coordinates.LOWER_LIP);
     }

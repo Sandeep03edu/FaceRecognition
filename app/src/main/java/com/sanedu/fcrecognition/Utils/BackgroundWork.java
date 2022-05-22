@@ -2,6 +2,9 @@ package com.sanedu.fcrecognition.Utils;
 
 import android.app.Activity;
 
+import com.sanedu.fcrecognition.AnalysisResult.ResultUploadScreen;
+import com.sanedu.fcrecognition.Start.SplashActivity;
+
 public class BackgroundWork {
     private Activity activity;
 
@@ -14,7 +17,10 @@ public class BackgroundWork {
             @Override
             public void run() {
                 doInBackground();
-                if (activity != null) {
+                if(activity==null){
+                    onPostExecute();
+                }
+                else {
                     activity.runOnUiThread(new Runnable() {
                         @Override
                         public void run() {

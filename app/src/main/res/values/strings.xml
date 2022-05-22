@@ -27,4 +27,7 @@
     <string name="camera">Camera</string>
     <string name="gallery">Gallery</string>
     <string name="re_scan">Re-Scan</string>
+    <string name="save_data">Save Data</string>
+    <string name="name">Name</string>
+    <string name="upload_data">Upload Data</string>
 </resources>

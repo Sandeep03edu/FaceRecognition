@@ -63,6 +63,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-analytics'
     implementation 'com.google.firebase:firebase-auth'
     implementation 'com.google.firebase:firebase-firestore'
+    implementation 'com.google.firebase:firebase-storage'
 
     // Tensorflow dependencies
     implementation 'org.tensorflow:tensorflow-android:1.13.1'

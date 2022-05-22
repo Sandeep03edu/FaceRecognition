@@ -41,7 +41,7 @@ public class DualRescanData extends AppCompatActivity {
     private final int CAMERA_IMAGE_PICK = 10;
     private final int GALLERY_IMAGE_PICK = 11;
 
-    Uri leftUri =null, rightUri = null;
+    Uri leftUri = null, rightUri = null;
 
     DualImageModel model;
 
@@ -63,7 +63,7 @@ public class DualRescanData extends AppCompatActivity {
     }
 
     private void SetData() {
-        if(getIntent()!=null && getIntent().hasExtra(Constants.DUAL_IMAGE_TEST)){
+        if (getIntent() != null && getIntent().hasExtra(Constants.DUAL_IMAGE_TEST)) {
             model = new Gson().fromJson(getIntent().getStringExtra(Constants.DUAL_IMAGE_TEST), DualImageModel.class);
 
             lType.setText(model.getLeftImgType());
@@ -72,15 +72,13 @@ public class DualRescanData extends AppCompatActivity {
             setTitle(model.getType());
 
             // Adding Temp Images
-            if(model.getType().equalsIgnoreCase(Constants.EYE_BROW_TEST)){
+            if (model.getType().equalsIgnoreCase(Constants.EYE_BROW_TEST)) {
                 lImg.setImageResource(R.drawable.left_eyebrow);
                 rImg.setImageResource(R.drawable.right_eyebrow);
-            }
-            else if(model.getType().equalsIgnoreCase(Constants.EYE_RED_TEST)){
+            } else if (model.getType().equalsIgnoreCase(Constants.EYE_RED_TEST)) {
                 lImg.setImageResource(R.drawable.left_eye);
                 rImg.setImageResource(R.drawable.right_eye);
-            }
-            else if(model.getType().equalsIgnoreCase(Constants.LIPS_TEST)){
+            } else if (model.getType().equalsIgnoreCase(Constants.LIPS_TEST)) {
                 lImg.setImageResource(R.drawable.upper_lip);
                 rImg.setImageResource(R.drawable.lower_lip);
             }
@@ -91,7 +89,7 @@ public class DualRescanData extends AppCompatActivity {
         reScan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(leftUri!=null && rightUri!=null){
+                if (leftUri != null && rightUri != null) {
                     model.setLeftImgUri(String.valueOf(leftUri));
                     model.setLeftDisplayImgUri(String.valueOf(leftUri));
 
@@ -102,8 +100,7 @@ public class DualRescanData extends AppCompatActivity {
                     resultIntent.putExtra(Constants.DUAL_IMAGE_TEST, new Gson().toJson(model));
                     setResult(RESULT_OK, resultIntent);
                     finish();
-                }
-                else{
+                } else {
                     Toast.makeText(DualRescanData.this, "Please select both images", Toast.LENGTH_SHORT).show();
                 }
             }
@@ -114,8 +111,9 @@ public class DualRescanData extends AppCompatActivity {
         lCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Permission.CheckPermission(DualRescanData.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        && Permission.CheckPermission(DualRescanData.this, Manifest.permission.CAMERA)) {
+                if (Permission.CheckPermission(DualRescanData.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
+                        Permission.CheckPermission(DualRescanData.this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                        Permission.CheckPermission(DualRescanData.this, Manifest.permission.CAMERA)) {
                     SelectImage selectImage = new SelectImage(DualRescanData.this, view);
                     selectImage.GetImage(new SelectImage.SelectImageListener() {
                         @Override
@@ -131,7 +129,7 @@ public class DualRescanData extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Permission.RequestPermission(DualRescanData.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
+                    Permission.RequestPermission(DualRescanData.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA, Manifest.permission.READ_EXTERNAL_STORAGE});
                 }
             }
         });
@@ -139,8 +137,9 @@ public class DualRescanData extends AppCompatActivity {
         rCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (Permission.CheckPermission(DualRescanData.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                        && Permission.CheckPermission(DualRescanData.this, Manifest.permission.CAMERA)) {
+                if (Permission.CheckPermission(DualRescanData.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) &&
+                        Permission.CheckPermission(DualRescanData.this, Manifest.permission.READ_EXTERNAL_STORAGE) &&
+                        Permission.CheckPermission(DualRescanData.this, Manifest.permission.CAMERA)) {
                     SelectImage selectImage = new SelectImage(DualRescanData.this, view);
                     selectImage.GetImage(new SelectImage.SelectImageListener() {
                         @Override
@@ -156,7 +155,7 @@ public class DualRescanData extends AppCompatActivity {
                         }
                     });
                 } else {
-                    Permission.RequestPermission(DualRescanData.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
+                    Permission.RequestPermission(DualRescanData.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
                 }
             }
         });
@@ -175,8 +174,8 @@ public class DualRescanData extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK && data!=null){
-            if(requestCode==GALLERY_IMAGE_PICK && data.getData()!=null){
+        if (resultCode == RESULT_OK && data != null) {
+            if (requestCode == GALLERY_IMAGE_PICK && data.getData() != null) {
                 Uri imageUri = data.getData();
                 ArrayList<Uri> uriArrayList = new ArrayList<>();
                 uriArrayList.add(imageUri);
@@ -188,8 +187,7 @@ public class DualRescanData extends AppCompatActivity {
                 cropImagesIntent.putExtra(Constants.DISABLE_ASPECT_CROP, true);
                 startActivityForResult(cropImagesIntent, Constants.CROP_IMAGE_REQUEST_CODE);
 
-            }
-            else if(requestCode==CAMERA_IMAGE_PICK && data.getExtras()!=null && data.getExtras().get("data")!=null){
+            } else if (requestCode == CAMERA_IMAGE_PICK && data.getExtras() != null && data.getExtras().get("data") != null) {
                 Bitmap imageBitmap = (Bitmap) data.getExtras().get("data");
                 imageBitmap = ImageResizer.reduceBitmapSize(imageBitmap, 240000);
 
@@ -209,7 +207,7 @@ public class DualRescanData extends AppCompatActivity {
                 Bundle imageBundle = data.getBundleExtra(Constants.IMAGES_BUNDLE);
                 ArrayList<Uri> croppedUriArrayList = (ArrayList<Uri>) imageBundle.getSerializable(Constants.IMAGES);
 
-                if(croppedUriArrayList.size()>0) {
+                if (croppedUriArrayList.size() > 0) {
                     if (turn == leftCard) {
                         leftUri = croppedUriArrayList.get(0);
                         lImg.setImageURI(croppedUriArrayList.get(0));

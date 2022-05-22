@@ -36,7 +36,6 @@ import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sanedu.fcrecognition.Face.FaceParts;
 import com.sanedu.fcrecognition.Utils.Utils;
-import com.tzutalin.dlib.Constants;
 import com.tzutalin.dlib.FaceDet;
 import com.tzutalin.dlib.PedestrianDet;
 import com.tzutalin.dlib.VisionDetRet;
@@ -60,6 +59,7 @@ public class MainActivity extends AppCompatActivity {
     private static String[] PERMISSIONS_REQ = {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.MANAGE_EXTERNAL_STORAGE
     };
 
     protected String mTestImgPath;
@@ -133,10 +133,12 @@ public class MainActivity extends AppCompatActivity {
     private static boolean verifyPermissions(Activity activity) {
         // Check if we have write permission
         int write_permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-        int read_persmission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
+        int read_persmission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.READ_EXTERNAL_STORAGE);
+        int manage_perm =  ActivityCompat.checkSelfPermission(activity, Manifest.permission.MANAGE_EXTERNAL_STORAGE);
 
         if (write_permission != PackageManager.PERMISSION_GRANTED ||
-                read_persmission != PackageManager.PERMISSION_GRANTED) {
+                read_persmission != PackageManager.PERMISSION_GRANTED ||
+                manage_perm != PackageManager.PERMISSION_GRANTED) {
             // We don't have permission so prompt the user
             ActivityCompat.requestPermissions(
                     activity,
@@ -204,23 +206,25 @@ public class MainActivity extends AppCompatActivity {
     @NonNull
     protected void runDetectAsync(@NonNull String imgPath, @NonNull Uri imageUri) {
 
-        final String targetPath = Constants.getFaceShapeModelPath();
-        if (!new File(targetPath).exists()) {
-            runOnUiThread(new Runnable() {
-                @Override
-                public void run() {
-                    Toast.makeText(MainActivity.this, "Copy landmark model to " + targetPath, Toast.LENGTH_SHORT).show();
-                }
-            });
-            FileUtils.copyFileFromRawToOthers(getApplicationContext(), R.raw.shape_predictor_68_face_landmarks, targetPath);
-        }
+//        final String targetPath = Constants.getFaceShapeModelPath();
+//        if (!new File(targetPath).exists()) {
+//            runOnUiThread(new Runnable() {
+//                @Override
+//                public void run() {
+//                    Toast.makeText(MainActivity.this, "Copy landmark model to " + targetPath, Toast.LENGTH_SHORT).show();
+//                }
+//            });
+//            FileUtils.copyFileFromRawToOthers(getApplicationContext(), R.raw.shape_predictor_68_face_landmarks, targetPath);
+//        }
+
+        String shape_loc = Utils.getRawFilePath(R.raw.shape_predictor_68_face_landmarks, this);
 
         // Init
         if (mPersonDet == null) {
             mPersonDet = new PedestrianDet();
         }
         if (mFaceDet == null) {
-            mFaceDet = new FaceDet(Constants.getFaceShapeModelPath());
+            mFaceDet = new FaceDet(shape_loc);
         }
 
         List<VisionDetRet> faceList = mFaceDet.detect(imgPath);
@@ -237,7 +241,7 @@ public class MainActivity extends AppCompatActivity {
 //                Log.d(TAG, "runDetectAsync: Null bitmap");
 //            }
             imageView.setImageBitmap(faceParts.getRightEye());
-            CheckEyeRedness(faceParts);
+//            CheckEyeRedness(faceParts);
             // Calculating Eyebrow color
 //            CheckEyebrow(faceParts);
 

@@ -29,4 +29,20 @@ public class SharedPrefData {
         }
         return user;
     }
+
+    public static void saveString(Context context, String label,  String s){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString(label, s);
+        editor.apply();
+    }
+
+    public static String getString(Context context, String label){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
+        String data = sharedPreferences.getString(label, "");
+        if(data==null){
+            data = "";
+        }
+        return data;
+    }
 }

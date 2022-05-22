@@ -3,12 +3,15 @@ package com.sanedu.fcrecognition.AnalysisResult;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
+import android.Manifest;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -19,13 +22,16 @@ import com.google.gson.Gson;
 import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Face.AgeGenderDetection;
 import com.sanedu.fcrecognition.Face.FaceDetection;
+import com.sanedu.fcrecognition.Face.FaceLandmarks;
 import com.sanedu.fcrecognition.Face.FaceParts;
+import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
 import com.sanedu.fcrecognition.Utils.ImageResizer;
 import com.sanedu.fcrecognition.Utils.LayoutUtils;
+import com.sanedu.fcrecognition.Utils.Permission;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.VisionDetRet;
 
@@ -45,7 +51,7 @@ public class ResultPageActivity extends AppCompatActivity {
     CardView ageCard, genderCard;
     LinearLayout eyebrowLl, eyeLl, lipsLl;
     ImageView ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg;
-    TextView ageTv, genderTv;
+    TextView ageTv, genderTv, saveDataTv;
 
     // Face parts bitmaps
     Bitmap leftEyeBrow, rightEyeBrow, leftEye, rightEye, upperLip, lowerLip, nose;
@@ -68,6 +74,27 @@ public class ResultPageActivity extends AppCompatActivity {
 
         // Setting Click actions
         SetClickActions();
+
+        // Save Action();
+        SaveData();
+    }
+
+    private void SaveData() {
+        saveDataTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    if (Permission.CheckPermission(ResultPageActivity.this, Manifest.permission.FOREGROUND_SERVICE)) {
+                        Intent intent = new Intent(ResultPageActivity.this, ResultUploadScreen.class);
+                        intent.putExtra(Constants.RESULT_IMAGE_URI, imageUri.toString());
+                        startActivity(intent);
+                    } else {
+                        Permission.RequestPermission(ResultPageActivity.this, new String[]{Manifest.permission.FOREGROUND_SERVICE});
+
+                    }
+                }
+            }
+        });
     }
 
     private void SetClickActions() {
@@ -168,6 +195,7 @@ public class ResultPageActivity extends AppCompatActivity {
 
         ageTv = findViewById(R.id.result_age_name);
         genderTv = findViewById(R.id.result_gender_name);
+        saveDataTv = findViewById(R.id.result_save_data);
 
         LayoutUtils.fixRatioImageView(this, 2, new ImageView[]{ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg});
 
@@ -193,9 +221,11 @@ public class ResultPageActivity extends AppCompatActivity {
                 int faceCount = faceDetection.faceCount();
                 if (faceCount <= 0) {
                     dismissDialog();
+                    saveDataTv.setVisibility(View.GONE);
                     Toast.makeText(ResultPageActivity.this, "No face found", Toast.LENGTH_SHORT).show();
                 } else if (faceCount > 1) {
                     dismissDialog();
+                    saveDataTv.setVisibility(View.GONE);
                     Toast.makeText(ResultPageActivity.this, "More than 1 face detected\nTry cropping or blurring other faces", Toast.LENGTH_SHORT).show();
                 } else {
                     DetectAgeGender();
@@ -206,18 +236,25 @@ public class ResultPageActivity extends AppCompatActivity {
     }
 
     private void DetectFaceParts() {
+        final Bitmap[] bitmap = new Bitmap[1];
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
                 super.doInBackground();
                 VisionDetRet face = faceDetection.getFace();
                 faceParts = new FaceParts(imageUri.getPath(), face, originalBitmap);
+                bitmap[0] = FaceLandmarks.getFaceBitmap(imageUri.getPath(), face);
+                Log.d(TAG, "doInBackground: Landmarks detected: " + faceParts.getFaceLandmarks().size());
+                Log.d(TAG, "doInBackground: FacePart: ImageUri: " + imageUri);
+                Log.d(TAG, "doInBackground: FacePart: ImageUriPath: " + imageUri.getPath());
             }
 
             @Override
             public void onPostExecute() {
                 super.onPostExecute();
                 dataDetected++;
+
+//                leftEyeImg.setImageBitmap(bitmap[0]);
                 SetFacePartsImage();
 
                 if (dataDetected >= 2) {

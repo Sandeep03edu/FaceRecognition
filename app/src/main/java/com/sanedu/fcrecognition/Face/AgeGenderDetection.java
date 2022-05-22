@@ -63,7 +63,6 @@ public class AgeGenderDetection {
                 switch (status) {
                     case BaseLoaderCallback.SUCCESS:
                         InputStream faceFrontalIs = activity.getResources().openRawResource(R.raw.haarcascade_frontalface_alt2);
-
                         File cascadeDir = activity.getDir("cascadeDir", Context.MODE_PRIVATE);
                         faceFrontalCascadeFile = new File(cascadeDir, "haarcascade_frontalface_alt2.xml");
 
@@ -147,8 +146,8 @@ public class AgeGenderDetection {
             Imgproc.resize(faceMat, faceMat, new Size(224, 224));
             Imgproc.cvtColor(faceMat, faceMat, Imgproc.COLOR_RGBA2RGB);
 
-            String prototxtPath = getPath(R.raw.age_deploy, context);
-            String caffeModelPath = getPath(R.raw.age_net, context);
+            String prototxtPath = com.sanedu.fcrecognition.Utils.Utils.getRawFilePath(R.raw.age_deploy, context);
+            String caffeModelPath = com.sanedu.fcrecognition.Utils.Utils.getRawFilePath(R.raw.age_net, context);
             if (prototxtPath != null && caffeModelPath != null) {
                 Net ageDnnNet = Dnn.readNetFromCaffe(prototxtPath, caffeModelPath);
                 Mat blob = Dnn.blobFromImage(faceMat, 1, new Size(227, 227), MODEL_MEAN_VALUES, false);
@@ -190,8 +189,8 @@ public class AgeGenderDetection {
             Imgproc.resize(faceMat, faceMat, new Size(224, 224));
             Imgproc.cvtColor(faceMat, faceMat, Imgproc.COLOR_RGBA2RGB);
 
-            String prottoxtPath = getPath(R.raw.gender_deploy, context);
-            String caffeModelPath = getPath(R.raw.gender_net, context);
+            String prottoxtPath = com.sanedu.fcrecognition.Utils.Utils.getRawFilePath(R.raw.gender_deploy, context);
+            String caffeModelPath = com.sanedu.fcrecognition.Utils.Utils.getRawFilePath(R.raw.gender_net, context);
             if (prottoxtPath != null && caffeModelPath != null) {
                 Net genderDnnNet = Dnn.readNetFromCaffe(prottoxtPath, caffeModelPath);
                 Mat blob = Dnn.blobFromImage(faceMat, 1, new Size(227, 227), MODEL_MEAN_VALUES, false);
@@ -223,30 +222,6 @@ public class AgeGenderDetection {
             }
         }
         return new ResultConfidence(genderGrp, confidence);
-    }
-
-    private static String getPath(int rawFile, Context context) {
-        String path = null;
-        try {
-            InputStream is = context.getResources().openRawResource(rawFile);
-            byte[] data = new byte[is.available()];
-            is.read(data);
-            is.close();
-
-//            String fileName = getResources().getResourceName(rawFile);
-            String fileName = String.valueOf(rawFile);
-            File outFile = new File(context.getFilesDir(), fileName);
-            FileOutputStream os = new FileOutputStream(outFile);
-            os.write(data);
-            os.close();
-
-            path = outFile.getAbsolutePath();
-        } catch (IOException e) {
-            e.printStackTrace();
-            Log.d(TAG, "getPath: Err: " + e.getMessage());
-        }
-
-        return path;
     }
 
     public ResultConfidence getAgeGroup() {

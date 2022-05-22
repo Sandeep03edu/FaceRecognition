@@ -23,6 +23,7 @@ import org.opencv.imgproc.Imgproc;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
@@ -182,4 +183,29 @@ public class Utils {
         }
         return null;
     }
+
+    public static String getRawFilePath(int rawFile, Context context) {
+        String path = null;
+        try {
+            InputStream is = context.getResources().openRawResource(rawFile);
+            byte[] data = new byte[is.available()];
+            is.read(data);
+            is.close();
+
+//            String fileName = getResources().getResourceName(rawFile);
+            String fileName = String.valueOf(rawFile);
+            File outFile = new File(context.getFilesDir(), fileName);
+            FileOutputStream os = new FileOutputStream(outFile);
+            os.write(data);
+            os.close();
+
+            path = outFile.getAbsolutePath();
+        } catch (IOException e) {
+            e.printStackTrace();
+            Log.d(TAG, "getPath: Err: " + e.getMessage());
+        }
+
+        return path;
+    }
+
 }

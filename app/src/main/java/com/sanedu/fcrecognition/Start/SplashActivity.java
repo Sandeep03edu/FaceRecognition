@@ -19,6 +19,12 @@ public class SplashActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
 
+//        if(1==1){
+//            startActivity(new Intent(this, MainActivity.class));
+//            finish();
+//            return;
+//        }
+
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             // User already signed in
             Intent loginIntent = new Intent(this, HomeActivity.class);

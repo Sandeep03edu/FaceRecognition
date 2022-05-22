@@ -1,6 +1,7 @@
 package com.sanedu.fcrecognition.Face;
 
 import android.app.Activity;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
@@ -26,14 +27,14 @@ public class FaceDetection {
 
     private static final String TAG = "FaceDetectionTag";
     private Uri imageUri;
-    private Activity activity;
+    private Context activity;
     private VisionDetRet face;
     FaceDet mFaceDet;
     PedestrianDet mPersonDet;
     List<VisionDetRet> faceList;
     BaseLoaderCallback baseLoaderCallback;
 
-    public FaceDetection(Activity activity, Uri imageUri) {
+    public FaceDetection(Context activity, Uri imageUri) {
         this.activity = activity;
         this.imageUri = imageUri;
         setBaseLoaderCallback();
@@ -67,17 +68,12 @@ public class FaceDetection {
     }
 
     public void detectFace() {
-        final String targetPath = Constants.getFaceShapeModelPath();
-        if (!new File(targetPath).exists()) {
-            FileUtils.copyFileFromRawToOthers(activity, R.raw.shape_predictor_68_face_landmarks, targetPath);
-        }
-
         // Init
         if (mPersonDet == null) {
             mPersonDet = new PedestrianDet();
         }
         if (mFaceDet == null) {
-            mFaceDet = new FaceDet(Constants.getFaceShapeModelPath());
+            mFaceDet = new FaceDet(Utils.getRawFilePath(R.raw.shape_predictor_68_face_landmarks, activity));
         }
 
         this.faceList = mFaceDet.detect(imageUri.getPath());
@@ -95,7 +91,6 @@ public class FaceDetection {
             this.face = faceList.get(0);
             return face;
         }
-
         return null;
     }
 }

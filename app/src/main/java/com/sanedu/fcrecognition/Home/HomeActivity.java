@@ -52,8 +52,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void PickCameraImage() {
-        if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) || !Permission.CheckPermission(this, Manifest.permission.CAMERA)) {
-            Permission.RequestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
+        if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+                !Permission.CheckPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ||
+                !Permission.CheckPermission(this, Manifest.permission.CAMERA)) {
+            Permission.RequestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA});
             return;
         }
 
@@ -63,8 +65,9 @@ public class HomeActivity extends AppCompatActivity {
     }
 
     private void PickGalleryImage() {
-        if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
-            Permission.RequestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE});
+        if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
+                !Permission.CheckPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            Permission.RequestPermission(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE});
             return;
         }
 
