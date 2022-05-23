@@ -65,12 +65,13 @@ public class ResultUploadScreen extends AppCompatActivity {
         genders.add(Constants.MALE);
         genders.add(Constants.FEMALE);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, genders);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(getBaseContext(), android.R.layout.simple_spinner_item, genders);
         arrayAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         genderSpinner.setAdapter(arrayAdapter);
     }
 
     private void _init() {
+        setTitle("Save Result");
         nameEt = findViewById(R.id.result_upload_screen_name);
         ageEt = findViewById(R.id.result_upload_screen_age);
         genderSpinner = findViewById(R.id.result_upload_screen_gender);

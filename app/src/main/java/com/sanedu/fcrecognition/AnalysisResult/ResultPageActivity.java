@@ -46,6 +46,7 @@ public class ResultPageActivity extends AppCompatActivity {
     private FaceParts faceParts;
     private AgeGenderDetection ageGenderDetection;
     private int dataDetected = 0;
+    private FaceResult faceResult = null;
 
     // Layout views
     CardView ageCard, genderCard;
@@ -90,8 +91,12 @@ public class ResultPageActivity extends AppCompatActivity {
                         startActivity(intent);
                     } else {
                         Permission.RequestPermission(ResultPageActivity.this, new String[]{Manifest.permission.FOREGROUND_SERVICE});
-
                     }
+                }
+                else{
+                    Intent intent = new Intent(ResultPageActivity.this, ResultUploadScreen.class);
+                    intent.putExtra(Constants.RESULT_IMAGE_URI, imageUri.toString());
+                    startActivity(intent);
                 }
             }
         });
@@ -105,6 +110,10 @@ public class ResultPageActivity extends AppCompatActivity {
 
     private void DualImageResultProvider() {
         Intent dualImgResIntent = new Intent(this, DualImageResult.class);
+
+        if(faceResult!=null){
+            dualImgResIntent.putExtra(Constants.INTENT_RESULT, new Gson().toJson(faceResult));
+        }
 
         eyebrowLl.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -155,7 +164,13 @@ public class ResultPageActivity extends AppCompatActivity {
         ageCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResultConfidence age = ageGenderDetection.getAgeGroup();
+                ResultConfidence age;
+                if (faceResult != null) {
+                    age = new ResultConfidence(String.valueOf(faceResult.getAge()), -1);
+                }
+                else {
+                    age = ageGenderDetection.getAgeGroup();
+                }
                 String gson = new Gson().toJson(age);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.AGE);
@@ -166,7 +181,13 @@ public class ResultPageActivity extends AppCompatActivity {
         genderCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ResultConfidence gender = ageGenderDetection.getGender();
+                ResultConfidence gender;
+                if (faceResult != null) {
+                    gender = new ResultConfidence(String.valueOf(faceResult.getGender()), -1);
+                }
+                else {
+                    gender = ageGenderDetection.getGender();
+                }
                 String gson = new Gson().toJson(gender);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.GENDER);
@@ -176,6 +197,7 @@ public class ResultPageActivity extends AppCompatActivity {
     }
 
     private void _init() {
+        setTitle("Result");
         ageCard = findViewById(R.id.result_age_card);
         genderCard = findViewById(R.id.result_gender_card);
 
@@ -293,6 +315,28 @@ public class ResultPageActivity extends AppCompatActivity {
     }
 
     private void DetectAgeGender() {
+        // Setting prev scan data
+        if (faceResult != null) {
+            dismissDialog();
+
+            if (faceResult.getGender().equalsIgnoreCase(Constants.MALE)) {
+                genderImg.setImageResource(R.drawable.ic_baseline_male_128);
+            } else if (faceResult.getGender().equalsIgnoreCase(Constants.FEMALE)) {
+                genderImg.setImageResource(R.drawable.ic_baseline_female_128);
+            }
+
+            ageImg.setImageResource(R.drawable.age_vector);
+            ageTv.setText(String.valueOf(faceResult.getAge()));
+            genderTv.setText(faceResult.getGender());
+
+            dataDetected++;
+
+            if (dataDetected >= 2) {
+                dismissDialog();
+            }
+            return;
+        }
+
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
@@ -329,6 +373,11 @@ public class ResultPageActivity extends AppCompatActivity {
             originalBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             originalBitmap = ImageResizer.reduceBitmapSize(originalBitmap, 240000);
             imageUri = Utils.Bitmap2Uri(this, originalBitmap);
+
+            if (getIntent().hasExtra(Constants.INTENT_RESULT)) {
+                faceResult = new Gson().fromJson(getIntent().getStringExtra(Constants.INTENT_RESULT), FaceResult.class);
+                saveDataTv.setVisibility(View.GONE);
+            }
         }
     }
 

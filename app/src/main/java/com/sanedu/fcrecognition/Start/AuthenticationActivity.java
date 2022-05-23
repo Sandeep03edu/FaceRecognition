@@ -39,5 +39,27 @@ public class AuthenticationActivity extends AppCompatActivity {
 
     private void _init() {
         viewPager = findViewById(R.id.authentication_view_pager);
+
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                if(position==Constants.START_LOGIN){
+                    setTitle("Login");
+                }
+                else if(position==Constants.START_REGISTRATION){
+                    setTitle("Registered");
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
     }
 }

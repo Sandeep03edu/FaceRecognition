@@ -1,18 +1,27 @@
 package com.sanedu.fcrecognition.Home;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.google.android.material.navigation.NavigationView;
 import com.sanedu.fcrecognition.Constants;
+import com.sanedu.fcrecognition.Navigation;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.ImageResizer;
 import com.sanedu.fcrecognition.Utils.Permission;
@@ -20,8 +29,11 @@ import com.sanedu.fcrecognition.Utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity{
 
+    DrawerLayout drawerLayout;
+    private ActionBarDrawerToggle actionBarDrawerToggle;
+    NavigationView navigationView;
     ImageView galleryImagePicker, cameraImagePicker;
     Bitmap imageBitmap;
     private final int CAMERA_IMAGE_PICK = 0;
@@ -33,6 +45,8 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         _init();
+
+        SetupDrawerLayout();
 
         // Pick Gallery Image
         galleryImagePicker.setOnClickListener(new View.OnClickListener() {
@@ -49,7 +63,39 @@ public class HomeActivity extends AppCompatActivity {
                 PickCameraImage();
             }
         });
+
+        // Set Navigation View listener
+        SetNavigationListener();
     }
+
+    private void SetNavigationListener() {
+        Navigation navigation = new Navigation(this, drawerLayout);
+        navigationView.setNavigationItemSelectedListener(navigation.listener);
+    }
+
+    private void SetupDrawerLayout() {
+        // drawer layout instance to toggle the menu icon to open
+        // drawer and back button to close drawer
+        actionBarDrawerToggle = new ActionBarDrawerToggle(this, drawerLayout, R.string.nav_open, R.string.nav_close);
+
+        // pass the Open and Close toggle for the drawer layout listener
+        // to toggle the button
+        drawerLayout.addDrawerListener(actionBarDrawerToggle);
+        actionBarDrawerToggle.syncState();
+
+        // to make the Navigation drawer icon always appear on the action bar
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
     private void PickCameraImage() {
         if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
@@ -111,5 +157,7 @@ public class HomeActivity extends AppCompatActivity {
     private void _init() {
         galleryImagePicker = findViewById(R.id.home_gallery);
         cameraImagePicker = findViewById(R.id.home_camera);
+        drawerLayout = findViewById(R.id.home_drawer_layout);
+        navigationView = findViewById(R.id.home_navigation_view);
     }
 }

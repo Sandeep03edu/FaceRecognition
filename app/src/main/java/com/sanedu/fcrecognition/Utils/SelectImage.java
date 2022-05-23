@@ -24,7 +24,7 @@ public class SelectImage {
     public void GetImage(SelectImageListener selectImageListener) {
         LayoutInflater layoutInflater = (LayoutInflater) context.getSystemService(LAYOUT_INFLATER_SERVICE);
         View popupView = layoutInflater.inflate(R.layout.image_selector, null);
-        int width = LinearLayout.LayoutParams.MATCH_PARENT;
+        int width = LinearLayout.LayoutParams.WRAP_CONTENT;
         int height = LinearLayout.LayoutParams.WRAP_CONTENT;
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(width, height);

@@ -60,7 +60,7 @@ public class ResultUploadService extends Service {
         Notification notification = new NotificationCompat.Builder(this, Constants.CHANNEL_ID)
                 .setContentText("Name")
                 .setContentText("Result uploading...")
-                .setSmallIcon(R.mipmap.ic_launcher)
+                .setSmallIcon(R.mipmap.main_launcher)
                 .setContentIntent(pendingIntent)
                 .build();
 

@@ -17,6 +17,7 @@ import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.Face.DetectEyeDisease;
 import com.sanedu.fcrecognition.FaceSymptomScorer;
 import com.sanedu.fcrecognition.Model.DualImageModel;
+import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.BackgroundWork;
@@ -31,6 +32,7 @@ public class DualImageResult extends AppCompatActivity {
     DualImageModel model;
     private final int RESCAN_REQUEST = 121;
     private ProgressDialog progressDialog;
+    private FaceResult faceResult = null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +69,14 @@ public class DualImageResult extends AppCompatActivity {
     }
 
     private void SetLipDryResult() {
+        // Set past result data
+        if (faceResult != null) {
+            dismissDialog();
+            lResult.setText(faceResult.getUpperLipResult());
+            rResult.setText(faceResult.getLowerLipResult());
+            return;
+        }
+
         FaceSymptomScorer symptomScorer = new FaceSymptomScorer();
         final double[] lDry = {0};
         final double[] rDry = {0};
@@ -93,6 +103,14 @@ public class DualImageResult extends AppCompatActivity {
     }
 
     private void SetEyeResult() {
+        // Set past result data
+        if (faceResult != null) {
+            dismissDialog();
+            lResult.setText(faceResult.getLeftEyeResult());
+            rResult.setText(faceResult.getRightEyeResult());
+            return;
+        }
+
         final int[] count = {0};
 
         final String[] leftResult = {""};
@@ -202,6 +220,14 @@ public class DualImageResult extends AppCompatActivity {
     }
 
     private void SetEyebrowResult() {
+        // Set past result data
+        if (faceResult != null) {
+            dismissDialog();
+            lResult.setText(faceResult.getLeftEyebrowResult());
+            rResult.setText(faceResult.getRightEyebrowResult());
+            return;
+        }
+
         FaceSymptomScorer symptomScorer = new FaceSymptomScorer();
         final double[] lWhite = {0};
         final double[] rWhite = {0};
@@ -260,6 +286,11 @@ public class DualImageResult extends AppCompatActivity {
             String gson = getIntent().getStringExtra(Constants.DUAL_IMAGE_TEST);
             model = new Gson().fromJson(gson, DualImageModel.class);
         }
+        if (getIntent() != null && getIntent().hasExtra(Constants.INTENT_RESULT)) {
+            String gson = getIntent().getStringExtra(Constants.INTENT_RESULT);
+            faceResult = new Gson().fromJson(gson, FaceResult.class);
+            reScan.setVisibility(View.GONE);
+        }
     }
 
     private void _init() {
@@ -299,6 +330,7 @@ public class DualImageResult extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == RESULT_OK && requestCode == RESCAN_REQUEST && data != null) {
+            faceResult = null;
             model = new Gson().fromJson(data.getStringExtra(Constants.DUAL_IMAGE_TEST), DualImageModel.class);
             SetIntentData();
             GetResult();

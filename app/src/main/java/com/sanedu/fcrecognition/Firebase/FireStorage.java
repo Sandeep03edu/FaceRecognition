@@ -40,7 +40,6 @@ public class FireStorage {
         }
 
         bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
-
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] bytes = baos.toByteArray();

@@ -21,13 +21,17 @@ public class SharedPrefData {
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
         String userGson = sharedPreferences.getString(Constants.USER_DETAILS, "");
         if(userGson.trim().isEmpty()){
-            return new User();
+            return null;
         }
         User user = new Gson().fromJson(userGson, User.class);
-        if(user==null){
-            return new User();
-        }
         return user;
+    }
+
+    public static void clearSharedPref(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.clear();
+        editor.apply();
     }
 
     public static void saveString(Context context, String label,  String s){

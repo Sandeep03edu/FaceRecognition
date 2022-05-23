@@ -50,7 +50,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@mipmap/main_launcher" />
 
                         <TextView
                             android:id="@+id/dual_image_res_l_type"
@@ -104,7 +104,7 @@
                             android:layout_height="wrap_content"
                             android:adjustViewBounds="true"
                             android:scaleType="fitCenter"
-                            android:src="@mipmap/ic_launcher" />
+                            android:src="@mipmap/main_launcher" />
 
                         <TextView
                             android:id="@+id/dual_image_res_r_type"

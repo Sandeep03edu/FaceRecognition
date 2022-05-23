@@ -59,14 +59,18 @@ public class AgeGenderResCard extends AppCompatActivity {
             imageView.setImageResource(R.drawable.ic_baseline_female_128);
         }
         result.setText(resultConfidence.getResult());
-        confidence.setText(Constants.decimalFormat2.format(resultConfidence.getConfidence()) + "% confidence");
+        if(resultConfidence.getConfidence()!=-1) {
+            confidence.setText(Constants.decimalFormat2.format(resultConfidence.getConfidence()) + "% confidence");
+        }
     }
 
     private void SetAgeData() {
         setTitle("Age Group");
         imageView.setImageResource(R.drawable.age_vector);
         result.setText(resultConfidence.getResult());
-        confidence.setText(Constants.decimalFormat2.format(resultConfidence.getConfidence()) + "% confidence");
+        if(resultConfidence.getConfidence()!=-1) {
+            confidence.setText(Constants.decimalFormat2.format(resultConfidence.getConfidence()) + "% confidence");
+        }
     }
 
     private void GetIntentData() {

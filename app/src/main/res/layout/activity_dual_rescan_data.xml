@@ -52,7 +52,7 @@
                         android:id="@+id/dual_rescan_data_l_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/main_launcher" />
 
                     <TextView
                         android:id="@+id/dual_rescan_data_l_type"
@@ -96,7 +96,7 @@
                         android:id="@+id/dual_rescan_data_r_img"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@mipmap/ic_launcher" />
+                        android:src="@mipmap/main_launcher" />
 
                     <TextView
                         android:id="@+id/dual_rescan_data_r_type"

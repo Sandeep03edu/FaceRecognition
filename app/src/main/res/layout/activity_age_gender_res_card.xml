@@ -23,7 +23,7 @@
             android:layout_gravity="center"
             android:layout_marginTop="20dp"
             android:adjustViewBounds="true"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@mipmap/main_launcher" />
 
         <TextView
             android:id="@+id/age_gender_res_result"

@@ -21,6 +21,7 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Objects;
 
 public class CropImagesActivity extends AppCompatActivity {
 
@@ -45,7 +46,7 @@ public class CropImagesActivity extends AppCompatActivity {
             return;
         }
 
-        if(intent.hasExtra(Constants.DISABLE_ASPECT_CROP)){
+        if (intent.hasExtra(Constants.DISABLE_ASPECT_CROP)) {
             cropImageView.setFixedAspectRatio(false);
         }
 
@@ -58,11 +59,10 @@ public class CropImagesActivity extends AppCompatActivity {
 
         // Setting buttons visibility
         backBtn.setVisibility(View.GONE);
-        if(uriArrayList.size()==1){
+        if (uriArrayList.size() == 1) {
             nextBtn.setVisibility(View.GONE);
             submitBtn.setVisibility(View.VISIBLE);
-        }
-        else{
+        } else {
             nextBtn.setVisibility(View.VISIBLE);
             submitBtn.setVisibility(View.GONE);
         }
@@ -106,9 +106,9 @@ public class CropImagesActivity extends AppCompatActivity {
         Intent resultIntent = new Intent();
         croppedImagesBitmap[count] = cropImageView.getCroppedImage();
 
-        if(ContextCompat.checkSelfPermission(CropImagesActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)== PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(CropImagesActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
             ArrayList<Uri> croppedUriArrayList = new ArrayList<>();
-            for(Bitmap bitmap : croppedImagesBitmap){
+            for (Bitmap bitmap : croppedImagesBitmap) {
                 Uri uri = Utils.Bitmap2Uri(this, bitmap);
                 croppedUriArrayList.add(uri);
             }
@@ -118,8 +118,7 @@ public class CropImagesActivity extends AppCompatActivity {
             resultIntent.putExtra(Constants.IMAGES_BUNDLE, imageBundle);
             setResult(RESULT_OK, resultIntent);
             finish();
-        }
-        else{
+        } else {
             ActivityCompat.requestPermissions(CropImagesActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, EXTERNAL_STORAGE_PERMISSION);
         }
     }
@@ -155,6 +154,11 @@ public class CropImagesActivity extends AppCompatActivity {
     }
 
     private void _init() {
+        setTitle("Crop Image");
+        try {
+            Objects.requireNonNull(this.getSupportActionBar()).hide();
+        } catch (NullPointerException ignored) {
+        }
         backBtn = findViewById(R.id.crop_images_back);
         nextBtn = findViewById(R.id.crop_images_next);
         submitBtn = findViewById(R.id.crop_images_submit);

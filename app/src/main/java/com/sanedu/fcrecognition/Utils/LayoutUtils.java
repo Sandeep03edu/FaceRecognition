@@ -43,6 +43,12 @@ public class LayoutUtils {
         }
     }
 
+    public static void setAspectRation(View[] views){
+        for(View view : views){
+            view.getLayoutParams().height = view.getLayoutParams().width;
+        }
+    }
+
     public static boolean checkNonNull(Object[] objects){
         for(Object object : objects){
             if(object==null){

@@ -15,11 +15,15 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.sanedu.fcrecognition.Constants;
+import com.sanedu.fcrecognition.Firebase.FireStorage;
 import com.sanedu.fcrecognition.Firebase.FirebaseAuthentication;
+import com.sanedu.fcrecognition.Firebase.FirestoreData;
 import com.sanedu.fcrecognition.Home.HomeActivity;
 import com.sanedu.fcrecognition.MainActivity;
+import com.sanedu.fcrecognition.Model.User;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.LayoutUtils;
+import com.sanedu.fcrecognition.Utils.SharedPrefData;
 
 import java.util.Objects;
 import java.util.regex.Matcher;
@@ -132,11 +136,23 @@ public class LoginFragment extends Fragment {
         authentication.verifyOtp(otp, new FirebaseAuthentication.SignInListener() {
             @Override
             public void onSuccessLogin() {
-                dismissDialog();
-                Intent mainActIntent = new Intent(getContext(), HomeActivity.class);
-                mainActIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
-                startActivity(mainActIntent);
-                Objects.requireNonNull(getActivity()).finish();
+                FirestoreData data = new FirestoreData();
+                data.getUserByPhoneNumber(phoneNumberEt.getText().toString().trim(), new FirestoreData.UserListener() {
+                    @Override
+                    public void onSuccess(User user) {
+                        dismissDialog();
+                        SharedPrefData.addUser(Objects.requireNonNull(getContext()), user);
+                        Intent mainActIntent = new Intent(getContext(), HomeActivity.class);
+                        mainActIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
+                        startActivity(mainActIntent);
+                        Objects.requireNonNull(getActivity()).finish();
+                    }
+
+                    @Override
+                    public void onFailure(String e) {
+                        dismissDialog();
+                    }
+                });
             }
 
             @Override

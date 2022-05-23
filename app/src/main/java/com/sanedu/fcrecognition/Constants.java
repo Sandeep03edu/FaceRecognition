@@ -3,6 +3,7 @@ package com.sanedu.fcrecognition;
 import android.app.Activity;
 import android.content.Context;
 import android.os.Environment;
+import android.view.View;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -22,7 +23,8 @@ public class Constants {
     public static final String RESULT_DATA = "ResultData";
     public static final String CHANNEL_ID = "ResultUpload";
     public static final int FOREGROUND_NOTIFICATION_ID = 12;
-
+    public static final String PROFILE_PIC_FOLDER = "ProfilePic";
+    public static final String INTENT_RESULT = "FaceResultIntent";
 
     // Crop ImageView Constants
     public static final String DISABLE_ASPECT_CROP = "Disable";
@@ -61,40 +63,7 @@ public class Constants {
     public static final String USER_DNE = "User doesn't exist";
     public static final String USER_ALR_EXIST = "User already exist";
     public static final String ALL_COMP = "All fields are compulsory";
-    public static final String AN_ERROR = "An error occurred : ";
+    public static final String AN_ERROR = "An error occurred ";
 
-    public static final String SHAPE_LOCATION = "ShapeLocation";
-
-
-    public static String getFaceShapeModelPath() {
-//        File sdcard = Environment.getExternalStorageDirectory();
-        File sdcard = Environment.getExternalStorageDirectory();
-        String targetPath = sdcard.getAbsolutePath() + File.separator + "shape_predictor_68_face_landmarks.dat";
-        return targetPath;
-    }
-
-    public static void saveShape(Activity activity){
-        InputStream shapePredictorIs = activity.getResources().openRawResource(R.raw.shape_predictor_68_face_landmarks);
-        File cascadeDir = activity.getDir("cascadeDir", Context.MODE_PRIVATE);
-        File shapePredictorFile = new File(cascadeDir, "shape_predictor_68_face_landmarks.dat");
-
-        try {
-            FileOutputStream shapePredictorFos = new FileOutputStream(shapePredictorFile);
-            byte[] faceFrontalBuffer = new byte[4096];
-            int byteRead;
-            while ((byteRead = shapePredictorIs.read(faceFrontalBuffer)) != -1) {
-                shapePredictorFos.write(faceFrontalBuffer, 0, byteRead);
-            }
-
-
-            shapePredictorIs.close();
-            shapePredictorFos.close();
-
-        }catch (Exception e){
-            
-        }
-
-
-    }
 
 }
