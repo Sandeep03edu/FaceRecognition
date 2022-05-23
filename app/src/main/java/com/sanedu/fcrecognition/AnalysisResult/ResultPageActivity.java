@@ -51,7 +51,7 @@ public class ResultPageActivity extends AppCompatActivity {
     // Layout views
     CardView ageCard, genderCard;
     LinearLayout eyebrowLl, eyeLl, lipsLl;
-    ImageView ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg;
+    ImageView ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg, faceImg;
     TextView ageTv, genderTv, saveDataTv;
 
     // Face parts bitmaps
@@ -214,12 +214,13 @@ public class ResultPageActivity extends AppCompatActivity {
         noseImg = findViewById(R.id.result_nose_image);
         upperLipImg = findViewById(R.id.result_upper_lip_image);
         lowerLipImg = findViewById(R.id.result_lower_lip_image);
+        faceImg = findViewById(R.id.result_face_image);
 
         ageTv = findViewById(R.id.result_age_name);
         genderTv = findViewById(R.id.result_gender_name);
         saveDataTv = findViewById(R.id.result_save_data);
 
-        LayoutUtils.fixRatioImageView(this, 2, new ImageView[]{ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg});
+        LayoutUtils.fixRatioImageView(this, 2, new ImageView[]{ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg, faceImg});
 
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
@@ -276,7 +277,6 @@ public class ResultPageActivity extends AppCompatActivity {
                 super.onPostExecute();
                 dataDetected++;
 
-//                leftEyeImg.setImageBitmap(bitmap[0]);
                 SetFacePartsImage();
 
                 if (dataDetected >= 2) {
@@ -287,6 +287,9 @@ public class ResultPageActivity extends AppCompatActivity {
     }
 
     private void SetFacePartsImage() {
+        Bitmap faceBitmap = faceParts.getDisplayFace();
+        faceImg.setImageBitmap(faceBitmap);
+
         leftEyeBrow = faceParts.getLeftEyebrow();
         rightEyeBrow = faceParts.getRightEyebrow();
         leftEye = faceParts.getLeftEye();

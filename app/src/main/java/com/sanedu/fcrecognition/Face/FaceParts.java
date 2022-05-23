@@ -27,6 +27,7 @@ public class FaceParts {
         return faceLandmarks;
     }
 
+    public Bitmap getDisplayFace(){return getRectBitmap(Face68Coordinates.FACE);}
     public Bitmap getDisplayLeftEye() {
         return getRectBitmap(Face68Coordinates.LEFT_EYE);
     }
