@@ -1,0 +1,4 @@
+cnv
+dme
+drusen
+normal

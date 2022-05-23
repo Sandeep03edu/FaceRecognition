@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "272115517344",
+    "project_id": "engagefcrapp",
+    "storage_bucket": "engagefcrapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:272115517344:android:77b770640ee0c4fc4746c5",
+        "android_client_info": {
+          "package_name": "com.sanedu.fcrecognition"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "272115517344-1ggo9ooed6jfplsuop32k9t7t71bkfq0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sanedu.fcrecognition",
+            "certificate_hash": "881541a1104aedc7cee504723bd5f63e15db6420"
+          }
+        },
+        {
+          "client_id": "272115517344-93ipod3qe5dv84203ne1i15m478gn931.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCWy2P_qOcBvHKCYujZE1_wdYM9F2btTMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "272115517344-93ipod3qe5dv84203ne1i15m478gn931.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

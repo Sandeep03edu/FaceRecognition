@@ -1,4 +1,0 @@
-cnv
-dme
-drusen
-normal
