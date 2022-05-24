@@ -19,7 +19,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Face.AgeGenderDetection;
 import com.sanedu.fcrecognition.Face.FaceDetection;
 import com.sanedu.fcrecognition.Face.FaceLandmarks;
@@ -28,10 +28,10 @@ import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.BackgroundWork;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
-import com.sanedu.fcrecognition.Utils.LayoutUtils;
-import com.sanedu.fcrecognition.Utils.Permission;
+import com.sanedu.common.Utils.BackgroundWork;
+import com.sanedu.common.Utils.ImageResizer;
+import com.sanedu.common.Utils.LayoutUtils;
+import com.sanedu.common.Utils.Permission;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.VisionDetRet;
 

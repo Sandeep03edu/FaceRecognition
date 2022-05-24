@@ -1,17 +1,11 @@
 package com.sanedu.fcrecognition.Face;
 
-import android.app.Activity;
 import android.content.Context;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.util.Log;
-import android.widget.Toast;
 
-import com.sanedu.fcrecognition.FileUtils;
-import com.sanedu.fcrecognition.MainActivity;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Utils.Utils;
-import com.tzutalin.dlib.Constants;
 import com.tzutalin.dlib.FaceDet;
 import com.tzutalin.dlib.PedestrianDet;
 import com.tzutalin.dlib.VisionDetRet;
@@ -20,7 +14,6 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
-import java.io.File;
 import java.util.List;
 
 public class FaceDetection {

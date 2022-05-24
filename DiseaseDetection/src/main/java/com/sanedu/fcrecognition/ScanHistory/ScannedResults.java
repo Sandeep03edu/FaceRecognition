@@ -13,10 +13,10 @@ import android.view.MenuItem;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Firebase.FirestoreData;
 import com.sanedu.fcrecognition.Model.FaceResult;
-import com.sanedu.fcrecognition.Navigation;
+import com.sanedu.fcrecognition.Utils.Navigation;
 import com.sanedu.fcrecognition.R;
 
 import java.util.ArrayList;

@@ -14,6 +14,8 @@ import android.graphics.PorterDuffXfermode;
 import android.net.Uri;
 import android.util.Log;
 
+
+import com.sanedu.common.Utils.ImageResizer;
 import com.sanedu.fcrecognition.Model.Edges;
 
 import org.opencv.core.CvType;

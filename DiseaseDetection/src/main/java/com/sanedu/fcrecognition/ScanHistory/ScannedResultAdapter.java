@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,16 +13,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.gson.Gson;
 import com.sanedu.fcrecognition.AnalysisResult.ResultPageActivity;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
-import com.sanedu.fcrecognition.Utils.LayoutUtils;
+import com.sanedu.common.Utils.ImageResizer;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 

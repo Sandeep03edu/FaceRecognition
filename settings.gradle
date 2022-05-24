@@ -1,1 +1,3 @@
 include ':DiseaseDetection', ':dlib', ':sdk'
+include ':smartadvertising'
+include ':Common'

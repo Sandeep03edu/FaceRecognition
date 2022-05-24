@@ -9,20 +9,20 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.gson.Gson;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.R;
+
+import com.sanedu.common.Utils.ImageResizer;
+import com.sanedu.common.Utils.LayoutUtils;
+import com.sanedu.common.Utils.Permission;
 import com.sanedu.fcrecognition.Utils.CropImagesActivity;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
-import com.sanedu.fcrecognition.Utils.LayoutUtils;
-import com.sanedu.fcrecognition.Utils.Permission;
 import com.sanedu.fcrecognition.Utils.SelectImage;
 import com.sanedu.fcrecognition.Utils.Utils;
 

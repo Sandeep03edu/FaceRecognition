@@ -13,15 +13,15 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Face.DetectEyeDisease;
-import com.sanedu.fcrecognition.FaceSymptomScorer;
+import com.sanedu.fcrecognition.Face.FaceSymptomScorer;
 import com.sanedu.fcrecognition.Model.DualImageModel;
 import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.ResultConfidence;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.BackgroundWork;
-import com.sanedu.fcrecognition.Utils.LayoutUtils;
+import com.sanedu.common.Utils.BackgroundWork;
+import com.sanedu.common.Utils.LayoutUtils;
 import com.sanedu.fcrecognition.Utils.Utils;
 
 public class DualImageResult extends AppCompatActivity {

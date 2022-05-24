@@ -7,14 +7,13 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.AnalysisResult.ResultPageActivity;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
+import com.sanedu.common.Utils.ImageResizer;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
 public class ImageDisplayActivity extends AppCompatActivity {

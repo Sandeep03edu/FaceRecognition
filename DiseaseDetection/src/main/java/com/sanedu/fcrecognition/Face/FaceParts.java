@@ -4,7 +4,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.util.Log;
 
-import com.sanedu.fcrecognition.Face.FaceLandmarks;
 import com.sanedu.fcrecognition.Model.Edges;
 import com.sanedu.fcrecognition.Model.Face68Coordinates;
 import com.sanedu.fcrecognition.Utils.Utils;

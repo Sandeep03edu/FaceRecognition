@@ -4,7 +4,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.Manifest;
@@ -12,20 +11,17 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
-import com.sanedu.fcrecognition.AnalysisResult.ResultPageActivity;
-import com.sanedu.fcrecognition.Constants;
-import com.sanedu.fcrecognition.Navigation;
+import com.sanedu.common.Utils.Constants;
+import com.sanedu.fcrecognition.Utils.Navigation;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
-import com.sanedu.fcrecognition.Utils.Permission;
+import com.sanedu.common.Utils.ImageResizer;
+import com.sanedu.common.Utils.Permission;
 import com.sanedu.fcrecognition.Utils.Utils;
 
 import java.io.ByteArrayOutputStream;

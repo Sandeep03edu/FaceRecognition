@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 import android.util.Log;
 
 import com.sanedu.fcrecognition.Model.ResultConfidence;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
+import com.sanedu.common.Utils.ImageResizer;
 
 import java.util.List;
 import java.util.concurrent.Executor;

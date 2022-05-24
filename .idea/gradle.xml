@@ -11,9 +11,11 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
+            <option value="$PROJECT_DIR$/Common" />
             <option value="$PROJECT_DIR$/DiseaseDetection" />
             <option value="$PROJECT_DIR$/dlib" />
             <option value="$PROJECT_DIR$/sdk" />
+            <option value="$PROJECT_DIR$/smartadvertising" />
           </set>
         </option>
       </GradleProjectSettings>

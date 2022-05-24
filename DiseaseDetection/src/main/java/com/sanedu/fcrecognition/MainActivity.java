@@ -35,6 +35,7 @@ import android.widget.ImageView;
 import android.widget.Toast;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.sanedu.fcrecognition.Face.FaceParts;
+import com.sanedu.fcrecognition.Face.FaceSymptomScorer;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.FaceDet;
 import com.tzutalin.dlib.PedestrianDet;
@@ -44,7 +45,6 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -171,6 +171,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         if (requestCode == REQUEST_CODE_PERMISSION) {
         }
     }

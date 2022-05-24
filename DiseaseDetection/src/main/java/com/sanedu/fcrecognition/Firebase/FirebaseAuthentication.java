@@ -17,7 +17,7 @@ import com.google.firebase.auth.PhoneAuthProvider;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 
 import java.util.concurrent.TimeUnit;
 

@@ -15,11 +15,10 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
-import com.sanedu.fcrecognition.Constants;
 import com.sanedu.fcrecognition.R;
+import com.sanedu.common.Utils.Constants;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.Objects;
 

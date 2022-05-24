@@ -11,10 +11,10 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.google.gson.Gson;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.LayoutUtils;
+import com.sanedu.common.Utils.LayoutUtils;
 
 import java.util.ArrayList;
 

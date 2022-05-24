@@ -5,9 +5,9 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Bundle;
 
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.R;
-import com.sanedu.fcrecognition.Utils.ViewPagerAdapter;
+import com.sanedu.common.Utils.ViewPagerAdapter;
 
 public class AuthenticationActivity extends AppCompatActivity {
 

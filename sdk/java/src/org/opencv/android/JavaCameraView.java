@@ -1,5 +1,6 @@
 package org.opencv.android;
 
+import java.lang.reflect.Method;
 import java.util.List;
 
 import android.content.Context;
@@ -12,7 +13,7 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.ViewGroup.LayoutParams;
 
-import org.opencv.BuildConfig;
+
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.Size;
@@ -213,6 +214,14 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
 
                     /* Finally we are ready to start the preview */
                     Log.d(TAG, "startPreview");
+
+                    /*
+                    // Used to rotate camera
+                    setDisplayOrientation(mCamera, 90);
+                    mCamera.setPreviewDisplay(getHolder());
+
+                     */
+
                     mCamera.startPreview();
                 }
                 else
@@ -224,6 +233,20 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
         }
 
         return result;
+    }
+
+    protected void setDisplayOrientation(Camera camera, int angle){
+        Method downPolymorphic;
+        try
+        {
+            downPolymorphic = camera.getClass().getMethod("setDisplayOrientation", new Class[] { int.class });
+            if (downPolymorphic != null)
+                downPolymorphic.invoke(camera, new Object[] { angle });
+        }
+        catch (Exception e1)
+        {
+            e1.printStackTrace();
+        }
     }
 
     protected void releaseCamera() {
@@ -299,8 +322,8 @@ public class JavaCameraView extends CameraBridgeViewBase implements PreviewCallb
 
     @Override
     public void onPreviewFrame(byte[] frame, Camera arg1) {
-        if (BuildConfig.DEBUG)
-            Log.d(TAG, "Preview Frame received. Frame size: " + frame.length);
+//        if (BuildConfig.DEBUG)
+//            Log.d(TAG, "Preview Frame received. Frame size: " + frame.length);
         synchronized (this) {
             mFrameChain[mChainIdx].put(0, 0, frame);
             mCameraFrameReady = true;

@@ -6,31 +6,25 @@ import android.app.Service;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
-import android.os.Handler;
 import android.os.IBinder;
-import android.os.Looper;
-import android.security.identity.ResultData;
 import android.util.Log;
 
 import androidx.annotation.Nullable;
 import androidx.core.app.NotificationCompat;
 
 import com.google.gson.Gson;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Face.DetectEyeDisease;
 import com.sanedu.fcrecognition.Face.FaceDetection;
 import com.sanedu.fcrecognition.Face.FaceParts;
-import com.sanedu.fcrecognition.FaceSymptomScorer;
+import com.sanedu.fcrecognition.Face.FaceSymptomScorer;
 import com.sanedu.fcrecognition.Firebase.FireStorage;
 import com.sanedu.fcrecognition.Firebase.FirestoreData;
 import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.LabelledImage;
 import com.sanedu.fcrecognition.Model.ResultConfidence;
-import com.sanedu.fcrecognition.Model.User;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.Start.SplashActivity;
-import com.sanedu.fcrecognition.Utils.BackgroundWork;
-import com.sanedu.fcrecognition.Utils.SharedPrefData;
 import com.sanedu.fcrecognition.Utils.Utils;
 import com.tzutalin.dlib.VisionDetRet;
 

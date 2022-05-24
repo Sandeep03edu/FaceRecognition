@@ -14,9 +14,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.sanedu.fcrecognition.Model.LabelledImage;
-import com.sanedu.fcrecognition.Model.User;
-import com.sanedu.fcrecognition.Utils.ImageResizer;
-import com.sanedu.fcrecognition.Utils.SharedPrefData;
+import com.sanedu.common.Utils.ImageResizer;
 import com.sanedu.fcrecognition.Utils.Utils;
 
 import java.io.ByteArrayOutputStream;

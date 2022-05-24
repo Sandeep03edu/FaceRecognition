@@ -11,12 +11,11 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
-import com.sanedu.fcrecognition.Constants;
+import com.sanedu.common.Utils.Constants;
 import com.sanedu.fcrecognition.Model.FaceResult;
 import com.sanedu.fcrecognition.Model.User;
 
 import java.util.ArrayList;
-import java.util.Map;
 import java.util.Objects;
 
 public class FirestoreData {
