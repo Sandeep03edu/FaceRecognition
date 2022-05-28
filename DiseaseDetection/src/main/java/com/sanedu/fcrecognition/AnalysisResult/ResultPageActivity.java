@@ -1,5 +1,6 @@
 package com.sanedu.fcrecognition.AnalysisResult;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 
@@ -37,6 +38,10 @@ import com.tzutalin.dlib.VisionDetRet;
 
 public class ResultPageActivity extends AppCompatActivity {
 
+    /**
+     * Activity to display Result using Bitmap from intent
+     */
+
     private static final String TAG = "ResultPageActivityTag";
     private byte[] bytes;
     private Bitmap originalBitmap;
@@ -47,6 +52,7 @@ public class ResultPageActivity extends AppCompatActivity {
     private AgeGenderDetection ageGenderDetection;
     private int dataDetected = 0;
     private FaceResult faceResult = null;
+    private final int SAVE_DATA_RESULT = 1213;
 
     // Layout views
     CardView ageCard, genderCard;
@@ -58,7 +64,6 @@ public class ResultPageActivity extends AppCompatActivity {
     Bitmap leftEyeBrow, rightEyeBrow, leftEye, rightEye, upperLip, lowerLip, nose;
     Bitmap displayLeftEyeBrow, displayRightEyeBrow, displayLeftEye, displayRightEye, displayUpperLip, displayLowerLip, displayNose;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,7 +73,7 @@ public class ResultPageActivity extends AppCompatActivity {
         _init();
 
         // Get Image Bitmap
-        GetImageBitmap();
+        GetIntentData();
 
         // Check Num of faces
         CheckFacesCount();
@@ -80,31 +85,44 @@ public class ResultPageActivity extends AppCompatActivity {
         SaveData();
     }
 
+    /**
+     * Saving face result to cloud server
+     */
     private void SaveData() {
         saveDataTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
+                    // Checking permission for Foreground service for API Level>=28
                     if (Permission.CheckPermission(ResultPageActivity.this, Manifest.permission.FOREGROUND_SERVICE)) {
                         Intent intent = new Intent(ResultPageActivity.this, ResultUploadScreen.class);
                         intent.putExtra(Constants.RESULT_IMAGE_URI, imageUri.toString());
-                        startActivity(intent);
-                    } else {
+                        // Starting upload function
+                        startActivityForResult(intent, SAVE_DATA_RESULT);
+                    }
+                    // Requesting permission for Foreground service
+                    else {
                         Permission.RequestPermission(ResultPageActivity.this, new String[]{Manifest.permission.FOREGROUND_SERVICE});
                     }
                 }
                 else{
                     Intent intent = new Intent(ResultPageActivity.this, ResultUploadScreen.class);
                     intent.putExtra(Constants.RESULT_IMAGE_URI, imageUri.toString());
-                    startActivity(intent);
+                    // Starting upload function
+                    startActivityForResult(intent, SAVE_DATA_RESULT);
                 }
             }
         });
     }
 
+    /**
+     * Set imageView Click action
+     */
     private void SetClickActions() {
+        // Age gender prediction display action
         AgeGenderClickAction();
 
+        // Dual image data display action
         DualImageResultProvider();
     }
 
@@ -158,22 +176,32 @@ public class ResultPageActivity extends AppCompatActivity {
         });
     }
 
+
+    /**
+     * Moving to AgeGenderResCard.java activity to display predicted result
+     */
     private void AgeGenderClickAction() {
         Intent ageGenderResIntent = new Intent(this, AgeGenderResCard.class);
 
+        // Age card onClickListener
         ageCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ResultConfidence age;
+                // Adding prev result for already scanned history data
                 if (faceResult != null) {
                     age = new ResultConfidence(String.valueOf(faceResult.getAge()), -1);
                 }
                 else {
                     age = ageGenderDetection.getAgeGroup();
                 }
+
+                // Storing result into Gson
                 String gson = new Gson().toJson(age);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.AGE);
+
+                // Starting activity
                 startActivity(ageGenderResIntent);
             }
         });
@@ -182,22 +210,50 @@ public class ResultPageActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 ResultConfidence gender;
+                // Adding prev result for already scanned history data
                 if (faceResult != null) {
                     gender = new ResultConfidence(String.valueOf(faceResult.getGender()), -1);
                 }
                 else {
                     gender = ageGenderDetection.getGender();
                 }
+
+                // Storing result into Gson
                 String gson = new Gson().toJson(gender);
                 ageGenderResIntent.putExtra(Constants.AG_MODEL, gson);
                 ageGenderResIntent.putExtra(Constants.AG_TYPE, Constants.GENDER);
+
+                // Starting activity
                 startActivity(ageGenderResIntent);
             }
         });
     }
 
+    /**
+     * Dismissing Dialog box when activity paused
+     */
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dismissDialog();
+    }
+
+    /**
+     * Dismissing Dialog box when activity destroyed
+     */
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        dismissDialog();
+    }
+
+    /**
+     * Initialising views
+     */
     private void _init() {
+        // Setting activity title
         setTitle("Result");
+
         ageCard = findViewById(R.id.result_age_card);
         genderCard = findViewById(R.id.result_gender_card);
 
@@ -220,28 +276,53 @@ public class ResultPageActivity extends AppCompatActivity {
         genderTv = findViewById(R.id.result_gender_name);
         saveDataTv = findViewById(R.id.result_save_data);
 
+        // Fixing imageViews dimensions as square with half width of screen
         LayoutUtils.fixRatioImageView(this, 2, new ImageView[]{ageImg, genderImg, leftEyebrowImg, rightEyebrowImg, leftEyeImg, rightEyeImg, noseImg, upperLipImg, lowerLipImg, faceImg});
 
+        // Initialising progress dialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setCancelable(false);
         progressDialog.setTitle("Fetching data");
         progressDialog.setMessage("Please wait...");
     }
 
+    /**
+     * Implementing onActivityResult to display data fetched from startActivityForResult
+     *
+     * @param requestCode - Request code to differentiate between different activity results
+     * @param resultCode - Result code to check whether task completed successfully or not
+     * @param data - Intent result data fetched from result may contain some extras too
+     */
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if(resultCode==RESULT_OK && requestCode==SAVE_DATA_RESULT){
+            // Disabling saveDataTv when data is already uploading
+            Toast.makeText(this, "Uploading Results", Toast.LENGTH_SHORT).show();
+            saveDataTv.setEnabled(false);
+            saveDataTv.setText("Uploading Results...");
+        }
+    }
 
+    /**
+     * Count faces in a photo
+     */
     private void CheckFacesCount() {
         showDialog();
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
                 super.doInBackground();
+                // Implementing count model in background
                 faceDetection = new FaceDetection(ResultPageActivity.this, imageUri);
             }
 
             @Override
             public void onPostExecute() {
                 super.onPostExecute();
-                int faceCount = faceDetection.faceCount();
+                int faceCount = faceDetection.faceCount(); ;// Variable to store face count
+
+                // Dismissing dialog if no face (<=0) face found
                 if (faceCount <= 0) {
                     dismissDialog();
                     saveDataTv.setVisibility(View.GONE);
@@ -254,7 +335,9 @@ public class ResultPageActivity extends AppCompatActivity {
                     finish();
                      */
 
-                } else if (faceCount > 1) {
+                }
+                // Dismiss dialog if more than 1 face found
+                else if (faceCount > 1) {
                     dismissDialog();
                     saveDataTv.setVisibility(View.GONE);
                     Toast.makeText(ResultPageActivity.this, "More than 1 face detected\nTry cropping or blurring other faces", Toast.LENGTH_SHORT).show();
@@ -266,7 +349,9 @@ public class ResultPageActivity extends AppCompatActivity {
                     finish();
                      */
 
-                } else {
+                }
+                // Performing action for single face
+                else {
                     DetectAgeGender();
                     DetectFaceParts();
                 }
@@ -274,12 +359,16 @@ public class ResultPageActivity extends AppCompatActivity {
         }.execute();
     }
 
+    /**
+     * Detecting face parts from faceDetection
+     */
     private void DetectFaceParts() {
         final Bitmap[] bitmap = new Bitmap[1];
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
                 super.doInBackground();
+                // Fetching face parts and face bitmap in background
                 VisionDetRet face = faceDetection.getFace();
                 faceParts = new FaceParts(imageUri.getPath(), face, originalBitmap);
                 bitmap[0] = FaceLandmarks.getFaceBitmap(imageUri.getPath(), face);
@@ -291,10 +380,13 @@ public class ResultPageActivity extends AppCompatActivity {
             @Override
             public void onPostExecute() {
                 super.onPostExecute();
+                // incrementing dataDetected by 1 when FaceParts detection is done
                 dataDetected++;
 
+                // Setting faceParts image from bitmap and faceParts
                 SetFacePartsImage();
 
+                // Dismissing dialog if both tasks are completed
                 if (dataDetected >= 2) {
                     dismissDialog();
                 }
@@ -302,10 +394,15 @@ public class ResultPageActivity extends AppCompatActivity {
         }.execute();
     }
 
+    /**
+     * Function to set Bitmap of face and faceParts to imagesViews
+     */
     private void SetFacePartsImage() {
+        // Setting face Bitmap
         Bitmap faceBitmap = faceParts.getDisplayFace();
-        faceImg.setImageBitmap(faceBitmap);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(faceImg, faceBitmap);
 
+        // Storing analysis face parts bitmap
         leftEyeBrow = faceParts.getLeftEyebrow();
         rightEyeBrow = faceParts.getRightEyebrow();
         leftEye = faceParts.getLeftEye();
@@ -314,6 +411,7 @@ public class ResultPageActivity extends AppCompatActivity {
         lowerLip = faceParts.getLowerLip();
         nose = faceParts.getNose();
 
+        // Storing rectangular display face parts bitmap
         displayLeftEyeBrow = faceParts.getDisplayLeftEyebrow();
         displayRightEyeBrow = faceParts.getDisplayRightEyebrow();
         displayLeftEye = faceParts.getDisplayLeftEye();
@@ -322,64 +420,79 @@ public class ResultPageActivity extends AppCompatActivity {
         displayLowerLip = faceParts.getDisplayLowerLip();
         displayNose = faceParts.getDisplayNose();
 
-//        leftEyebrowImg.setImageBitmap(leftEyeBrow);
-//        rightEyebrowImg.setImageBitmap(rightEyeBrow);
-        leftEyebrowImg.setImageBitmap(displayLeftEyeBrow);
-        rightEyebrowImg.setImageBitmap(displayRightEyeBrow);
-        leftEyeImg.setImageBitmap(displayLeftEye);
-        rightEyeImg.setImageBitmap(displayRightEye);
-        upperLipImg.setImageBitmap(displayUpperLip);
-        lowerLipImg.setImageBitmap(displayLowerLip);
-        noseImg.setImageBitmap(displayNose);
+        // Setting ImageBitmap into imageViews
+        com.sanedu.common.Utils.Utils.SetImageBitmap(leftEyebrowImg, displayLeftEyeBrow);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(rightEyebrowImg, displayRightEyeBrow);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(leftEyeImg, displayLeftEye);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(rightEyeImg, displayRightEye);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(upperLipImg, displayUpperLip);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(lowerLipImg, displayLowerLip);
+        com.sanedu.common.Utils.Utils.SetImageBitmap(noseImg, displayNose);
     }
 
+    /**
+     * Function to detect Age and Gender from face
+     */
     private void DetectAgeGender() {
         // Setting prev scan data
         if (faceResult != null) {
             dismissDialog();
 
+            // Setting gender icons
             if (faceResult.getGender().equalsIgnoreCase(Constants.MALE)) {
                 genderImg.setImageResource(R.drawable.ic_baseline_male_128);
             } else if (faceResult.getGender().equalsIgnoreCase(Constants.FEMALE)) {
                 genderImg.setImageResource(R.drawable.ic_baseline_female_128);
             }
 
+            // Setting age icons
             ageImg.setImageResource(R.drawable.age_vector);
+
+            // Setting age and gender data
             ageTv.setText(String.valueOf(faceResult.getAge()));
             genderTv.setText(faceResult.getGender());
 
+            // Incrementing dataDetected by 1 when task is completed
             dataDetected++;
 
+            // Dismissing dialog when all tasks are completed
             if (dataDetected >= 2) {
                 dismissDialog();
             }
             return;
         }
 
-
+        // Performing action on new data
         new BackgroundWork(this) {
             @Override
             public void doInBackground() {
                 super.doInBackground();
+                // fetching ageGenderDetection in background by passing activity and imageBitmap
                 ageGenderDetection = new AgeGenderDetection(ResultPageActivity.this, originalBitmap);
             }
 
             @Override
             public void onPostExecute() {
                 super.onPostExecute();
+                // Incrementing dataDetected by 1 when task is completed
                 dataDetected++;
 
+                // Dismissing dialog when all tasks are completed
                 if (dataDetected >= 2) {
                     dismissDialog();
                 }
 
+                // Setting gender icons
                 if (ageGenderDetection.getGender().getResult().equalsIgnoreCase(Constants.MALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_male_128);
                 } else if (ageGenderDetection.getGender().getResult().equalsIgnoreCase(Constants.FEMALE)) {
                     genderImg.setImageResource(R.drawable.ic_baseline_female_128);
                 }
 
+                // Setting age icons
                 ageImg.setImageResource(R.drawable.age_vector);
+
+                // Setting age and gender data
                 ageTv.setText(ageGenderDetection.getAgeGroup().getResult());
                 genderTv.setText(ageGenderDetection.getGender().getResult());
 
@@ -396,13 +509,18 @@ public class ResultPageActivity extends AppCompatActivity {
         }.execute();
     }
 
-    private void GetImageBitmap() {
+    /**
+     * Getting data from intent data
+     */
+    private void GetIntentData() {
+        // Checking whether intent exist or not
         if (getIntent() != null) {
             bytes = getIntent().getByteArrayExtra(Constants.IMAGE_BITMAP_BYTES);
             originalBitmap = BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
             originalBitmap = ImageResizer.reduceBitmapSize(originalBitmap, 240000);
             imageUri = Utils.Bitmap2Uri(this, originalBitmap);
 
+            // Checking whether prev result exist with intent or not
             if (getIntent().hasExtra(Constants.INTENT_RESULT)) {
                 faceResult = new Gson().fromJson(getIntent().getStringExtra(Constants.INTENT_RESULT), FaceResult.class);
                 saveDataTv.setVisibility(View.GONE);
@@ -410,12 +528,18 @@ public class ResultPageActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Displaying dialog if not null
+     */
     private void showDialog() {
         if (progressDialog != null) {
             progressDialog.show();
         }
     }
 
+    /**
+     * Removing dialog if not null
+     */
     private void dismissDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();

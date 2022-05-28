@@ -12,15 +12,15 @@ import com.sanedu.fcrecognition.Home.HomeActivity;
 import com.sanedu.fcrecognition.MainActivity;
 import com.sanedu.fcrecognition.R;
 
+/**
+ * Splash Activity - Main Activity
+ */
 public class SplashActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash);
-        if(true) {
-//            throw new RuntimeException("Test Crash"); // Force a crash
-        }
 
         if(FirebaseAuth.getInstance().getCurrentUser()!=null){
             // User already signed in

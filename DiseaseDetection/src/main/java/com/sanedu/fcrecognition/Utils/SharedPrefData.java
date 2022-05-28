@@ -9,6 +9,11 @@ import com.sanedu.fcrecognition.Model.User;
 
 public class SharedPrefData {
 
+    /**
+     * Method to add user to shared preference
+     * @param context - Context - Activity context
+     * @param user - User - My user model object
+     */
     public static void addUser(Context context , User user){
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -17,6 +22,11 @@ public class SharedPrefData {
         editor.apply();
     }
 
+    /**
+     * Method to get User
+     * @param context - Context - Activity context
+     * @return - User - Saved user details
+     */
     public static User getUser(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
         String userGson = sharedPreferences.getString(Constants.USER_DETAILS, "");
@@ -27,26 +37,14 @@ public class SharedPrefData {
         return user;
     }
 
+    /**
+     * Method to erase Shared pref data
+     * @param context - Context - Activity context
+     */
     public static void clearSharedPref(Context context){
         SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.clear();
         editor.apply();
-    }
-
-    public static void saveString(Context context, String label,  String s){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(label, s);
-        editor.apply();
-    }
-
-    public static String getString(Context context, String label){
-        SharedPreferences sharedPreferences = context.getSharedPreferences(Constants.SHARED_PREF, Context.MODE_PRIVATE);
-        String data = sharedPreferences.getString(label, "");
-        if(data==null){
-            data = "";
-        }
-        return data;
     }
 }

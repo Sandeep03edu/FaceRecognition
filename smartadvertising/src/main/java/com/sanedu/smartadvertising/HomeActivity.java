@@ -60,6 +60,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Initialising views
         _init();
 
         initOpenCvCamera();
@@ -103,39 +104,41 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
 
     private void UploadData() {
         String[] ageList = {"(0-2)", "(4-6)", "(8-12)", "(15-20)", "(25-32)", "(38-43)", "(48-53)", "(60-100)"};
-        int[] genderList = {-1, 0, 1};
+        int[] genderList = {-1, 1, 0};
 
         String[] urls = new String[]{
-                "https://webneel.com/daily/sites/default/files/images/daily/03-2016/19-animal-advertisment-print-ads.jpg",
-                "https://i.pinimg.com/736x/cc/97/3b/cc973bd33669b74ef3a90bd70e7aa67b--school-stuff-medium.jpg",
-                "https://webneel.com/daily/sites/default/files/images/daily/03-2016/18-animal-advertisment-print-ads.jpg",
-                "https://images.squarespace-cdn.com/content/v1/565fe10be4b069d2e2e4583b/1524392346118-JBD0LIT87BYK427YDOOK/Static+Advert+Final.jpg?format=1500w",
-                "https://ewhabrandcommunication.files.wordpress.com/2019/09/e18489e185b3e1848fe185b3e18485e185b5e186abe18489e185a3e186ba-2019-09-26-e1848be185a9e18492e185ae-12.34.09.png?w=882\n",
-                "https://miro.medium.com/max/1400/0*KXLdaVVNBx-iZv1r.jpg",
-                "https://miro.medium.com/max/1400/0*sXcutWhB5I20S0pl",
-                "https://miro.medium.com/max/1400/0*juD_rSorCuu-yOtP",
-                "https://miro.medium.com/max/1400/0*y3JQpNj2Z9tJcwup.jpg",
-                "https://miro.medium.com/max/1400/0*XDkGhTm76nhHAa32.jpg",
-                "https://miro.medium.com/max/1400/0*UEtw6ZiixEpdGONM.jpg",
-                "https://miro.medium.com/max/1400/0*25bSy5Cp6Tmpj_1X.jpg",
-                "https://miro.medium.com/max/1400/1*m0zjSQTF1vRXU2cGMiu0Qw.jpeg",
-                "https://miro.medium.com/max/700/1*rZKEcr_w7-eYl4JNf4-GyA.jpeg",
-                "https://miro.medium.com/max/700/0*t0Q2lWzAFahZubUL",
-                "https://miro.medium.com/max/1400/1*I13OfgqEauI4uS4FfP6x6w.jpeg",
-                "https://miro.medium.com/max/700/0*F7GlVCgWVZlxKylI",
-                "https://miro.medium.com/max/700/1*wB0RzjrQpK5YEQDDD1I3nA.jpeg",
-                "https://miro.medium.com/max/700/0*59ygm91jAp6rY-a5",
-                "https://miro.medium.com/max/700/1*9E9zNHwMexqPtzhUd_nCiA.jpeg",
-                "https://miro.medium.com/max/700/1*8REdUDqhISctip-i4OPVWg.jpeg",
-                "https://miro.medium.com/max/700/1*HSrpiSoNKPLYcjKZoaPB2Q.png",
-                "https://miro.medium.com/max/700/1*BluKTmwaOx6oCGCdCDNWbg.png",
-                "https://miro.medium.com/max/1400/1*LcoXb8b2G5-N1IjC7PSQDw.png"
+                "https://i.ibb.co/41m2mHN/Female-1.png",
+                "https://i.ibb.co/xCGL84K/Female-2.png",
+                "https://i.ibb.co/bPM1CRd/Female-3.png",
+                "https://i.ibb.co/m6j2B3V/Female-4.png",
+                "https://i.ibb.co/F3KKc77/Female-5.png",
+                "https://i.ibb.co/T0Tnpk5/Female-6.png",
+                "https://i.ibb.co/0thkwKH/Female-7.png",
+                "https://i.ibb.co/2dKBj9n/Female-8.png",
+
+                "https://i.ibb.co/tHq4W67/Male-1.png",
+                "https://i.ibb.co/fMcjhMT/Male-2.png",
+                "https://i.ibb.co/PM1S5hB/Male-3.png",
+                "https://i.ibb.co/F5BzBgN/Male-4.png",
+                "https://i.ibb.co/LYBJYdp/Male-5.png",
+                "https://i.ibb.co/Wn01yHt/Male-6.png",
+                "https://i.ibb.co/JySC4nR/Male-7.png",
+                "https://i.ibb.co/Pw9nqrX/Male-8.png",
+
+                "https://i.ibb.co/kyWbYYf/Neutral-1.png",
+                "https://i.ibb.co/Fbqdz20/Neutral-2.png",
+                "https://i.ibb.co/5YsbrMR/Neutral-3.png",
+                "https://i.ibb.co/cwTP6d0/Neutral-4.png",
+                "https://i.ibb.co/KG8N0y5/Neutral-5.png",
+                "https://i.ibb.co/XWrSPy1/Neutral-6.png",
+                "https://i.ibb.co/nQY0bQC/Neutral-7.png",
+                "https://i.ibb.co/yW4mwCf/Neutral-8.png"
         };
 
         for (int i = 0; i < 24; ++i) {
             ArrayList<String> ageArrayList = new ArrayList<>();
             ageArrayList.add(ageList[i % 8]);
-            Advertisement advertisement = new Advertisement(ageArrayList, genderList[i % 3], urls[i], -1);
+            Advertisement advertisement = new Advertisement(ageArrayList, genderList[i/8], urls[i], -1);
             advertisement.setId(System.currentTimeMillis());
             FirebaseFirestore.getInstance().collection(Constants.FIREBASE_ADVERTISEMENT_TABLE)
                     .document(advertisement.getId() + "")
@@ -184,6 +187,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
     public void onCameraViewStopped() {
         if (mRgbaT != null) {
             mRgbaT.release();
+            mRgbaT = null;
         }
         if (frame != null) {
             frame.release();
@@ -205,28 +209,29 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Bitmap bitmap = Bitmap.createBitmap(mRgbaT.cols(), mRgbaT.rows(), Bitmap.Config.RGB_565);
-                Utils.matToBitmap(mRgbaT, bitmap);
-                bitmap = com.sanedu.common.Utils.Utils.rotateBitmap(bitmap, -90);
-                Bitmap finalBitmap = bitmap;
-                new BackgroundWork(HomeActivity.this) {
-                    @Override
-                    public void doInBackground() {
-                        super.doInBackground();
-                        ageGenderDetection = new AgeGenderDetection(HomeActivity.this, finalBitmap);
-                    }
+                if (mRgbaT != null && mRgbaT.cols()>0 && mRgbaT.rows()>0) {
+                    Bitmap bitmap = Bitmap.createBitmap(mRgbaT.cols(), mRgbaT.rows(), Bitmap.Config.RGB_565);
+                    Utils.matToBitmap(mRgbaT, bitmap);
+                    bitmap = com.sanedu.common.Utils.Utils.rotateBitmap(bitmap, -90);
+                    Bitmap finalBitmap = bitmap;
+                    new BackgroundWork(HomeActivity.this) {
+                        @Override
+                        public void doInBackground() {
+                            super.doInBackground();
+                            ageGenderDetection = new AgeGenderDetection(HomeActivity.this, finalBitmap);
+                        }
 
-                    @Override
-                    public void onPostExecute() {
-                        super.onPostExecute();
+                        @Override
+                        public void onPostExecute() {
+                            super.onPostExecute();
 
-                        Log.d(TAG, "onPostExecute: DetectFace Public Gender: " + ageGenderDetection.getPublicMaxGender());
-                        Log.d(TAG, "onPostExecute: DetectFace Public Age: " + ageGenderDetection.getPublicMaxAge());
+                            Log.d(TAG, "onPostExecute: DetectFace Public Gender: " + ageGenderDetection.getPublicMaxGender());
+                            Log.d(TAG, "onPostExecute: DetectFace Public Age: " + ageGenderDetection.getPublicMaxAge());
 
-                        GetAdvertisement();
-                    }
-                }.execute();
-
+                            GetAdvertisement();
+                        }
+                    }.execute();
+                }
             }
         }, 5000);
     }
@@ -249,14 +254,15 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         if (!gender.isEmpty()) {
             if (gender.equalsIgnoreCase(Constants.MALE)) {
                 query = query.whereGreaterThanOrEqualTo("gender", 0);
+                query = query.orderBy("gender", Query.Direction.DESCENDING);
             } else if (gender.equalsIgnoreCase(Constants.FEMALE)) {
                 query = query.whereLessThanOrEqualTo("gender", 0);
+                query = query.orderBy("gender", Query.Direction.ASCENDING);
             }
         } else {
             query = query.whereEqualTo("gender", 0);
         }
 
-        query = query.orderBy("gender", Query.Direction.ASCENDING);
         query = query.orderBy("lastDisplayed", Query.Direction.ASCENDING);
         query = query.limit(2);
         query.get()
@@ -272,6 +278,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
                                 if (!adUrl.trim().isEmpty()) {
                                     Picasso.get()
                                             .load(adUrl)
+                                            .placeholder(R.mipmap.ic_launcher)
                                             .into(imageView, new Callback() {
                                                 @Override
                                                 public void onSuccess() {
@@ -339,6 +346,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         }
         if (mRgbaT != null) {
             mRgbaT.release();
+            mRgbaT = null;
         }
         if (frame != null) {
             frame.release();
@@ -353,6 +361,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         }
         if (mRgbaT != null) {
             mRgbaT.release();
+            mRgbaT = null;
         }
         if (frame != null) {
             frame.release();

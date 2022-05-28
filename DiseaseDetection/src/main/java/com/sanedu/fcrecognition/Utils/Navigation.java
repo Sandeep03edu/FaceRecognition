@@ -18,16 +18,28 @@ import com.sanedu.fcrecognition.R;
 import com.sanedu.fcrecognition.ScanHistory.ScannedResults;
 import com.sanedu.fcrecognition.Start.SplashActivity;
 
+/**
+ * @author Sandeep
+ * Java class
+ */
 public class Navigation {
     private static final String TAG = "NavigationTag";
     Activity activity;
     DrawerLayout drawerLayout;
 
+    /**
+     * Constructor
+     * @param activity - Activity
+     * @param drawerLayout - DrawerLayout - Activity's drawer layout
+     */
     public Navigation(Activity activity, DrawerLayout drawerLayout) {
         this.activity = activity;
         this.drawerLayout = drawerLayout;
     }
 
+    /**
+     * Implementing onNavigationListener for NavigationView
+     */
     public NavigationView.OnNavigationItemSelectedListener listener = new NavigationView.OnNavigationItemSelectedListener() {
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
@@ -72,6 +84,9 @@ public class Navigation {
         }
     };
 
+    /**
+     * Method to display AlertDialog for logout task
+     */
     private void DisplayLogoutDialog() {
         new AlertDialog.Builder(activity)
                 .setTitle("Are you sure")
@@ -81,9 +96,13 @@ public class Navigation {
                     public void onClick(DialogInterface dialogInterface, int i) {
                         dialogInterface.dismiss();
 
+                        // Logging out from firebase
                         FirebaseAuth.getInstance().signOut();
+
+                        // Deleting data from sharedPreference
                         SharedPrefData.clearSharedPref(activity);
 
+                        // Moving to SplashActivity.java activity
                         Intent homeIntent = new Intent(activity, SplashActivity.class);
                         homeIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         activity.startActivity(homeIntent);

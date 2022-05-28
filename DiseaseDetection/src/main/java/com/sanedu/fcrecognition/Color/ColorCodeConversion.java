@@ -4,16 +4,33 @@ import android.util.Log;
 
 import com.sanedu.fcrecognition.Model.ColorCode;
 
+
+/**
+ * @author Sandeep
+ * Java class to convert one color code to another
+ * Reference - http://www.easyrgb.com/en/math.php
+ */
 public class ColorCodeConversion {
 
     private static final String TAG = ColorCodeConversion.class.getName() + "TAG";
 
+    /**
+     * Function to convert RGB color to CIE-LAB color
+     * @param RgbColor - Rgb ColorCode class object
+     * @return - ColorCode with CieLab values
+     */
     public static ColorCode Rgb2CieLab(ColorCode RgbColor) {
         ColorCode Xyz = Rgb2Xyz(RgbColor);
         ColorCode CieLab = Xyz2CieLab(Xyz);
         return CieLab;
     }
 
+    /**
+     * Function to return differences between two colorCode
+     * @param CieLab1 - Given color 1
+     * @param CieLab2 - Given color 2
+     * @return - Double value, difference between two colors
+     */
     public static double Delta94Value(ColorCode CieLab1, ColorCode CieLab2) {
         double WtL = 1;
         double WtC = 1;
@@ -22,15 +39,10 @@ public class ColorCodeConversion {
         double Cl1 = CieLab1.getA(), Ca1 = CieLab1.getB(), Cb1 = CieLab1.getC();
         double Cl2 = CieLab2.getA(), Ca2 = CieLab2.getB(), Cb2 = CieLab2.getC();
 
-        // C1
         double xC1 = Math.sqrt(Math.pow(Ca1, 2) + Math.pow(Cb1, 2));
-        // C2
         double xC2 = Math.sqrt(Math.pow(Ca2, 2) + Math.pow(Cb2, 2));
-        // DelL
         double xDL = Cl2 - Cl1;
-        // DelCab
         double xDC = xC2 - xC1;
-        // DelEab
         double xDE = Math.sqrt(
                 (Cl1 - Cl2) * (Cl1 - Cl2) +
                         (Ca1 - Ca2) * (Ca1 - Ca2) +
@@ -38,7 +50,6 @@ public class ColorCodeConversion {
         );
 
         double xDH = (xDE * xDE) - (xDL * xDL) - (xDC * xDC);
-
         if (xDH > 0) {
             xDH = Math.sqrt(xDH);
         } else {
@@ -56,6 +67,11 @@ public class ColorCodeConversion {
         return Del94;
     }
 
+    /**
+     * Function to Convert Rgb colorCode to Xyz colorCode
+     * @param RgbColor - Given ColorCode
+     * @return - ColorCode with Xyz values
+     */
     private static ColorCode Rgb2Xyz(ColorCode RgbColor) {
         double sR = RgbColor.getA();
         double sG = RgbColor.getB();
@@ -93,6 +109,11 @@ public class ColorCodeConversion {
         return XYZColorCode;
     }
 
+    /**
+     * Function to convert Xyz colorCode to CieLab colorCode
+     * @param XYZColorCode - Given Xyz colorCode
+     * @return - ColorCode with CieLab values
+     */
     private static ColorCode Xyz2CieLab(ColorCode XYZColorCode) {
         double X = XYZColorCode.getA();
         double Y = XYZColorCode.getB();

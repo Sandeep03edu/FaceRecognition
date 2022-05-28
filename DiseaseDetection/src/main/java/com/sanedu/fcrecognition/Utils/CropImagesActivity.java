@@ -22,8 +22,12 @@ import com.theartofdev.edmodo.cropper.CropImageView;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Activity to crop images using CropImageView
+ */
 public class CropImagesActivity extends AppCompatActivity {
 
+    // Activity views
     private static final int EXTERNAL_STORAGE_PERMISSION = 12;
     private static final String TAG = "CropImagesActivityTag";
     ImageView backBtn, nextBtn, submitBtn;
@@ -38,20 +42,25 @@ public class CropImagesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crop_images);
 
+        // Initialising views
         _init();
 
+        // Checking whether getIntent exist or not
         Intent intent = getIntent();
         if (intent == null || !intent.hasExtra(Constants.IMAGES_BUNDLE)) {
             return;
         }
 
+        // Disable Aspect crop if provided via intent
         if (intent.hasExtra(Constants.DISABLE_ASPECT_CROP)) {
             cropImageView.setFixedAspectRatio(false);
         }
 
+        // Fetching bundle and ArrayList<Uri> from getIntent
         Bundle imageBundle = intent.getBundleExtra(Constants.IMAGES_BUNDLE);
         uriArrayList = (ArrayList<Uri>) imageBundle.getSerializable(Constants.IMAGES);
 
+        // Returning if ArrayList<Uri> is null or empty
         if (uriArrayList == null || uriArrayList.size() == 0) {
             return;
         }
@@ -101,6 +110,9 @@ public class CropImagesActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Setting Submit button action
+     */
     private void SubmitAction() {
         Intent resultIntent = new Intent();
         croppedImagesBitmap[count] = cropImageView.getCroppedImage();
@@ -122,20 +134,43 @@ public class CropImagesActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Performing back button onClickListener
+     */
     private void BackButtonAction() {
+        // Saving current cropped bitmap
         croppedImagesBitmap[count] = cropImageView.getCroppedImage();
+
+        // Decrementing count
         count--;
+
+        // Updating new image in cropImageView
         cropImageView.setImageUriAsync(uriArrayList.get(count));
+
+        // Updating icons visibility based on count value
         SetIconsVisibility();
     }
 
+    /**
+     * Performing next button onClickListener
+     */
     private void NextButtonAction() {
+        // Saving current cropped bitmap
         croppedImagesBitmap[count] = cropImageView.getCroppedImage();
+
+        // Decrementing count
         count++;
+
+        // Updating new image in cropImageView
         cropImageView.setImageUriAsync(uriArrayList.get(count));
+
+        // Updating icons visibility based on count value
         SetIconsVisibility();
     }
 
+    /**
+     * Updating next and back button visibility on click actions
+     */
     private void SetIconsVisibility() {
         if (count == uriArrayList.size() - 1) {
             nextBtn.setVisibility(View.GONE);
@@ -152,12 +187,20 @@ public class CropImagesActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialising views
+     */
     private void _init() {
+        // Setting activity title
         setTitle("Crop Image");
+
+        // Hiding supportActionBar
         try {
             Objects.requireNonNull(this.getSupportActionBar()).hide();
         } catch (NullPointerException ignored) {
         }
+
+        // Initialising activity view
         backBtn = findViewById(R.id.crop_images_back);
         nextBtn = findViewById(R.id.crop_images_next);
         submitBtn = findViewById(R.id.crop_images_submit);

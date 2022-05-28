@@ -1,5 +1,9 @@
 package com.sanedu.fcrecognition.Model;
 
+/**
+ * @author Sandeep
+ * DualImageModel class
+ */
 public class DualImageModel {
     private String type;
     private String leftDisplayImgUri;
@@ -11,6 +15,16 @@ public class DualImageModel {
     private String leftImgType;
     private String rightImgType;
 
+    /**
+     * Constructor
+     * @param type - String - DualImageModel type
+     * @param leftDisplayImgUri - String - left rectangular image bitmap uri
+     * @param rightDisplayImgUri - String - right rectangular image bitmap uri
+     * @param leftImgUri - String - left detailed image bitmap uri
+     * @param rightImgUri - String - right detailed image bitmap uri
+     * @param leftImgType - String - left image type
+     * @param rightImgType - String - right image type
+     */
     public DualImageModel(String type, String leftDisplayImgUri, String rightDisplayImgUri, String leftImgUri, String rightImgUri, String leftImgType, String rightImgType) {
         this.type = type;
         this.leftDisplayImgUri = leftDisplayImgUri;
@@ -77,6 +91,10 @@ public class DualImageModel {
         this.rightImgType = rightImgType;
     }
 
+    /**
+     *
+     * @return String - DualImageModel object data to string
+     */
     @Override
     public String toString() {
         return "DualImageModel{" +

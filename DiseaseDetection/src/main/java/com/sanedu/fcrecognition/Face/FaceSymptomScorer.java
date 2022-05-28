@@ -118,26 +118,35 @@ public class FaceSymptomScorer {
 
     public double detectRedness() {
         double redColors = 0;
-        int pixelCount = 0;
+        int nonRedColors = 0;
         for (int y = 0; y < bitmap.getHeight(); y++) {
             for (int x = 0; x < bitmap.getWidth(); x++) {
                 int c = bitmap.getPixel(x, y);
-                if (CheckColor.isRed(c, 20)) {
+                if (CheckColor.isRed(c, 15)) {
                     redColors++;
                 }
-                pixelCount++;
-                Log.d(TAG, "detectRedness: Red: " + redColors + " Pixel: " + pixelCount);
+                else {
+                    nonRedColors++;
+                }
+//                if (CheckColor.isBlack(c, 30)) {
+//                    nonRedColors++;
+//                }
+//                if (CheckColor.isWhite(c, 30)) {
+//                    nonRedColors++;
+//                }
+                Log.d(TAG, "detectRedness: Red: " + redColors + " Pixel: " + nonRedColors);
             }
         }
 
-        Log.d(TAG, "detectRedness: RedCount: " + redColors + " TotalPix: " + pixelCount);
+        Log.d(TAG, "detectRedness: RedCount: " + redColors + " TotalPix: " + nonRedColors);
 
-        if(pixelCount==0){
+        double total = nonRedColors + redColors;
+        if (total == 0) {
             return 0;
         }
 
         redColors *= 100;
-        return redColors / pixelCount;
+        return redColors / (total);
     }
 
     public double detectLossBlackness() {
@@ -145,20 +154,20 @@ public class FaceSymptomScorer {
         for (int y = 0; y < bitmap.getHeight(); y++) {
             for (int x = 0; x < bitmap.getWidth(); x++) {
                 int c = bitmap.getPixel(x, y);
-                if (CheckColor.isBlack(c, 50)) {
+//                if (CheckColor.isBlack(c, 50)) {
                     blackPix++;
-                }
-                else if (CheckColor.isWhite(c, 20)) {
+//                }
+                if (CheckColor.isWhite(c, 30)) {
                     whitePix++;
                 }
             }
         }
 
         double total = 100 * whitePix;
-        if(whitePix+blackPix==0){
+        if (blackPix == 0) {
             return 0;
         }
-        return total / (whitePix + blackPix);
+        return total / (blackPix);
     }
 
 
@@ -170,14 +179,14 @@ public class FaceSymptomScorer {
                 if (CheckColor.isPink(c, 50)) {
                     pinkPix++;
                 }
-                else if (CheckColor.isWhite(c, 20)) {
+                if (CheckColor.isWhite(c, 40)) {
                     whitePix++;
                 }
             }
         }
 
         double total = 100 * whitePix;
-        if(whitePix+pinkPix==0){
+        if (whitePix + pinkPix == 0) {
             return 0;
         }
         return total / (whitePix + pinkPix);

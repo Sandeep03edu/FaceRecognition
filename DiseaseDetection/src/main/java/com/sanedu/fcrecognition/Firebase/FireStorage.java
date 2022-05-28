@@ -21,22 +21,37 @@ import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * @author Sandeep
+ * Java class to access Firebase storage and its methods
+ */
 public class FireStorage {
     private static final String TAG = "FireStorageTag";
-
     private StorageReference rootStorage;
 
+    /**
+     * Constructor to initialise rootStorage
+     * @param context - Context
+     */
     public FireStorage(Context context) {
         this.rootStorage = FirebaseStorage.getInstance()
                 .getReference().child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid());
     }
 
+    /**
+     * Method to upload Image to cloud
+     * @param bitmap - Bitmap - ImageBitmap
+     * @param folder - String - FolderName
+     * @param fileName - String - FileName
+     * @param listener - ImageUploadListener - listener to listen updates
+     */
     public void uploadImage(Bitmap bitmap, String folder, String fileName, ImageUploadListener listener) {
         if (bitmap == null) {
             listener.onErrorUpload("Null Bitmap found");
             return;
         }
 
+        // Converting bitmap to bytes array
         bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
@@ -46,6 +61,7 @@ public class FireStorage {
                 .child(folder)
                 .child(fileName);
 
+        // Uploading imageFile
         UploadTask uploadTask = storageReference.putBytes(bytes);
         uploadTask.addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
                     @Override
@@ -59,12 +75,14 @@ public class FireStorage {
                                         ArrayList<LabelledImage> labelledImageArrayList = new ArrayList<>();
                                         labelledImageArrayList.add(labelledImage);
                                         listener.getDownloadUrl(labelledImageArrayList);
+                                        // Listener updating onGetting url
                                     }
                                 })
                                 .addOnFailureListener(new OnFailureListener() {
                                     @Override
                                     public void onFailure(@NonNull Exception e) {
                                         listener.onErrorUpload(e.getMessage());
+                                        // Listener updating onFailure
                                     }
                                 });
                     }
@@ -73,44 +91,16 @@ public class FireStorage {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         listener.onErrorUpload(e.getMessage());
+                        // Listener updating onFailure
                     }
                 });
     }
 
-    public void uploadMultiImages(Context context, String[] bitmapsUris, String[] folders, String[] fileNames, ImageUploadListener listener) {
-        int n = bitmapsUris.length;
-        if (n <= 0) {
-            listener.onErrorUpload("An error occurred");
-            return;
-        }
-        ArrayList<LabelledImage> labelledImageArrayList = new ArrayList<>();
-        int i = 0;
-        final int[] count = {0};
-        for (String bitmapUri : bitmapsUris) {
-            Bitmap bitmap = Utils.Uri2Bitmap(context, Uri.parse(bitmapUri));
-            uploadImage(bitmap, folders[i], fileNames[i], new ImageUploadListener() {
-                @Override
-                public void getDownloadUrl(ArrayList<LabelledImage> labelledImages) {
-                    count[0]++;
-                    labelledImageArrayList.add(labelledImages.get(0));
-                    if (count[0] == n) {
-                        listener.getDownloadUrl(labelledImageArrayList);
-                    }
-                }
-
-                @Override
-                public void onErrorUpload(String err) {
-                    count[0]++;
-                    listener.onErrorUpload(err);
-                    Log.e(TAG, "onErrorUpload: Err: " + err);
-                }
-            });
-        }
-    }
-
+    /**
+     * Interface used by FireStorage.java class
+     */
     public interface ImageUploadListener {
         void getDownloadUrl(ArrayList<LabelledImage> imageUrl);
-
         void onErrorUpload(String err);
     }
 

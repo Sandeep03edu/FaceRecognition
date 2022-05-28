@@ -72,14 +72,21 @@ public class FaceParts {
 
 
     private Bitmap getRectBitmap(List<Integer> list){
+        if(list==null || list.isEmpty() || faceLandmarks.size()==0){
+            return null;
+        }
         Edges corners = Utils.getEdge(list, faceLandmarks);
+        if(!corners.isValidEdge()){
+            return null;
+        }
         return Bitmap.createBitmap(imageBitmap, corners.getLeftCoord(), corners.getBottomCoord(), corners.getWidth(), corners.getHeight());
     }
 
     private Bitmap getListBitmap(List<Integer> list){
+        if(list.size()==0 || faceLandmarks.size()==0 || imageBitmap==null){
+            return null;
+        }
         Log.d(TAG, "getListBitmap: List: " + list.toString());
-//        Edges corners = Utils.getEdge(list, faceLandmarks);
-//        Log.d(TAG, "getLeftEye: Corner: " + corners.toString());
         return Utils.getEdgedBitmap(imageBitmap, list, faceLandmarks);
     }
 }

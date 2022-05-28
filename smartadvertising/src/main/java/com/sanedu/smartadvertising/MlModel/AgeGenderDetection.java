@@ -11,6 +11,7 @@ import org.opencv.android.BaseLoaderCallback;
 import org.opencv.android.LoaderCallbackInterface;
 import org.opencv.android.OpenCVLoader;
 import org.opencv.android.Utils;
+import org.opencv.core.Core;
 import org.opencv.core.CvType;
 import org.opencv.core.Mat;
 import org.opencv.core.MatOfRect;
@@ -20,6 +21,7 @@ import org.opencv.core.Scalar;
 import org.opencv.core.Size;
 import org.opencv.dnn.Dnn;
 import org.opencv.dnn.Net;
+import org.opencv.imgcodecs.Imgcodecs;
 import org.opencv.imgproc.Imgproc;
 import org.opencv.objdetect.CascadeClassifier;
 
@@ -30,19 +32,22 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class AgeGenderDetection {
-    private  final String TAG = "AgeGenderDetectionTag";
+    private final String TAG = "AgeGenderDetectionTag";
 
     private Activity activity;
     private Bitmap imageBitmap, facePart;
 
     private File faceFrontalCascadeFile;
     private CascadeClassifier faceCascadeClassifier;
-    private Scalar MODEL_MEAN_VALUES = new Scalar(78.4263377603, 87.7689143744, 114.895847746);
+
+    //    private static Scalar MODEL_MEAN_VALUES = new Scalar(78.4263377603, 87.7689143744, 114.895847746);
+    private static Scalar MODEL_MEAN_VALUES = new Scalar(104, 117, 123);
+
     private String[] ageList = {"(0-2)", "(4-6)", "(8-12)", "(15-20)", "(25-32)", "(38-43)", "(48-53)", "(60-100)"};
     private String[] genderList = {"Male", "Female"};
     BaseLoaderCallback baseLoaderCallback;
 
-    private int ageMax=-1, genMax=-1;
+    private int ageMax = -1, genMax = -1;
 
     ResultConfidence ageGroup = new ResultConfidence(), gender = new ResultConfidence();
     private ArrayList<ResultConfidence> ageGroupList = new ArrayList<>(), genderResList = new ArrayList<>();
@@ -122,7 +127,7 @@ public class AgeGenderDetection {
         Log.d(TAG, "FindFace: " + faceRect.toArray().length + " faces detected");
 
         ageGroupList = new ArrayList<>();
-        genderResList= new ArrayList<>();
+        genderResList = new ArrayList<>();
 
         Log.d(TAG, "DetectFace: Totalfaces: " + faceRect.toArray().length);
 
@@ -152,7 +157,7 @@ public class AgeGenderDetection {
             }
         }
 
-        if(faceRect.toArray().length==0){
+        if (faceRect.toArray().length == 0) {
             ageMax = -1;
             genMax = -1;
             return;
@@ -162,21 +167,21 @@ public class AgeGenderDetection {
         genMax = getMax(2, genderResList, genderList);
     }
 
-    public String getPublicMaxAge(){
-        if(ageMax==-1){
+    public String getPublicMaxAge() {
+        if (ageMax == -1) {
             return "";
         }
         return ageList[ageMax];
     }
 
-    public String getPublicMaxGender(){
-        if(genMax==-1){
+    public String getPublicMaxGender() {
+        if (genMax == -1) {
             return "";
         }
         return genderList[genMax];
     }
 
-    private  int getMax(int n, ArrayList<ResultConfidence> resultConfidences, String[] list) {
+    private int getMax(int n, ArrayList<ResultConfidence> resultConfidences, String[] list) {
         double[] confiSum = new double[n];
         int[] count = new int[n];
 
@@ -194,14 +199,14 @@ public class AgeGenderDetection {
             count[index]++;
         }
 
-        int maxi =-1;
-        for(int a : count){
+        int maxi = -1;
+        for (int a : count) {
             maxi = Math.max(maxi, a);
         }
 
         ArrayList<Integer> maxIndex = new ArrayList<Integer>();
-        for(int i=0; i<n; ++i){
-            if(count[i]==maxi){
+        for (int i = 0; i < n; ++i) {
+            if (count[i] == maxi) {
                 maxIndex.add(i);
             }
         }
@@ -209,8 +214,8 @@ public class AgeGenderDetection {
         int maxiInd = -1;
         double maxConf = -1;
 
-        for(int i : maxIndex){
-            if(confiSum[i]>maxConf){
+        for (int i : maxIndex) {
+            if (confiSum[i] > maxConf) {
                 maxConf = confiSum[i];
                 maxiInd = i;
             }
@@ -218,7 +223,7 @@ public class AgeGenderDetection {
         return maxiInd;
     }
 
-    private  int getIndex(String[] ageList, String age) {
+    private int getIndex(String[] ageList, String age) {
         int ct = 0;
         for (String s : ageList) {
             if (s.equalsIgnoreCase(age)) {
@@ -229,7 +234,7 @@ public class AgeGenderDetection {
         return -1;
     }
 
-    private  ResultConfidence ageGrp(Mat faceMat, Context context) {
+    private ResultConfidence ageGrp(Mat faceMat, Context context) {
         String ageGroup = "";
         double confidence = 0;
         if (faceMat != null) {
@@ -271,7 +276,8 @@ public class AgeGenderDetection {
         return new ResultConfidence(ageGroup, confidence);
     }
 
-    private  ResultConfidence genderGrp(Mat faceMat, Context context) {
+
+    private ResultConfidence genderGrp(Mat faceMat, Context context) {
         String genderGrp = "";
         double confidence = 0;
 

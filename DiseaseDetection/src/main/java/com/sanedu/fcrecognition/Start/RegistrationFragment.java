@@ -28,16 +28,20 @@ import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/**
+ * RegistrationFragment - For registering non registered users
+ */
 public class RegistrationFragment extends Fragment {
 
     public RegistrationFragment() {
         // Required empty public constructor
     }
 
+    // Fragment views
     EditText phoneNumberEt, otpEt, usernameEt;
     LinearLayout otpLl;
     TextView registrationBtn, loginAcc;
+
     ProgressDialog progressDialog;
     FirebaseAuthentication authentication;
 
@@ -47,6 +51,7 @@ public class RegistrationFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_registration, container, false);
 
+        // Initialising views
         _init(view);
 
         // Sending Otp
@@ -67,37 +72,48 @@ public class RegistrationFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Changing viewpager page to LoginFragment
+     */
     private void SwitchToLogin() {
         loginAcc.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 AuthenticationActivity activity = (AuthenticationActivity) getActivity();
+                // Changing viewPager position
                 if (activity != null)
                     activity.SetInitialPager(Constants.START_LOGIN);
             }
         });
     }
 
+    /**
+     * Sending otp for registration
+     */
     private void SendOtp() {
         String phoneNum = phoneNumberEt.getText().toString().trim();
         String numberPatternRegex = "[0-9]+";
+
+        // Checking phoneNumber
         Pattern numberPattern = Pattern.compile(numberPatternRegex);
         Matcher matcher = numberPattern.matcher(phoneNum);
-
         if (phoneNum.length() != 10 || !matcher.matches()) {
             Toast.makeText(getContext(), "Please enter a valid phone number", Toast.LENGTH_SHORT).show();
             return;
         }
 
         String prefPhoneNum = "+91" + phoneNum;
-
         showDialog();
+
+        // Disabling views
         LayoutUtils.disableViews(new View[]{usernameEt, phoneNumberEt, registrationBtn});
+
         authentication = new FirebaseAuthentication();
         authentication.registerUser(prefPhoneNum, getActivity(), new FirebaseAuthentication.LoginListener() {
             @Override
             public void onFailure(String reason) {
                 dismissDialog();
+                // Enabling views onFailure
                 LayoutUtils.enableViews(new View[]{usernameEt, phoneNumberEt, registrationBtn});
                 Toast.makeText(getContext(), reason, Toast.LENGTH_SHORT).show();
             }
@@ -105,7 +121,9 @@ public class RegistrationFragment extends Fragment {
             @Override
             public void onEnterOtp() {
                 dismissDialog();
+                // Enabling views onSuccess
                 LayoutUtils.enableViews(new View[]{registrationBtn});
+
                 otpLl.setVisibility(View.VISIBLE);
                 registrationBtn.setText(getResources().getString(R.string.registration));
 
@@ -113,6 +131,7 @@ public class RegistrationFragment extends Fragment {
                 registrationBtn.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+                        // Checking otpFilled or not
                         if (LayoutUtils.checkFilled(new EditText[]{otpEt})) {
                             VerifyOtp();
                         } else {
@@ -124,32 +143,42 @@ public class RegistrationFragment extends Fragment {
         });
     }
 
+
+    /**
+     * Method to verify Otp entered by user
+     */
     private void VerifyOtp() {
         String otp = otpEt.getText().toString().trim();
+
+        // Checking otp length
         if (otp.length() != 6) {
             Toast.makeText(getContext(), "Please enter a valid Otp", Toast.LENGTH_SHORT).show();
             return;
         }
         progressDialog.setTitle("Verifying Otp");
         showDialog();
-
         LayoutUtils.disableViews(new View[]{usernameEt, phoneNumberEt, registrationBtn, otpEt});
+
+        // Verifying Otp
         authentication.verifyOtp(otp, new FirebaseAuthentication.SignInListener() {
             @Override
             public void onSuccessLogin() {
-                // Save User Data and then move to Main Activity
+                // Creating user Object
                 User user = new User(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid(),
                         usernameEt.getText().toString().trim(),
                         phoneNumberEt.getText().toString().trim(),
                         Constants.AVATAR,
                         System.currentTimeMillis());
 
+                // Adding user to collection
                 FirestoreData firestoreData = new FirestoreData();
                 firestoreData.addUser(user, new FirestoreData.FirestoreListener() {
                     @Override
                     public void onSuccess() {
                         dismissDialog();
                         LayoutUtils.enableViews(new View[]{usernameEt, phoneNumberEt, registrationBtn, otpEt});
+
+                        // Save User Data and then move to Main Activity
                         SharedPrefData.addUser(requireContext(), user);
 
                         Intent mainActIntent = new Intent(getContext(), HomeActivity.class);
@@ -176,19 +205,28 @@ public class RegistrationFragment extends Fragment {
         });
     }
 
+    /**
+     * Displaying dialog if not null
+     */
     private void showDialog() {
         if (progressDialog != null) {
             progressDialog.show();
         }
     }
 
+    /**
+     * Removing dialog if not null
+     */
     private void dismissDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
     }
 
-
+    /**
+     * Initialising views
+     * @param v - View inflated by fragment
+     */
     private void _init(View v) {
         usernameEt = v.findViewById(R.id.registration_username_et);
         phoneNumberEt = v.findViewById(R.id.registration_phone_number_et);

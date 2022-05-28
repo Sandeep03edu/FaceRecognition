@@ -4,6 +4,10 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import java.util.Objects;
 
+/**
+ * @author Sandeep
+ * FaceResult model class
+ */
 public class FaceResult {
     private String resultId;
     private String uId;
@@ -22,15 +26,35 @@ public class FaceResult {
     private String lowerLipResult;
 
 
+    /**
+     * Empty constructor
+     * Required by firebase
+     */
     public FaceResult() {
     }
 
+    /**
+     * Setting initial data
+     */
     public void setInitData(){
         this.uploadTime = System.currentTimeMillis();
         this.uId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
         this.resultId = this.uId + this.uploadTime;
     }
 
+    /**
+     * Constructor
+     * @param patientName - String - PatientName
+     * @param age - int - user age
+     * @param gender - String - user gender
+     * @param imageUrl - String - imageUrl
+     * @param leftEyebrowResult - String - leftEyebrow predicted Data
+     * @param rightEyebrowResult - String - rightEyebrow predicted Data
+     * @param leftEyeResult - String - leftEye predicted Data
+     * @param rightEyeResult - String - rightEye predicted Data
+     * @param upperLipResult - String - upperLip predicted Data
+     * @param lowerLipResult - String - lowerLip predicted Data
+     */
     public FaceResult( String patientName, int age, String gender, String imageUrl, String leftEyebrowResult, String rightEyebrowResult, String leftEyeResult, String rightEyeResult, String upperLipResult, String lowerLipResult) {
         this.uploadTime = System.currentTimeMillis();
         this.uId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();

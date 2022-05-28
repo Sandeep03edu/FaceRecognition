@@ -34,9 +34,15 @@ public class ScannedResultAdapter extends RecyclerView.Adapter<ScannedResultAdap
     private ArrayList<FaceResult> faceResultArrayList;
     private ProgressDialog progressDialog;
 
+    /**
+     * Adapter constructor
+     * @param mContext - Context - Activity context
+     * @param faceResultArrayList - ArrayList<FaceResult> - faceResultArrayList
+     */
     public ScannedResultAdapter(Context mContext, ArrayList<FaceResult> faceResultArrayList) {
         this.mContext = mContext;
         this.faceResultArrayList = faceResultArrayList;
+
         this.progressDialog = new ProgressDialog(mContext);
         progressDialog.setTitle("Fetching Result");
         progressDialog.setMessage("Please wait...");
@@ -52,53 +58,38 @@ public class ScannedResultAdapter extends RecyclerView.Adapter<ScannedResultAdap
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // FaceResult object
         FaceResult faceResult = faceResultArrayList.get(position);
+        Log.d(TAG, "onBindViewHolder: Img: " + faceResult.getImageUrl());
+
+        // Setting Result data
+        holder.userName.setText(faceResult.getPatientName());
+        holder.userAge.setText(faceResult.getAge() + " yr");
+        holder.userGender.setText(faceResult.getGender());
         Picasso.get().load(faceResult.getImageUrl())
                 .placeholder(R.drawable.ic_baseline_person_96)
                 .into(holder.userImage);
 
-        Log.d(TAG, "onBindViewHolder: Img: " + faceResult.getImageUrl());
-
-//        LayoutUtils.setAspectRation(new View[]{holder.userImage});
-
-        holder.userName.setText(faceResult.getPatientName());
-        holder.userAge.setText(faceResult.getAge() + " yr");
-        holder.userGender.setText(faceResult.getGender());
-
-
+        // Holder itemView onClickListener
         holder.itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*
-                BitmapDrawable drawable = (BitmapDrawable) holder.userImage.getDrawable();
-                Bitmap bitmap = drawable.getBitmap();
-                bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
-                ByteArrayOutputStream baos = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-                byte[] bytes = baos.toByteArray();
-
-                Intent intent = new Intent(mContext, ResultPageActivity.class);
-                intent.putExtra(Constants.IMAGE_BITMAP_BYTES, bytes);
-                intent.putExtra(Constants.INTENT_RESULT, new Gson().toJson(faceResult));
-                mContext.startActivity(intent);
-
-
-                 */
-
-//                /*
                 showDialog();
-
+                // Loading bitmap from Url and storing
                 Picasso.get()
                         .load(faceResult.getImageUrl())
                         .into(new Target() {
                             @Override
                             public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
                                 dismissDialog();
+
+                                // Converting Bitmap to byte array
                                 bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
                                 ByteArrayOutputStream baos = new ByteArrayOutputStream();
                                 bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
                                 byte[] bytes = baos.toByteArray();
 
+                                // Sending Bitmap to ResultPageActivity
                                 Intent intent = new Intent(mContext, ResultPageActivity.class);
                                 intent.putExtra(Constants.IMAGE_BITMAP_BYTES, bytes);
                                 intent.putExtra(Constants.INTENT_RESULT, new Gson().toJson(faceResult));
@@ -116,7 +107,6 @@ public class ScannedResultAdapter extends RecyclerView.Adapter<ScannedResultAdap
                             }
                         });
 
-//                 */
             }
         });
     }
@@ -126,18 +116,27 @@ public class ScannedResultAdapter extends RecyclerView.Adapter<ScannedResultAdap
         return faceResultArrayList.size();
     }
 
+    /**
+     * Displaying dialog if not null
+     */
     private void showDialog() {
         if (progressDialog != null) {
             progressDialog.show();
         }
     }
 
+    /**
+     * Removing dialog if not null
+     */
     private void dismissDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
     }
 
+    /**
+     * ViewHolder to bind itemView views
+     */
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView userImage;
         TextView userName, userAge, userGender;

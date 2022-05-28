@@ -13,6 +13,12 @@ public class FaceLandmarks {
     private static final String TAG = "LandmarksTag";
     private static Bitmap bitmap;
 
+    /**
+     * Method to get faceLandmarks as ArrayList<Point>
+     * @param path - String - Image file path
+     * @param face - VisionDetRet - face
+     * @return - ArrayList<Point> landmark points list
+     */
     public static ArrayList<Point> getLandmarks(String path, VisionDetRet face) {
         Log.d(TAG, "getLandmarks: Path: " + path );
         if(face==null){
@@ -54,11 +60,24 @@ public class FaceLandmarks {
         return landmarks;
     }
 
+    /**
+     * Method to get Face Bitmap
+     * @param path - ImageFilePath
+     * @param face - VisionDetRet face
+     * @return - Bitmap- FaceBitmap
+     */
     public static Bitmap getFaceBitmap(String path, VisionDetRet face){
         getLandmarks(path, face);
         return bitmap;
     }
 
+    /**
+     * Method to get Resized Bitmap
+     * @param bm - Bitmap - imageBitmap
+     * @param newWidth - int - new Width
+     * @param newHeight - int - new Height
+     * @return - Bitmap - resized Bitmap
+     */
     private static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
         Bitmap resizedBitmap = Bitmap.createScaledBitmap(bm, newWidth, newHeight, true);
         return resizedBitmap;

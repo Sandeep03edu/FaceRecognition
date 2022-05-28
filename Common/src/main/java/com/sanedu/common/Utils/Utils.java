@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Matrix;
 import android.util.Log;
+import android.widget.ImageView;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -46,4 +47,10 @@ public class Utils {
         return rotatedBitmap;
     }
 
+
+    public static void SetImageBitmap(ImageView imageView, Bitmap bitmap){
+        if(bitmap!=null){
+            imageView.setImageBitmap(bitmap);
+        }
+    }
 }

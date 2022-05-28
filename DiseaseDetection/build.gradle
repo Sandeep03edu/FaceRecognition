@@ -96,4 +96,7 @@ dependencies {
 
     // Picasso to load images
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Implementing new updated WorkManager
+    implementation 'androidx.work:work-runtime:2.8.0-alpha02'
 }

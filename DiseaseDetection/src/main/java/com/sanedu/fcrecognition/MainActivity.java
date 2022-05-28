@@ -176,6 +176,13 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Implementing onActivityResult to display data fetched from startActivityForResult
+     *
+     * @param requestCode - Request code to differentiate between different activity results
+     * @param resultCode - Result code to check whether task completed successfully or not
+     * @param data - Intent result data fetched from result may contain some extras too
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);

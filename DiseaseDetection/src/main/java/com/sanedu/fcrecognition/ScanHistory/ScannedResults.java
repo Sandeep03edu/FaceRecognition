@@ -21,12 +21,17 @@ import com.sanedu.fcrecognition.R;
 
 import java.util.ArrayList;
 
+/**
+ * ScannedResults activity to display past scan history
+ */
 public class ScannedResults extends AppCompatActivity {
 
+    // Activity views
     DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     RecyclerView recyclerView;
+
     ScannedResultAdapter adapter;
     ArrayList<FaceResult> faceResultArrayList = new ArrayList<>();
     ProgressDialog progressDialog;
@@ -35,15 +40,23 @@ public class ScannedResults extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scanned_results);
+
+        // Initialising views
         _init();
 
+        // Setting up drawer layout
         SetupDrawerLayout();
 
+        // Setting up navigation listener
         SetNavigationListener();
 
+        // Getting result data
         GetResultsData();
     }
 
+    /**
+     * Getting result data from Intent
+     */
     private void GetResultsData() {
         FirestoreData data = new FirestoreData();
         showDialog();
@@ -52,6 +65,7 @@ public class ScannedResults extends AppCompatActivity {
             public void onSuccess(ArrayList<FaceResult> faceResults) {
                 dismissDialog();
                 if (faceResults != null) {
+                    // Setting up adapter
                     faceResultArrayList = faceResults;
                     adapter = new ScannedResultAdapter(ScannedResults.this, faceResultArrayList);
                     recyclerView.setAdapter(adapter);
@@ -60,6 +74,7 @@ public class ScannedResults extends AppCompatActivity {
 
             @Override
             public void onFailure(String err) {
+                // dismissing dialog for error
                 dismissDialog();
                 Toast.makeText(ScannedResults.this, Constants.AN_ERROR + err, Toast.LENGTH_SHORT).show();
             }
@@ -67,11 +82,17 @@ public class ScannedResults extends AppCompatActivity {
     }
 
 
+    /**
+     * Setting drawer layout navigationView navigation listener
+     */
     private void SetNavigationListener() {
         Navigation navigation = new Navigation(this, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigation.listener);
     }
 
+    /**
+     * Setting up drawer layout
+     */
     private void SetupDrawerLayout() {
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
@@ -94,26 +115,38 @@ public class ScannedResults extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    /**
+     * Displaying dialog if not null
+     */
     private void showDialog() {
         if (progressDialog != null) {
             progressDialog.show();
         }
     }
 
+    /**
+     * Removing dialog if not null
+     */
     private void dismissDialog() {
         if (progressDialog != null) {
             progressDialog.dismiss();
         }
     }
 
+    /**
+     * Initialising views
+     */
     private void _init() {
+        // Setting activity title
         setTitle("Scan History");
+
         drawerLayout = findViewById(R.id.scanned_res_drawer_layout);
         navigationView = findViewById(R.id.scanned_res_navigation_view);
 
         recyclerView = findViewById(R.id.scanned_res_rcv);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
+        // Initialising progressDialog
         progressDialog = new ProgressDialog(this);
         progressDialog.setTitle("Fetching record");
         progressDialog.setMessage("Please wait...");

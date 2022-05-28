@@ -20,6 +20,7 @@ public class Constants {
     public static final String RESULT_IMAGE_URI = "ResultImageUri";
     public static final String RESULT_DATA = "ResultData";
     public static final String CHANNEL_ID = "ResultUpload";
+    public static final String RESULT_CHANNEL_ID = "ResultUpload";
     public static final int FOREGROUND_NOTIFICATION_ID = 12;
     public static final String PROFILE_PIC_FOLDER = "ProfilePic";
     public static final String INTENT_RESULT = "FaceResultIntent";

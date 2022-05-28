@@ -7,14 +7,22 @@ import android.os.Build;
 
 import com.sanedu.common.Utils.Constants;
 
+/**
+ * Base application for FaceRecognition app
+ */
+
 public class MyApplication extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
 
+        // Creating notification channel
         createNotificationChannel();
     }
 
+    /**
+     * Creating notification channel in Base application
+     */
     private void createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             NotificationChannel serviceChannel = new NotificationChannel(

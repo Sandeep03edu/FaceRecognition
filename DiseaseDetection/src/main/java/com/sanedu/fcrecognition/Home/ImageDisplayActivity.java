@@ -16,6 +16,11 @@ import com.sanedu.fcrecognition.R;
 import com.sanedu.common.Utils.ImageResizer;
 import com.theartofdev.edmodo.cropper.CropImageView;
 
+/**
+ * Activity to display selected image with cropImageView
+ * Cropping chosen image and proceeding to Result page
+ */
+
 public class ImageDisplayActivity extends AppCompatActivity {
 
     CropImageView imageView;
@@ -28,6 +33,7 @@ public class ImageDisplayActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_image_display);
 
+        // Initialising views
         _init();
 
         // Set getIntent Image
@@ -42,7 +48,11 @@ public class ImageDisplayActivity extends AppCompatActivity {
         });
     }
 
+    /**
+     * Moving to ResultPageActivity activity
+     */
     private void MoveToResultPage() {
+        // Checking whether bytes exist or not
         if(bytes!=null){
             imageBitmap = imageView.getCroppedImage();
             imageBitmap = ImageResizer.reduceBitmapSize(imageBitmap, 240000);
@@ -55,11 +65,18 @@ public class ImageDisplayActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Setting image from intent data
+     */
     private void SetImage() {
+        // Checking whether intent data exist or not
         if (getIntent()!=null){
+            // converting bytes to Bitmap 
             bytes = getIntent().getByteArrayExtra(Constants.IMAGE_BITMAP_BYTES);
             imageBitmap = BitmapFactory.decodeByteArray(bytes, 0,bytes.length);
             imageBitmap = ImageResizer.reduceBitmapSize(imageBitmap, 240000);
+            
+            // Setting bitmap to imageView
             imageView.setImageBitmap(imageBitmap);
         }
         else{
@@ -67,6 +84,9 @@ public class ImageDisplayActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Initialising views
+     */
     private void _init() {
         imageView = findViewById(R.id.image_display_image_view);
         proceed = findViewById(R.id.image_display_proceed);

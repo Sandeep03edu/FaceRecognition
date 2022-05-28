@@ -11,6 +11,10 @@ import java.util.List;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
+/**
+ * @author Sandeep
+ * DetectEyeDisease java class to detect eye diseases
+ */
 public class DetectEyeDisease {
 
     private static final String TAG = "DetectEyeDiseaseTag";
@@ -26,11 +30,19 @@ public class DetectEyeDisease {
     private Context context;
     private Bitmap bitmap;
 
+    /**
+     * Empty constructor
+     */
     public DetectEyeDisease() {
-//        initTensorFlowAndLoadModel();
         Log.d(TAG, "DetectEyeDisease: ");
     }
 
+    /**
+     * Method to initialise bitmao
+     *
+     * @param context - Context
+     * @param bitmap  - Bitmap - ImageBitmap
+     */
     public void setBitmap(Context context, Bitmap bitmap) {
         Log.d(TAG, "setBitmap: ");
         this.context = context;
@@ -38,27 +50,11 @@ public class DetectEyeDisease {
         this.bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
     }
 
-    private void initTensorFlowAndLoadModel() {
-        executor.execute(() -> {
-            try {
-                Log.d(TAG, "initTensorFlowAndLoadModel: try start");
-                classifier = TensorFlowImageClassifier.create(
-                        context.getAssets(),
-                        MODEL_FILE,
-                        LABEL_FILE,
-                        INPUT_SIZE,
-                        IMAGE_MEAN,
-                        IMAGE_STD,
-                        INPUT_NAME,
-                        OUTPUT_NAME);
-                Log.d(TAG, "initTensorFlowAndLoadModel: try end");
-            } catch (final Exception e) {
-                Log.e(TAG, "initTensorFlowAndLoadModel: Err", e);
-                throw new RuntimeException("Error initializing TensorFlow!", e);
-            }
-        });
-    }
-
+    /**
+     * Method to get eye disease result
+     *
+     * @param listener - Listener to get eye disease updates
+     */
     public void getResult(ExecutorListener listener) {
         executor.execute(() -> {
             try {
@@ -83,38 +79,31 @@ public class DetectEyeDisease {
                 ResultConfidence resultConfidence = new ResultConfidence(res, Double.parseDouble(perc));
                 Log.d(TAG, "getResult: 3rd");
 
+                // Updating listener on completing execution
                 listener.onExecutionComplete(resultConfidence);
-
             } catch (final Exception e) {
                 Log.e(TAG, "initTensorFlowAndLoadModel: Err", e);
+                // Updating listener with failed execution
                 listener.onExecutionFailed(e);
                 throw new RuntimeException("Error initializing TensorFlow!", e);
             }
         });
-
-//        return new ResultConfidence(res, Double.parseDouble(perc));
     }
 
+    /**
+     * Method to analyse data
+     *
+     * @return -  List<Classifier.Recognition>
+     */
     private List<Classifier.Recognition> analyse() {
         Log.d(TAG, "analyse: 1st");
-        if (bitmap == null) {
-            Log.d(TAG, "analyse: Bitmap null");
-        }
         bitmap = Bitmap.createScaledBitmap(bitmap, INPUT_SIZE, INPUT_SIZE, false);
-
-        Log.d(TAG, "analyse: 2nd");
-        if (bitmap == null) {
-            Log.d(TAG, "analyse: Bitmap null after create");
-        }
-        if (classifier == null) {
-            Log.d(TAG, "analyse: Classifier null after create");
-        }
-        final List<Classifier.Recognition> results = classifier.recognizeImage(bitmap);
-
-        Log.d(TAG, "analyse: 3rd");
-        return results;
+        return classifier.recognizeImage(bitmap);
     }
 
+    /**
+     * Interface used by DetectEyeDisease class  
+     */
     public interface ExecutorListener {
         void onExecutionComplete(ResultConfidence resultConfidence);
 

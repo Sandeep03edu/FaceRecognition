@@ -37,6 +37,12 @@ public class Utils {
     private static double MAXI = 100000000;
     private static double MINI = -1;
 
+    /**
+     * Method to convert Uri to Bitmap
+     * @param context - Context - Activity context
+     * @param uri - Uri - image file uri
+     * @return - Bitmap - converted bitmap from uri
+     */
     public static Bitmap Uri2Bitmap(Context context, Uri uri) {
         try {
             InputStream is = context.getContentResolver().openInputStream(uri);
@@ -47,6 +53,13 @@ public class Utils {
         return null;
     }
 
+    /**
+     * Method to get Edged bitmap
+     * @param imageBitmap - Bitmap - Bitmap of image file
+     * @param list - List<Integer> - list of points over which edge has to be taken
+     * @param faceLandmarks - FaceLandmarks detected from face image
+     * @return - Bitmap - return croppped detected bitmap
+     */
     public static Bitmap getEdgedBitmap(Bitmap imageBitmap, List<Integer> list, ArrayList<Point> faceLandmarks) {
         Bitmap finalBitmap = Bitmap.createBitmap(imageBitmap.getWidth(), imageBitmap.getHeight(), imageBitmap.getConfig());
 
@@ -80,14 +93,8 @@ public class Utils {
 
                 if (firstPoint == null) {
                     firstPoint = faceLandmarks.get(i);
-//                    path.moveTo(x, y);
                 }
-//                else if (i < faceLandmarks.size() - 1) {
-//                    Point next = faceLandmarks.get(i + 1);
-//                    path.quadTo(x, y, getGapedCoord(next.x, avgX), getGapedCoord(next.y, avgY));
-//                } else {
                     path.lineTo(x, y);
-//                }
                 Log.d(TAG, "getEdgedBitmap: X: " + x + " Y: " + y);
             }
         }
@@ -106,10 +113,12 @@ public class Utils {
         return croppedBitmap;
     }
 
-//    public static Bitmap getEdgedBitmap(Bitmap imageBitmap, Edges corners) {
-//        return Bitmap.createBitmap(imageBitmap, corners.getLeftCoord(), corners.getBottomCoord(), corners.getWidth(), corners.getHeight());
-//    }
-//
+    /**
+     * Method to get edges of Bitmap
+     * @param list - List<Integer> - List of points where image bitmap has to be cropped
+     * @param faceLandmarks - FaceLandmarks detected from face image
+     * @return - Edges - Edge class to getEdge from list and faceLandmarks
+     */
     public static Edges getEdge(List<Integer> list, ArrayList<Point> faceLandmarks) {
         Log.d(TAG, "getEdge: list " + list.toString());
         double left = MAXI, right = MINI, top = MINI, bottom = MAXI;
@@ -132,6 +141,11 @@ public class Utils {
         return edges;
     }
 
+    /**
+     * Method to convert Bitmap to Mat
+     * @param rgbaBitmap - Bitmap - Input rgba Bitmap
+     * @return - Mat - output Mat
+     */
     public static Mat convertBitmap2Mat(Bitmap rgbaBitmap) {
         Mat rgbaMat = new Mat(rgbaBitmap.getHeight(), rgbaBitmap.getWidth(), CvType.CV_8UC4);
         Bitmap bmp32 = rgbaBitmap.copy(Bitmap.Config.ARGB_8888, true);
@@ -142,27 +156,22 @@ public class Utils {
         return rgbMat;
     }
 
+    /**
+     * Method to add gap in coordinates
+     * @param coord - Given coordinate
+     * @param avg - Average value
+     * @return - gaped coordinate
+     */
     private static int getGapedCoord(int coord, int avg) {
         return (int) (coord < avg ? coord - gap : coord + gap);
     }
 
-    public static Bitmap getResizedBitmap(Bitmap bm, int newWidth, int newHeight) {
-        int width = bm.getWidth();
-        int height = bm.getHeight();
-        float scaleWidth = ((float) newWidth) / width;
-        float scaleHeight = ((float) newHeight) / height;
-        // CREATE A MATRIX FOR THE MANIPULATION
-        Matrix matrix = new Matrix();
-        // RESIZE THE BIT MAP
-        matrix.postScale(scaleWidth, scaleHeight);
-
-        // "RECREATE" THE NEW BITMAP
-        Bitmap resizedBitmap = Bitmap.createBitmap(
-                bm, 0, 0, width, height, matrix, false);
-        bm.recycle();
-        return resizedBitmap;
-    }
-
+    /**
+     * Method to convert Bitmap to Uri
+     * @param context - Context - Activity context
+     * @param bitmap - Bitmap - imageBitmap
+     * @return - Uri - Bitmap converted uri
+     */
     public static Uri Bitmap2Uri(Context context , Bitmap bitmap){
         bitmap = ImageResizer.reduceBitmapSize(bitmap, 240000);
         ContextWrapper cw = new ContextWrapper(context);
@@ -186,6 +195,12 @@ public class Utils {
         return null;
     }
 
+    /**
+     * Method to save raw resource file to storage
+     * @param rawFile - int - Raw resource file location
+     * @param context - Context - Activity context
+     * @return - String - raw file save location
+     */
     public static String getRawFilePath(int rawFile, Context context) {
         String path = null;
         try {
@@ -194,7 +209,6 @@ public class Utils {
             is.read(data);
             is.close();
 
-//            String fileName = getResources().getResourceName(rawFile);
             String fileName = String.valueOf(rawFile);
             File outFile = new File(context.getFilesDir(), fileName);
             FileOutputStream os = new FileOutputStream(outFile);

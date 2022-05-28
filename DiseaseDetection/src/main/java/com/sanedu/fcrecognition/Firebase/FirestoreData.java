@@ -18,69 +18,104 @@ import com.sanedu.fcrecognition.Model.User;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * @author Sandeep
+ * Java class to implement Firebase Firestore and its methods
+ */
 public class FirestoreData {
-    private FirebaseUser mUser;
     private CollectionReference userCollection;
     private CollectionReference recordCollection;
+    private String myUserId;
 
+    /**
+     * Constructor
+     * Initialising userCollection and recordCollection
+     */
     public FirestoreData() {
-        this.mUser = FirebaseAuth.getInstance().getCurrentUser();
         this.userCollection = FirebaseFirestore.getInstance().collection(Constants.FIREBASE_USER_TABLE);
         this.recordCollection = FirebaseFirestore.getInstance().collection(Constants.FIREBASE_RECORD_TABLE);
+        this.myUserId = Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid();
     }
 
-    public void addUser(User user, FirestoreListener listener){
+    /**
+     * Method to add user
+     *
+     * @param user     - User - new user
+     * @param listener - FirestoreListener - listener to listen firebase changes
+     */
+    public void addUser(User user, FirestoreListener listener) {
+        // Setting user document in collection
         userCollection.document(user.getuId())
                 .set(user)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         listener.onSuccess();
+                        // listener updating onSuccess
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         listener.onFailure(e.getMessage());
+                        // listener updating onFailure
                     }
                 });
     }
 
-    public void updateUserImage(String uId, String imageUrl, FirestoreListener listener){
+    /**
+     * Method to update userimage
+     *
+     * @param uId      - String - UserId
+     * @param imageUrl - String - ImageUrl
+     * @param listener - FirestoreListener - listener to listen firebase changes
+     */
+    public void updateUserImage(String uId, String imageUrl, FirestoreListener listener) {
+        // Updating user image - "avatar" with userid- uId
         userCollection.document(uId)
                 .update("avatar", imageUrl)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
                         listener.onSuccess();
+                        // listener updating onSuccess
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
                         listener.onFailure(e.getMessage());
+                        // listener updating onFailure
                     }
                 });
 
     }
 
-    public void getUserByPhoneNumber(String phoneNum, UserListener listener){
+    /**
+     * Method to getUser details from PhoneNumber
+     *
+     * @param phoneNum - String - Phonenumber
+     * @param listener - UserListener - listener to listen firebase changes
+     */
+    public void getUserByPhoneNumber(String phoneNum, UserListener listener) {
         userCollection
                 .whereEqualTo(Constants.PHONE_NUMBER, phoneNum)
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(queryDocumentSnapshots.size()!=1){
+                        if (queryDocumentSnapshots.size() != 1) {
+                            // listener updating onFailure
                             listener.onFailure("Error fetching user details");
-                        }
-                        else{
-                            DocumentSnapshot snapshot =queryDocumentSnapshots.getDocuments().get(0);
+                        } else {
+                            DocumentSnapshot snapshot = queryDocumentSnapshots.getDocuments().get(0);
                             User user = snapshot.toObject(User.class);
-                            if(user==null){
+                            if (user == null) {
+                                // listener updating onFailure
                                 listener.onFailure("Error fetching user details");
                                 return;
                             }
+                            // listener updating onSuccess
                             listener.onSuccess(user);
                         }
                     }
@@ -88,71 +123,103 @@ public class FirestoreData {
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        // listener updating onFailure
                         listener.onFailure(e.getMessage());
                     }
                 });
 
     }
 
-    public void uploadRecord(FaceResult faceResult, FirestoreListener listener){
+    /**
+     * Method to upload Scan History data
+     *
+     * @param faceResult - FaceResult - Result data model Class
+     * @param listener   - FirestoreListener - listener to listen firebase updates
+     */
+    public void uploadRecord(FaceResult faceResult, FirestoreListener listener) {
+        // Setting document to collection
         recordCollection.document(faceResult.getResultId())
                 .set(faceResult)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void unused) {
+                        // listener updating onSuccess
                         listener.onSuccess();
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        // listener updating onFailure
                         listener.onFailure(e.getMessage());
                     }
                 });
     }
 
-    public void getPastScannedHistory(ResultListener listener){
+    /**
+     * Method to getPastScannedHistory
+     *
+     * @param listener - ResultListener - listener to listen firebase changes
+     */
+    public void getPastScannedHistory(ResultListener listener) {
+        // Filtering results from collection
         recordCollection
-                .whereEqualTo("uId", Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid())
+                .whereEqualTo("uId", myUserId)
                 .orderBy("uploadTime")
                 .get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-                        if(queryDocumentSnapshots==null){
+                        if (queryDocumentSnapshots == null) {
+                            // listener updating onFailure
                             listener.onFailure(Constants.AN_ERROR);
                             return;
                         }
 
                         ArrayList<FaceResult> faceResultArrayList = new ArrayList<>();
-                        for(QueryDocumentSnapshot snapshot : queryDocumentSnapshots){
+                        for (QueryDocumentSnapshot snapshot : queryDocumentSnapshots) {
                             FaceResult result = snapshot.toObject(FaceResult.class);
                             faceResultArrayList.add(result);
                         }
+                        // listener updating onSuccess
                         listener.onSuccess(faceResultArrayList);
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        // listener updating onFailure
                         listener.onFailure(e.getMessage());
                     }
                 });
 
     }
 
-    public interface FirestoreListener{
+    /**
+     * Interface used by FirestoreData.java class
+     */
+    public interface FirestoreListener {
         void onSuccess();
+
         void onFailure(String err);
     }
 
-    public interface UserListener{
+
+    /**
+     * Interface used by FirestoreData.java class
+     */
+    public interface UserListener {
         void onSuccess(User user);
+
         void onFailure(String err);
     }
 
-    public interface ResultListener{
+    /**
+     * Interface used by FirestoreData.java class
+     */
+    public interface ResultListener {
         void onSuccess(ArrayList<FaceResult> faceResultArrayList);
+
         void onFailure(String err);
     }
 }

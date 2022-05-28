@@ -3,6 +3,10 @@ package com.sanedu.fcrecognition.Model;
 import java.util.Arrays;
 import java.util.List;
 
+/**
+ * @author Sandeep
+ * Face Coordinates ArrayList and array values
+ */
 public class Face68Coordinates {
 
     private static final Integer[] _Face = new Integer[]{0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 49, 50, 51, 52, 53, 54, 55, 56, 57, 58, 59, 60, 61, 62, 63, 64, 65, 66, 67};
@@ -11,7 +15,6 @@ public class Face68Coordinates {
     private static final Integer[] _RightEyebrow = new Integer[]{22, 23, 24, 25, 26};
     private static final Integer[] _NoseBridge = new Integer[]{27, 28, 29, 30};
     private static final Integer[] _LowerNose = new Integer[]{30, 31, 32, 33, 34, 35};
-    //    private static final Integer[] _Nose = new Integer[]{27,28,29,30,31,32,33,34,35};
     private static final Integer[] _Nose = new Integer[]{27, 31, 32, 33, 34, 35};
     private static final Integer[] _LeftEye = new Integer[]{36, 37, 38, 39, 40, 41};
     private static final Integer[] _RightEye = new Integer[]{42, 43, 44, 45, 46, 47};

@@ -1,5 +1,9 @@
 package com.sanedu.fcrecognition.Model;
 
+/**
+ * @author Sandeep
+ * User model clsss to store user data
+ */
 public class User {
     private String uId;
     private String username;
@@ -12,6 +16,14 @@ public class User {
     public User() {
     }
 
+    /**
+     * Constructor
+     * @param uId - String - userId
+     * @param username - String - userName
+     * @param phoneNumber - String - 10 digit phoneNumber
+     * @param avatar - String - imageUrl
+     * @param joinDate - long - Joining Date in milliseconds
+     */
     public User(String uId, String username, String phoneNumber, String avatar, long joinDate) {
         this.uId = uId;
         this.username = username;

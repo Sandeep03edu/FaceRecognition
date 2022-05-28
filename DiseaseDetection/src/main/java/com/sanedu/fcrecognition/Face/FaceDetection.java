@@ -16,6 +16,10 @@ import org.opencv.android.OpenCVLoader;
 
 import java.util.List;
 
+/**
+ * @author Sandeep
+ * FaceDetection java class to detect
+ */
 public class FaceDetection {
 
     private static final String TAG = "FaceDetectionTag";
@@ -27,14 +31,28 @@ public class FaceDetection {
     List<VisionDetRet> faceList;
     BaseLoaderCallback baseLoaderCallback;
 
+    /**
+     * Constructor
+     * @param activity - Activity - Used as context
+     * @param imageUri - Uri - imageUri
+     */
     public FaceDetection(Context activity, Uri imageUri) {
         this.activity = activity;
         this.imageUri = imageUri;
+
+        // Initialising baseLoaderCallback
         setBaseLoaderCallback();
+
+        // initialising openCv
         init();
+
+        // Detecting faces
         detectFace();
     }
 
+    /**
+     * Setting base loader callback
+     */
     private void setBaseLoaderCallback() {
         baseLoaderCallback = new BaseLoaderCallback(activity) {
             @Override
@@ -52,6 +70,9 @@ public class FaceDetection {
         };
     }
 
+    /**
+     * Initialising openCv and baseLoaderCallback
+     */
     private void init() {
         if (!OpenCVLoader.initDebug()) {
             OpenCVLoader.initAsync(OpenCVLoader.OPENCV_VERSION_3_4_0, activity, baseLoaderCallback);
@@ -60,6 +81,9 @@ public class FaceDetection {
         }
     }
 
+    /**
+     * Method to detecting faces
+     */
     public void detectFace() {
         // Init
         if (mPersonDet == null) {
@@ -68,10 +92,13 @@ public class FaceDetection {
         if (mFaceDet == null) {
             mFaceDet = new FaceDet(Utils.getRawFilePath(R.raw.shape_predictor_68_face_landmarks, activity));
         }
-
         this.faceList = mFaceDet.detect(imageUri.getPath());
     }
 
+    /**
+     * Counting faces
+     * @return int - number of found faces
+     */
     public int faceCount() {
         if (faceList != null) {
             return faceList.size();
@@ -79,6 +106,10 @@ public class FaceDetection {
         return -1;
     }
 
+    /**
+     * Method to getFace VisionDetRet
+     * @return - VisionDetRet
+     */
     public VisionDetRet getFace() {
         if (faceList.size() > 0) {
             this.face = faceList.get(0);

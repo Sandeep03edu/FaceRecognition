@@ -1,5 +1,10 @@
 package com.sanedu.fcrecognition.Model;
 
+/**
+ * @author Sandeep
+ * ResultConfidence Model class
+ */
+
 public class ResultConfidence {
     private String result;
     private double confidence;

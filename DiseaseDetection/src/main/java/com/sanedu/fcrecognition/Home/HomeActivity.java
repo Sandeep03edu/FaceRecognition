@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 import com.sanedu.common.Utils.Constants;
+import com.sanedu.fcrecognition.AnalysisResult.ResultPageActivity;
 import com.sanedu.fcrecognition.Utils.Navigation;
 import com.sanedu.fcrecognition.R;
 import com.sanedu.common.Utils.ImageResizer;
@@ -27,25 +28,30 @@ import com.sanedu.fcrecognition.Utils.Utils;
 import java.io.ByteArrayOutputStream;
 import java.util.ArrayList;
 
-public class HomeActivity extends AppCompatActivity{
+/**
+ * Activity to be splashed when user logged in or complete its registration
+ */
+public class HomeActivity extends AppCompatActivity {
 
+    // Activity Views
     DrawerLayout drawerLayout;
     private ActionBarDrawerToggle actionBarDrawerToggle;
     NavigationView navigationView;
     ImageView galleryImagePicker, cameraImagePicker;
-    ArrayList<Uri> testingUri = new ArrayList<>();
 
     Bitmap imageBitmap;
-    private final int CAMERA_IMAGE_PICK = 0;
-    private final int GALLERY_IMAGE_PICK = 1;
+    private final int CAMERA_IMAGE_PICK = 0; // variable to detect camera image pick
+    private final int GALLERY_IMAGE_PICK = 1; // variable to detect gallery image pick
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+        // Initialising views
         _init();
 
+        // Setting up Drawer layout
         SetupDrawerLayout();
 
         // Pick Gallery Image
@@ -68,11 +74,17 @@ public class HomeActivity extends AppCompatActivity{
         SetNavigationListener();
     }
 
+    /**
+     * Setting up NavigationListener
+     */
     private void SetNavigationListener() {
         Navigation navigation = new Navigation(this, drawerLayout);
         navigationView.setNavigationItemSelectedListener(navigation.listener);
     }
 
+    /**
+     * Setting up drawer layout
+     */
     private void SetupDrawerLayout() {
         // drawer layout instance to toggle the menu icon to open
         // drawer and back button to close drawer
@@ -87,6 +99,9 @@ public class HomeActivity extends AppCompatActivity{
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
+    /**
+     * @return boolean - response on icon click
+     */
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         if (actionBarDrawerToggle.onOptionsItemSelected(item)) {
@@ -95,8 +110,9 @@ public class HomeActivity extends AppCompatActivity{
         return super.onOptionsItemSelected(item);
     }
 
-
-
+    /**
+     * Method to pick Image from Camera
+     */
     private void PickCameraImage() {
         if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
                 !Permission.CheckPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) ||
@@ -107,9 +123,11 @@ public class HomeActivity extends AppCompatActivity{
 
         Intent cameraIntent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
         startActivityForResult(cameraIntent, CAMERA_IMAGE_PICK);
-
     }
 
+    /**
+     * Method to pick Image from Gallery
+     */
     private void PickGalleryImage() {
         if (!Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) ||
                 !Permission.CheckPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)) {
@@ -125,17 +143,26 @@ public class HomeActivity extends AppCompatActivity{
         startActivityForResult(galleryIntent, GALLERY_IMAGE_PICK);
     }
 
+    /**
+     * Implementing onActivityResult to display data fetched from startActivityForResult
+     *
+     * @param requestCode - Request code to differentiate between different activity results
+     * @param resultCode  - Result code to check whether task completed successfully or not
+     * @param data        - Intent result data fetched from result may contain some extras too
+     */
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if(resultCode==RESULT_OK && data!=null){
-            if(requestCode==GALLERY_IMAGE_PICK && data.getData()!=null){
+        if (resultCode == RESULT_OK && data != null) {
+            // Implementing code for Gallery image Pick
+            if (requestCode == GALLERY_IMAGE_PICK && data.getData() != null) {
                 Uri imageUri = data.getData();
                 imageBitmap = Utils.Uri2Bitmap(this, imageUri);
                 // Move to ImageDisplay Activity
                 MoveToImageDisplay();
             }
-            else if(requestCode==CAMERA_IMAGE_PICK && data.getExtras()!=null && data.getExtras().get("data")!=null){
+            // Implementing code for Camera image Pick
+            else if (requestCode == CAMERA_IMAGE_PICK && data.getExtras() != null && data.getExtras().get("data") != null) {
                 imageBitmap = (Bitmap) data.getExtras().get("data");
                 // Move to ImageDisplay Activity
                 MoveToImageDisplay();
@@ -179,21 +206,30 @@ public class HomeActivity extends AppCompatActivity{
         }
     }
 
+    /**
+     * Method to move to ImageDisplayActivity activity with imageBitmap byte array
+     */
     private void MoveToImageDisplay() {
-        if(imageBitmap!=null) {
+        // Checking imageBitmap exist or not
+        if (imageBitmap != null) {
             Intent intent = new Intent(this, ImageDisplayActivity.class);
+
+            // Converting Bitmap to byte array
             ByteArrayOutputStream baos = new ByteArrayOutputStream();
             imageBitmap = ImageResizer.reduceBitmapSize(imageBitmap, 240000);
             imageBitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
             byte[] bytes = baos.toByteArray();
+
             intent.putExtra(Constants.IMAGE_BITMAP_BYTES, bytes);
             startActivity(intent);
-        }
-        else{
+        } else {
             Toast.makeText(this, Constants.AN_ERROR, Toast.LENGTH_SHORT).show();
         }
     }
 
+    /**
+     * Initialising views
+     */
     private void _init() {
         galleryImagePicker = findViewById(R.id.home_gallery);
         cameraImagePicker = findViewById(R.id.home_camera);

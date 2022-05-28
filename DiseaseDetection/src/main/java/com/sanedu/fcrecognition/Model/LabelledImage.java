@@ -1,5 +1,9 @@
 package com.sanedu.fcrecognition.Model;
 
+/**
+ * @author Sandeep
+ * LabelledImage model class
+ */
 public class LabelledImage {
     private String imageUrl;
     private String imageName;
