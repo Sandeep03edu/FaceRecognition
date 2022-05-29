@@ -1,5 +1,5 @@
 # FaceRecognition
-Simple android app created using OpenCv and dlib libraray
+Simple android app created using OpenCv and dlib library
 
 # Table of contents
 * [Introduction](#introduction)
