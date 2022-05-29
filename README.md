@@ -102,7 +102,8 @@ Simple android app created using OpenCv and dlib libraray
 - Selected Image Cropping
   <p><img src="https://user-images.githubusercontent.com/73837113/170853333-6d6c42a6-3187-4ffe-9046-fef649a6a473.jpg" width="180" height="320"/></p>
 
-- Result Scanning
+### Results prediction
+- Image Scanning
   <p><img src="https://user-images.githubusercontent.com/73837113/170853516-9b4a55d9-6312-47e0-9ad3-d8c487b53fd5.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170853517-5a6dc622-863a-4549-858f-31069bea60a8.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170853515-8ffde498-a2bc-4ed2-89e0-b656f1a3efe6.jpg" width="180" height="320"/></p>
@@ -131,6 +132,7 @@ Simple android app created using OpenCv and dlib libraray
   <p><img src="https://user-images.githubusercontent.com/73837113/170854601-ddae16eb-dec2-4281-882e-2e52c0cc2a5b.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170854599-4339c4b3-94a0-48f0-9dc2-fad51a62da9c.jpg" width="180" height="320"/></p>
  
+ ### Additional features
  - Scan History and My profile
     <p><img src="https://user-images.githubusercontent.com/73837113/170854916-08eb0663-9696-4194-a191-047058a7be4b.jpg" width="180" height="320"/>
     <img src="https://user-images.githubusercontent.com/73837113/170854913-9ee092e1-9b9f-49b1-85e0-6e158c097f84.jpg" width="180" height="320"/></p>
