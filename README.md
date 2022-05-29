@@ -83,6 +83,11 @@ Simple android app created using OpenCv and dlib libraray
 
 # Working
 ## Disease detection
+
+### Working flow
+
+![DiseaseDetection Workflow](https://user-images.githubusercontent.com/73837113/170855211-7e096c32-e890-4ae4-a1ae-1b07df3bab86.jpg)
+
 ### Authentication
 - User have to first authentication in the app to use any functionality
 - User can login into his/her account
