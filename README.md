@@ -10,44 +10,44 @@ Simple android app created using OpenCv and dlib libraray
 * [Working](#working)
 
 # Introduction
-- App was made during 4 week mentorship program of Microsoft Engage'22.
-- The github repo basically contains two apps codebase.
+- App has been made in 4 weeks during mentorship period for Microsoft Engage'22.
+- The github repo basically contain two apps codebase.
 - "DiseaseDetection" module works with "dlib", "sdk" and "common" module and used to detect facial parts and face diseases.
-- "SmartAdvertising" module works with "skd" and "common" module and used to display advertisment based on public age group and gender.
+- "SmartAdvertising" module works with "sdk" and "common" module and used to display advertisment based on public age group and gender.
 
 # Technologies
 - Google Firebase 
-  - Firebase mobile authentication to regustered verified users
-  - Firebase Firestore to store User details, User scan details, Advertisement documets.
-  - Firebase storage to store image file like user profile pic, scanned result image.
-  - Firebase Crashanalytics to detect crashes in app modules
+  - Firebase mobile authentication to register verified users.
+  - Firebase Firestore to store User details, User scan details, Advertisement documents.
+  - Firebase storage to store images like user profile pic, scanned image.
+  - Firebase Crashanalytics to detect crashes in app modules.
 - OpenCv
-  - OpenCv haarcascade_frontalface_alt2.xml file to detect human faces
-  - shape_predictor_68_face_landmarks.dat module to detect landmarks on faces
-  - age_deploy.prototxt and age_net.caffemodel to detect human age
-  - gender_deploy.prototxt and gender_net.caffemodel to detect human gender
+  - OpenCv haarcascade_frontalface_alt2.xml file to detect human faces.
+  - shape_predictor_68_face_landmarks.dat module to detect landmarks on faces.
+  - age_deploy.prototxt and age_net.caffemodel to detect human age.
+  - gender_deploy.prototxt and gender_net.caffemodel to detect human gender.
 
 # Features
 ## Disease Detection
-- Fetching multiple faces from a given image
-- Returning human face count from a given image
-- Adding 68 face landmark points to face
-- Splitted human face image into many small face parts like eyes, eyebrows, nose, lips and face
-- Fetching age and gender for a given image with confidence value
-- Fetched many human facial diseases symptoms percentage
+- Fetching multiple faces from a given image.
+- Getting human face count from a given image.
+- Adding 68 face landmark points to face.
+- Splitted human face into small face parts like eyes, eyebrows, nose, lips and face.
+- Fetching age and gender of given image with confidence value.
+- Fetching human facial diseases symptoms percentage
   - Eyebrow Alopecia detection
   - Chapped Lips detection
   - Eye Redness detection
-- Saving result for future analysis and comparision
-- Rescan option to reevaluate results with clear images 
+- Save result for future analysis and comparision.
+- Rescan option to re-evaluate results with clear images.
 
 ## Smart Advertisement
-- Displaying advertisement to users based on gender and age group
-- Priotizing advertisement based on last displayed time
-- Advertisement displayed in ascending order of last display time for a specific gender and age group
+- Displaying advertisement based on gender and age group of users.
+- Priotizing advertisement based on parameter "lastDisplayedTime"
+- Advertisement displayed in ascending order of "lastDisplayedTime" for a specific gender and age group
   - For e.g., With age group 8-15 and Gender Male 
-  - Advertisement-1 with last display time - 1653763874560
-  - Advertisement-2 with last display time - 1653763874234
+  - Advertisement-1 with "lastDisplayedTime" - 1653763874560
+  - Advertisement-2 with "lastDisplayedTime" - 1653763874234
   - Then Advertisement-2 will be displayed prior to Advertisement-1
 
 # Dependencies
@@ -89,12 +89,12 @@ Simple android app created using OpenCv and dlib libraray
 ![DiseaseDetection Workflow](https://user-images.githubusercontent.com/73837113/170855211-7e096c32-e890-4ae4-a1ae-1b07df3bab86.jpg)
 
 ### Authentication
-- User have to first authentication in the app to use any functionality
-- User can login into his/her account
+- User have to first authenticate in the app for using its functionality
+- User have to login into his/her account
   <p><img src="https://user-images.githubusercontent.com/73837113/170852332-5b1e1120-994d-4041-b83e-2f6ebdd66336.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170852359-e4985e0c-44c6-4ebd-8a77-f662a887c32e.jpg" width="180" height="320"/></p>
 
-- User can create his/her account
+- User should create his/her account
   <p><img src="https://user-images.githubusercontent.com/73837113/170852492-640e2c20-1970-4a6d-bb63-3d299b381aef.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170852494-07d991fc-64f2-49ac-a995-bc74a762d65e.jpg" width="180" height="320"/></p>
 
@@ -113,7 +113,7 @@ Simple android app created using OpenCv and dlib libraray
   <img src="https://user-images.githubusercontent.com/73837113/170853517-5a6dc622-863a-4549-858f-31069bea60a8.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170853515-8ffde498-a2bc-4ed2-89e0-b656f1a3efe6.jpg" width="180" height="320"/></p>
   
-- Predicted age and gender with confidence percentage
+- Predict age and gender with confidence percentage
   <p><img src="https://user-images.githubusercontent.com/73837113/170853690-ef7a9dee-7c31-419f-bd0d-c1b5221b34f0.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170853691-4e79c872-9628-4cab-b067-a9ec0df02c6d.jpg" width="180" height="320"/></p>
 
