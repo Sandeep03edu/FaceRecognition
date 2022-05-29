@@ -143,3 +143,16 @@ Simple android app created using OpenCv and dlib library
     <img src="https://user-images.githubusercontent.com/73837113/170854913-9ee092e1-9b9f-49b1-85e0-6e158c097f84.jpg" width="180" height="320"/>
     <img src="https://user-images.githubusercontent.com/73837113/170856552-7ccd1820-9628-4e82-af87-ce9d094a86dd.jpg" width="180" height="320"/></p>
 
+## Smart Advertising
+- Simple single screen app to display advetisements based on users age and gender
+### Permission Requirements
+- App needs to access Camera and External storage to function properly along with internet
+    <p><img src="https://user-images.githubusercontent.com/73837113/170859038-55c9e77a-16bd-4323-be54-699f761d7a7f.jpg" width="180" height="320"/>
+    <img src="https://user-images.githubusercontent.com/73837113/170859039-2d7cfbcf-1716-4049-8dc6-565559dfd68b.jpg" width="180" height="320"/></p>
+    
+### Output
+- App detects image from Front camera and scan results from images
+- Home screen, Male and Female advertisement is shown
+    <p><img src="https://user-images.githubusercontent.com/73837113/170859097-363574ef-d1de-4c16-9e50-1de63a57099d.jpg" width="180" height="320"/>
+    <img src="https://user-images.githubusercontent.com/73837113/170859098-7211a96a-0972-473f-a29e-892c55fe9403.jpg" width="180" height="320"/>
+    <img src="https://user-images.githubusercontent.com/73837113/170859099-98862ca9-7605-448b-a887-82062154f63d.jpg" width="180" height="320"/></p> 
