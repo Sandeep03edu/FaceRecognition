@@ -98,6 +98,10 @@ Simple android app created using OpenCv and dlib library
   <p><img src="https://user-images.githubusercontent.com/73837113/170852492-640e2c20-1970-4a6d-bb63-3d299b381aef.jpg" width="180" height="320"/>
   <img src="https://user-images.githubusercontent.com/73837113/170852494-07d991fc-64f2-49ac-a995-bc74a762d65e.jpg" width="180" height="320"/></p>
 
+#### Testing account credentials (Not to be used for saving data)
+  - Mobile number - 9999988888
+  - OTP - 123456
+
 ### Choosing Image
 - Home Screen
   <p><img src="https://user-images.githubusercontent.com/73837113/170853233-dbeb36ee-da84-4dc7-be70-9ca73f4f638a.jpg" width="180" height="320"/>
@@ -147,6 +151,10 @@ Simple android app created using OpenCv and dlib library
 - Simple single screen app to display advetisements based on users age and gender.
 - Advertisement changes at the interval of 30 seconds based on live audience in front of camera (Front camera).
 - This application can be extended in public places like Malls, Shopping places, railway stations to display productive ads.
+
+### Advertisement cloud documents
+![Firebase Firestore Advertisement collection](https://user-images.githubusercontent.com/73837113/170864277-6b5d2cce-4866-409c-8eb8-ec2925e8c1be.PNG)
+
 
 ### Permission Requirements
 - App needs to access Camera and External storage to function properly along with internet
