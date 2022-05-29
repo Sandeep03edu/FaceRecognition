@@ -5,7 +5,8 @@ Simple android app created using OpenCv and dlib libraray
 * [Introduction](#introduction)
 * [Technologies](#technologies)
 * [Features](#features)
-* [Permissions](#permission)
+* [Dependencies](#dependencies)
+* [Permissions](#permissions)
 
 # Introduction
 - App was made during 4 week mentorship program of Microsoft Engage'22.
@@ -47,3 +48,34 @@ Simple android app created using OpenCv and dlib libraray
   - Advertisement-1 with last display time - 1653763874560
   - Advertisement-2 with last display time - 1653763874234
   - Then Advertisement-2 will be displayed prior to Advertisement-1
+
+# Dependencies
+- OpenCv Sdk modules
+- dlib facelandmark module
+- Firebase
+  - firebase-analytics
+  - firebase-auth
+  - firebase-firestore
+  - firebase-storage
+  - firebase-crashlytics
+- Tensorflow dependencies
+  - tensorflow-android
+  - tensorflow-lite
+- Gson dependency
+  - com.squareup.retrofit2:converter-gson
+- Image cropping API
+  - com.theartofdev.edmodo:android-image-cropper
+- Circle ImageView
+  - de.hdodenhof:circleimageview
+- Picasso to load images from url
+  - com.squareup.picasso:picasso
+- Updated workmanager for Foreground service
+  - androidx.work:work-runtime
+
+# Permissions
+- Internet permission
+  - To access advertisement in smartAdvertisement and authentication, saving records in diseaseDetection
+- External Storage
+  - To access media files inside the mobile phone
+- Camera
+  - To capture photo 
