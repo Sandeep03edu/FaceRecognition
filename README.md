@@ -138,6 +138,8 @@ Simple android app created using OpenCv and dlib library
   <img src="https://user-images.githubusercontent.com/73837113/170854599-4339c4b3-94a0-48f0-9dc2-fad51a62da9c.jpg" width="180" height="320"/></p>
  
  ### Additional features
- - Scan History and My profile
+ - Scan History, My profile and logout option
     <p><img src="https://user-images.githubusercontent.com/73837113/170854916-08eb0663-9696-4194-a191-047058a7be4b.jpg" width="180" height="320"/>
-    <img src="https://user-images.githubusercontent.com/73837113/170854913-9ee092e1-9b9f-49b1-85e0-6e158c097f84.jpg" width="180" height="320"/></p>
+    <img src="https://user-images.githubusercontent.com/73837113/170854913-9ee092e1-9b9f-49b1-85e0-6e158c097f84.jpg" width="180" height="320"/>
+    <img src="https://user-images.githubusercontent.com/73837113/170856552-7ccd1820-9628-4e82-af87-ce9d094a86dd.jpg" width="180" height="320"/></p>
+
