@@ -439,8 +439,17 @@ public class DualImageResult extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == RESCAN_REQUEST && data != null) {
             faceResult = null;
             dualImageModel = new Gson().fromJson(data.getStringExtra(Constants.DUAL_IMAGE_TEST), DualImageModel.class);
+            ClearPrevData();
             SetIntentData();
             GetResult();
         }
+    }
+
+    /**
+     * Method to clear previous result
+     */
+    private void ClearPrevData() {
+        lResult.setText("");
+        rResult.setText("");
     }
 }

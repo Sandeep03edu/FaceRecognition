@@ -55,8 +55,10 @@ public class AuthenticationActivity extends AppCompatActivity {
      * Initialising views
      */
     private void _init() {
-        viewPager = findViewById(R.id.authentication_view_pager);
+        // Initialising title
+        setTitle("Login");
 
+        viewPager = findViewById(R.id.authentication_view_pager);
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
@@ -71,7 +73,7 @@ public class AuthenticationActivity extends AppCompatActivity {
                 }
                 else if(position==Constants.START_REGISTRATION){
                     // Changing title
-                    setTitle("Registered");
+                    setTitle("Registration");
                 }
             }
 

@@ -4,12 +4,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 
 import com.google.firebase.auth.FirebaseAuth;
-import com.sanedu.fcrecognition.AnalysisResult.DualRescanData;
 import com.sanedu.fcrecognition.Home.HomeActivity;
-import com.sanedu.fcrecognition.MainActivity;
 import com.sanedu.fcrecognition.R;
 
 /**

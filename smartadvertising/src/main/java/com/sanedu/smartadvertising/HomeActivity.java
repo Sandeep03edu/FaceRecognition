@@ -2,6 +2,8 @@ package com.sanedu.smartadvertising;
 
 import static org.opencv.core.Core.flip;
 
+import static java.lang.Thread.sleep;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -63,95 +65,35 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         // Initialising views
         _init();
 
+        // Initialising openCv camera
         initOpenCvCamera();
 
+        // Checking camera permission
         if (!Permission.CheckPermission(this, Manifest.permission.CAMERA) ||
                 !Permission.CheckPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
             Permission.RequestPermission(this, new String[]{Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE});
             return;
         } else {
+            // Initialising JavaCameraView
             initializeCamera((CameraBridgeViewBase) cameraBridgeViewBase, activeBackCamera);
         }
 
-        findViewById(R.id.home_click).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (mRgbaT.empty()) {
-                    return;
-                }
-
-                Bitmap bitmap = Bitmap.createBitmap(mRgbaT.cols(), mRgbaT.rows(), Bitmap.Config.RGB_565);
-                Utils.matToBitmap(mRgbaT, bitmap);
-                bitmap = com.sanedu.common.Utils.Utils.rotateBitmap(bitmap, -90);
-                StartAdvertisement();
-                Bitmap finalBitmap = bitmap;
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        imageView.setImageBitmap(finalBitmap);
-                    }
-                });
-
-            }
-        });
-
-
+        // Starting advertisement display
         StartAdvertisement();
-
-//        UploadData();
-
     }
 
-    private void UploadData() {
-        String[] ageList = {"(0-2)", "(4-6)", "(8-12)", "(15-20)", "(25-32)", "(38-43)", "(48-53)", "(60-100)"};
-        int[] genderList = {-1, 1, 0};
-
-        String[] urls = new String[]{
-                "https://i.ibb.co/41m2mHN/Female-1.png",
-                "https://i.ibb.co/xCGL84K/Female-2.png",
-                "https://i.ibb.co/bPM1CRd/Female-3.png",
-                "https://i.ibb.co/m6j2B3V/Female-4.png",
-                "https://i.ibb.co/F3KKc77/Female-5.png",
-                "https://i.ibb.co/T0Tnpk5/Female-6.png",
-                "https://i.ibb.co/0thkwKH/Female-7.png",
-                "https://i.ibb.co/2dKBj9n/Female-8.png",
-
-                "https://i.ibb.co/tHq4W67/Male-1.png",
-                "https://i.ibb.co/fMcjhMT/Male-2.png",
-                "https://i.ibb.co/PM1S5hB/Male-3.png",
-                "https://i.ibb.co/F5BzBgN/Male-4.png",
-                "https://i.ibb.co/LYBJYdp/Male-5.png",
-                "https://i.ibb.co/Wn01yHt/Male-6.png",
-                "https://i.ibb.co/JySC4nR/Male-7.png",
-                "https://i.ibb.co/Pw9nqrX/Male-8.png",
-
-                "https://i.ibb.co/kyWbYYf/Neutral-1.png",
-                "https://i.ibb.co/Fbqdz20/Neutral-2.png",
-                "https://i.ibb.co/5YsbrMR/Neutral-3.png",
-                "https://i.ibb.co/cwTP6d0/Neutral-4.png",
-                "https://i.ibb.co/KG8N0y5/Neutral-5.png",
-                "https://i.ibb.co/XWrSPy1/Neutral-6.png",
-                "https://i.ibb.co/nQY0bQC/Neutral-7.png",
-                "https://i.ibb.co/yW4mwCf/Neutral-8.png"
-        };
-
-        for (int i = 0; i < 24; ++i) {
-            ArrayList<String> ageArrayList = new ArrayList<>();
-            ageArrayList.add(ageList[i % 8]);
-            Advertisement advertisement = new Advertisement(ageArrayList, genderList[i/8], urls[i], -1);
-            advertisement.setId(System.currentTimeMillis());
-            FirebaseFirestore.getInstance().collection(Constants.FIREBASE_ADVERTISEMENT_TABLE)
-                    .document(advertisement.getId() + "")
-                    .set(advertisement);
-        }
-    }
-
+    /**
+     * Initialising Activity Views
+     */
     private void _init() {
         // Initializing Cameraview
         cameraBridgeViewBase = (CameraBridgeViewBase) findViewById(R.id.home_camera_camera_view);
         imageView = findViewById(R.id.home_img);
     }
 
+    /**
+     * Initialising openCv camera baseLoaderCallback
+     */
     private void initOpenCvCamera() {
         // Initializing BaseLoaderCallBack
         baseLoaderCallback = new BaseLoaderCallback(this) {
@@ -160,7 +102,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
                 super.onManagerConnected(status);
                 switch (status) {
                     case BaseLoaderCallback.SUCCESS:
-//                        Toast.makeText(mAppContext, "Load Successful", Toast.LENGTH_SHORT).show();
+                        // Enabling cameraView
                         cameraBridgeViewBase.enableView();
                         mRgbaT = new Mat();
                         break;
@@ -172,6 +114,12 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         };
     }
 
+    /**
+     * Method used to initialize cameraView
+     *
+     * @param myCameraView - CameraBridgeViewBase - CameraView
+     * @param activeCamera
+     */
     private void initializeCamera(CameraBridgeViewBase myCameraView, int activeCamera) {
         myCameraView.setCameraPermissionGranted();
         myCameraView.setCameraIndex(activeCamera);
@@ -183,6 +131,9 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
     public void onCameraViewStarted(int width, int height) {
     }
 
+    /**
+     * Method working when cameraView stopped
+     */
     @Override
     public void onCameraViewStopped() {
         if (mRgbaT != null) {
@@ -201,15 +152,16 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         return frame;
     }
 
+    /**
+     * Method to start Advertisement
+     */
     private void StartAdvertisement() {
-        if (mRgbaT != null && mRgbaT.empty()) {
-            return;
-        }
         Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (mRgbaT != null && mRgbaT.cols()>0 && mRgbaT.rows()>0) {
+                // Checking whether mat exist or not
+                if (mRgbaT != null && mRgbaT.cols() > 0 && mRgbaT.rows() > 0) {
                     Bitmap bitmap = Bitmap.createBitmap(mRgbaT.cols(), mRgbaT.rows(), Bitmap.Config.RGB_565);
                     Utils.matToBitmap(mRgbaT, bitmap);
                     bitmap = com.sanedu.common.Utils.Utils.rotateBitmap(bitmap, -90);
@@ -218,6 +170,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
                         @Override
                         public void doInBackground() {
                             super.doInBackground();
+                            // fetching age and gender in background thread
                             ageGenderDetection = new AgeGenderDetection(HomeActivity.this, finalBitmap);
                         }
 
@@ -228,6 +181,7 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
                             Log.d(TAG, "onPostExecute: DetectFace Public Gender: " + ageGenderDetection.getPublicMaxGender());
                             Log.d(TAG, "onPostExecute: DetectFace Public Age: " + ageGenderDetection.getPublicMaxAge());
 
+                            // Fetching advertisement based on ageGenderDetection
                             GetAdvertisement();
                         }
                     }.execute();
@@ -236,13 +190,16 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         }, 5000);
     }
 
+    /**
+     * Method to fetch advertisement from Firestore
+     */
     private void GetAdvertisement() {
+        // Firestore query fpr Advertisement
         Query query = FirebaseFirestore.getInstance().collection(Constants.FIREBASE_ADVERTISEMENT_TABLE);
         String ageGrp = ageGenderDetection.getPublicMaxAge().trim();
         if (!ageGrp.isEmpty()) {
             query = query.whereArrayContains("ageGroup", ageGrp);
         }
-
 
         /**
          * gender
@@ -250,6 +207,8 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
          *  1 -> Male
          * -1 -> Female
          */
+
+        // Checking gender
         String gender = ageGenderDetection.getPublicMaxGender().trim();
         if (!gender.isEmpty()) {
             if (gender.equalsIgnoreCase(Constants.MALE)) {
@@ -263,37 +222,57 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
             query = query.whereEqualTo("gender", 0);
         }
 
+        // Ordering queries
         query = query.orderBy("lastDisplayed", Query.Direction.ASCENDING);
         query = query.limit(2);
+
+        // Fetching results
         query.get()
                 .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        // Checking whether document exist or not
                         if (queryDocumentSnapshots != null && queryDocumentSnapshots.size() != 0) {
                             DocumentSnapshot snapshot = queryDocumentSnapshots.getDocuments().get(0);
                             Advertisement advertisement = snapshot.toObject(Advertisement.class);
                             Log.d(TAG, "onSuccess: DetectFace Adv: " + advertisement);
+
+                            // Checking whether advertisement exist or not
                             if (advertisement != null) {
                                 String adUrl = advertisement.getAdvUrl();
+
+                                // Checking whether advertisement url exist or not
                                 if (!adUrl.trim().isEmpty()) {
+
+                                    // Loading advertisement url
                                     Picasso.get()
                                             .load(adUrl)
                                             .placeholder(R.mipmap.ic_launcher)
                                             .into(imageView, new Callback() {
                                                 @Override
                                                 public void onSuccess() {
+                                                    // Updating lastDisplayed
                                                     FirebaseFirestore.getInstance().collection(Constants.FIREBASE_ADVERTISEMENT_TABLE)
                                                             .document(advertisement.getId() + "")
                                                             .update("lastDisplayed", System.currentTimeMillis())
                                                             .addOnSuccessListener(new OnSuccessListener<Void>() {
                                                                 @Override
                                                                 public void onSuccess(Void unused) {
-                                                                    StartAdvertisement();
+                                                                    // Sleeping code for 5 seconds
+                                                                    try {
+                                                                        sleep(5000);
+                                                                    } catch (InterruptedException e) {
+                                                                        e.printStackTrace();
+                                                                    } finally {
+                                                                        // Restarting advertisement
+                                                                        StartAdvertisement();
+                                                                    }
                                                                 }
                                                             })
                                                             .addOnFailureListener(new OnFailureListener() {
                                                                 @Override
                                                                 public void onFailure(@NonNull Exception e) {
+                                                                    // Restarting advertisement onFailure
                                                                     StartAdvertisement();
                                                                 }
                                                             });
@@ -302,16 +281,20 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
 
                                                 @Override
                                                 public void onError(Exception e) {
+                                                    // Restarting advertisement onFailure
                                                     StartAdvertisement();
                                                 }
                                             });
                                 } else {
+                                    // Restarting advertisement onFailure
                                     StartAdvertisement();
                                 }
                             } else {
+                                // Restarting advertisement onFailure
                                 StartAdvertisement();
                             }
                         } else {
+                            // Restarting advertisement onFailure
                             StartAdvertisement();
                         }
                     }
@@ -319,14 +302,16 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
+                        // Restarting advertisement onFailure
                         StartAdvertisement();
                         Log.e(TAG, "onFailure: " + e.getMessage());
                     }
                 });
-
-
     }
 
+    /**
+     * Re-initialising openCvLoader and baseLoaderCallback
+     */
     @Override
     protected void onResume() {
         super.onResume();
@@ -338,6 +323,9 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         }
     }
 
+    /**
+     * Releasing mats and disabling cameraBridgeViewBase
+     */
     @Override
     protected void onPause() {
         super.onPause();
@@ -353,6 +341,9 @@ public class HomeActivity extends AppCompatActivity implements CameraBridgeViewB
         }
     }
 
+    /**
+     * Releasing mats and disabling cameraBridgeViewBase
+     */
     @Override
     protected void onDestroy() {
         super.onDestroy();

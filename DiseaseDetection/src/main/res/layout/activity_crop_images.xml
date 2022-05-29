@@ -52,9 +52,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
-        app:cropFixAspectRatio="true"
-        app:cropMinCropResultHeightPX="200"
-        app:cropMinCropResultWidthPX="200" />
+        app:cropFixAspectRatio="true" />
 
 
 </LinearLayout>

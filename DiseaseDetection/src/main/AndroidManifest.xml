@@ -62,9 +62,6 @@
             android:name=".Start.AuthenticationActivity"
             android:exported="false" />
         <activity
-            android:name="com.sanedu.fcrecognition.MainActivity"
-            android:exported="false" />
-        <activity
             android:name=".Start.SplashActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true"

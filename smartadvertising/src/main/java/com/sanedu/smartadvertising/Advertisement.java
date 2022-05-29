@@ -3,6 +3,11 @@ package com.sanedu.smartadvertising;
 import java.util.ArrayList;
 
 /**
+ * @author Sandeep
+ * Java model class to show Advertisement
+ */
+
+/**
  * gender
      *  0 -> Neutral
      *  1 -> Male
@@ -17,7 +22,19 @@ public class Advertisement {
     private long lastDisplayed;
 
     public Advertisement() {
+        // Empty constructor required by Firebase
     }
+
+    /**
+     * Constructor
+     * @param ageGroup - ArrayList<String> - Age groups list
+     * @param gender - int
+     *      *  0 -> Neutral
+     *      *  1 -> Male
+     *      * -1 -> Female
+     * @param advUrl - String - Advertisement url string
+     * @param lastDisplayed - long - Last seen of advertisement in millisec
+     */
 
     public Advertisement(ArrayList<String> ageGroup, int gender, String advUrl, long lastDisplayed) {
         this.ageGroup = ageGroup;
@@ -58,6 +75,10 @@ public class Advertisement {
         this.lastDisplayed = lastDisplayed;
     }
 
+    /**
+     * Method to Convert Advertisement into String
+     * @return - String
+     */
     @Override
     public String toString() {
         return "Advertisement{" +
